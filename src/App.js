@@ -171,7 +171,7 @@ function App() {
 
   const columns = [{
       dataField: 'vendor',
-      text: 'vendor'
+      text: 'Vendor'
     }, {
       dataField: 'product',
       text: 'Product Name'
