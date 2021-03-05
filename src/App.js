@@ -239,16 +239,21 @@ function App() {
         })}
       </div>
 
-      <BootstrapSwitchButton
-        checked={isRenewal}
-        onstyle="success"
-        offstyle="danger"
-        onlabel='Renewal'
-        offlabel='Non-renewal'
-        size="xs"
-        width={120}
-        onChange={handleRenewalToggle}
-      />
+      <div className="toggle">
+        <div>
+          <BootstrapSwitchButton
+            checked={isRenewal}
+            onstyle="success"
+            offstyle="danger"
+            onlabel='Renewal'
+            offlabel='Non-renewal'
+            size="xs"
+            width={120}
+            onChange={handleRenewalToggle}
+          />
+        </div>
+        <p>No. of filtered Records: {filteredData && filteredData.length}</p>
+      </div>
 
       {/* <pre>{JSON.stringify({
         filteredData: JSON.stringify(filteredData, null, 2),
@@ -259,7 +264,6 @@ function App() {
       }, null, 2)}</pre> */}
     
       <div className="table">
-        <p>No. of filtered Records: {filteredData && filteredData.length}</p>
         <BootstrapTable
           keyField="id"
           striped

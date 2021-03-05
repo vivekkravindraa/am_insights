@@ -60,3 +60,19 @@
     margin: 0 !important;
 }
 
+.toggle {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+}
+
+.toggle > p {
+    margin: 0 !important;
+}
+
+.react-bootstrap-table-pagination-list {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
