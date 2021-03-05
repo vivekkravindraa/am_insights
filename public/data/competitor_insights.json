@@ -167,7 +167,7 @@
           {
             "city_list": "Saint Paul,Methuen,Red Wing", 
             "product": "Akamai (Unspecified Product)", 
-            "renewal_flag": "No", 
+            "renewal_flag": "Yes", 
             "renewal_month": "NA", 
             "technology": "Network Management", 
             "total_cities": "3", 
@@ -227,7 +227,7 @@
           {
             "city_list": "Saint Paul,Irvine,Maplewood,Meriden,Monroe,Red Wing,Methuen,Monrovia,Oakdale,Odessa,Rockland,The Woodlands,Eden Prairie,San Juan,Silver Spring,Royersford,Midway,Tilton,Ardmore,Tomball,Albany,Knoxville,San Diego,Bothell,Garden Grove,Port Saint Lucie,Hutchinson,Cynthiana,Menomonie,Brookings,Hartford City", 
             "product": "StackPath", 
-            "renewal_flag": "Yes", 
+            "renewal_flag": "No", 
             "renewal_month": "NA", 
             "technology": "Network Management", 
             "total_cities": "31", 

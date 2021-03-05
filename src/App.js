@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import BootstrapSwitchButton from 'bootstrap-switch-button-react';
+import BootstrapTable from 'react-bootstrap-table-next';
+import paginationFactory from 'react-bootstrap-table2-paginator';
+import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import './App.css';
 
 function App() {
@@ -83,16 +86,19 @@ function App() {
       // console.log('called at first condition');
       data[0] && Object.values(data[0].accounts[selectedAccount]).map((item) => item.renewal_flag === "Yes" && item.vendor === selectedVendor && filteredSelectedVendorData.push(item));
       setFilteredData(filteredSelectedVendorData);
+
     } else if(isRenewal && !selectedAccount && selectedVendor) {
       // console.log('called at third condition');
       Object.keys(data[0].accounts).map((account) => {
         return Object.values(data[0].accounts[account]).map((item) => item.renewal_flag === "Yes" && item.vendor === selectedVendor && filteredSelectedVendorData.push(item));
       });
       setFilteredData(filteredSelectedVendorData);
+
     } else if(!isRenewal && selectedAccount && selectedVendor) {
       // console.log('called at second condition');
       data[0] && Object.values(data[0].accounts[selectedAccount]).map((item) => item.renewal_flag === "No" && item.vendor === selectedVendor && filteredSelectedVendorData.push(item));
       setFilteredData(filteredSelectedVendorData);
+
     } else if(!isRenewal && !selectedAccount && selectedVendor) {
       // console.log('called at third condition');
       Object.keys(data[0].accounts).map((account) => {
@@ -110,57 +116,73 @@ function App() {
     let filteredRenewalData = []
 
     if(!isRenewal && !selectedAccount && selectedVendor) {
-      console.log('called at first condition');
+      // console.log('called at first condition');
       data[0] && Object.keys(data[0].accounts).map((account) => {
         return Object.values(data[0].accounts[account]).map((item) => item.renewal_flag === "No" && item.vendor === selectedVendor && filteredRenewalData.push(item));
       });
       setFilteredData(filteredRenewalData);
 
     } else if(isRenewal && !selectedAccount && selectedVendor) {
-      console.log('called at second condition');
+      // console.log('called at second condition');
       data[0] && Object.keys(data[0].accounts).map((account) => {
         return Object.values(data[0].accounts[account]).map((item) => item.renewal_flag === "Yes" && item.vendor === selectedVendor && filteredRenewalData.push(item));
       });
       setFilteredData(filteredRenewalData);
 
     } else if(isRenewal && selectedAccount && selectedVendor) {
-      console.log('called at third condition');
+      // console.log('called at third condition');
       data[0] && Object.values(data[0].accounts[selectedAccount]).map((item) => item.renewal_flag === "Yes" && item.vendor === selectedVendor && filteredRenewalData.push(item));
       setFilteredData(filteredRenewalData);
     
     } else if(!isRenewal && selectedAccount && selectedVendor) {
-      console.log('called at fourth condition');
+      // console.log('called at fourth condition');
       data[0] && Object.values(data[0].accounts[selectedAccount]).map((item) => item.renewal_flag === "No" && item.vendor === selectedVendor && filteredRenewalData.push(item));
       setFilteredData(filteredRenewalData);
 
     } else if (isRenewal && selectedAccount) {
-      console.log('called at fifth condition');
+      // console.log('called at fifth condition');
       filteredRenewalData = Object.values(data[0].accounts[selectedAccount]).filter((item) => {
         return item.renewal_flag === "Yes"
       })
       setFilteredData(filteredRenewalData);
 
     } else if(isRenewal && !selectedAccount) {
-      console.log('called at sixth condition');
+      // console.log('called at sixth condition');
       data[0] && Object.keys(data[0].accounts).map((account) => {
         return Object.values(data[0].accounts[account]).map((item) => item.renewal_flag === "Yes" && filteredRenewalData.push(item));
       });
       setFilteredData(filteredRenewalData);
 
     } else if(!isRenewal && selectedAccount) {
-      console.log('called at seventh condition');
+      // console.log('called at seventh condition');
       filteredRenewalData = Object.values(data[0].accounts[selectedAccount]).filter((item) => {
         return item.renewal_flag === "No"
       })
       setFilteredData(filteredRenewalData);
 
     } else {
-      console.log('called at eighth condition');
+      // console.log('called at eighth condition');
       data[0] && Object.keys(data[0].accounts).map((account) => {
         return Object.values(data[0].accounts[account]).map((item) => item.renewal_flag === "No" && filteredRenewalData.push(item));
       });
       setFilteredData(filteredRenewalData);
     }
+  }
+
+  const columns = [{
+      dataField: 'vendor',
+      text: 'vendor'
+    }, {
+      dataField: 'product',
+      text: 'Product Name'
+    }, {
+      dataField: 'renewal_flag',
+      text: 'Renewal Flag'
+    }
+  ]
+
+  const paginationOption = {
+    sizePerPage: 5
   }
 
   // console.log("filteredData", filteredData);
@@ -228,38 +250,26 @@ function App() {
         onChange={handleRenewalToggle}
       />
 
-      <pre>{JSON.stringify({
+      {/* <pre>{JSON.stringify({
         filteredData: JSON.stringify(filteredData, null, 2),
         filteredDataLength: filteredData.length,
         isRenewal,
         selectedAccount,
         selectedVendor
-      }, null, 2)}</pre>
+      }, null, 2)}</pre> */}
     
       <div className="table">
         <p>No. of filtered Records: {filteredData && filteredData.length}</p>
-        <table>
-          <thead>
-            <tr>
-              <th>
-                Vendor
-              </th>
-              <th>
-                Renewal
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredData && filteredData.map((item, index) => {
-              return (
-                <tr key={index}>
-                  <td>{item.vendor}</td>
-                  <td>{item.renewal_flag}</td>
-                </tr>
-              )
-            })}
-          </tbody>
-        </table>
+        <BootstrapTable
+          keyField="id"
+          striped
+          hover
+          condensed
+          noDataIndication="Table is Empty"
+          data={ filteredData }
+          columns={ columns }
+          pagination={ paginationFactory(paginationOption) }
+        />
       </div>
     </div>
   );
