@@ -1,0 +1,872 @@
+[
+    {
+      "accounts": {
+        "Collaboration": [
+          {
+            "city_list": "Saint Paul,Irvine,Maplewood,Meriden,Monroe,Red Wing,Methuen,Monrovia,Oakdale,Odessa,Rockland,The Woodlands,Eden Prairie,San Juan,Silver Spring,Royersford,Midway,Tilton,Ardmore,Tomball,Albany,Knoxville,San Diego,Bothell,Garden Grove,Port Saint Lucie,Hutchinson,Cynthiana,Menomonie,Brookings,Hartford City", 
+            "product": "GitHub", 
+            "renewal_flag": "No", 
+            "renewal_month": "NA", 
+            "technology": "Team Collaborative Applications", 
+            "total_cities": "31", 
+            "vendor": "GitHub, Inc.", 
+            "vendor_options": [
+              {
+                "potential_vendor": "HCL Technologies,Ltd."
+              }, 
+              {
+                "potential_vendor": "Microsoft Corporation"
+              }, 
+              {
+                "potential_vendor": "Whatsapp Inc."
+              }
+            ]
+          }, 
+          {
+            "city_list": "Saint Paul,Irvine,Maplewood,Meriden,Monroe,Red Wing,Methuen,Monrovia,Oakdale,Odessa,Rockland,The Woodlands,Eden Prairie,San Juan,Silver Spring,Royersford,Midway,Tilton,Ardmore,Tomball,Albany,Knoxville,San Diego,Bothell,Garden Grove,Port Saint Lucie,Hutchinson,Cynthiana,Menomonie,Brookings,Hartford City", 
+            "product": "HCL Notes", 
+            "renewal_flag": "No", 
+            "renewal_month": "NA", 
+            "technology": "Team Collaborative Applications", 
+            "total_cities": "31", 
+            "vendor": "HCL Technologies,Ltd.", 
+            "vendor_options": [
+              {
+                "potential_vendor": "GitHub, Inc."
+              }, 
+              {
+                "potential_vendor": "Microsoft Corporation"
+              }, 
+              {
+                "potential_vendor": "Whatsapp Inc."
+              }
+            ]
+          }, 
+          {
+            "city_list": "Saint Paul,Irvine,Maplewood,Meriden,Monroe,Red Wing,Methuen,Monrovia,Oakdale,Odessa,Rockland,The Woodlands,Eden Prairie,San Juan,Silver Spring,Royersford,Midway,Tilton,Ardmore,Tomball,Albany,Knoxville,San Diego,Bothell,Garden Grove,Port Saint Lucie,Hutchinson,Cynthiana,Menomonie,Brookings,Hartford City", 
+            "product": "Microsoft Teams", 
+            "renewal_flag": "Yes", 
+            "renewal_month": "NA", 
+            "technology": "Team Collaborative Applications", 
+            "total_cities": "31", 
+            "vendor": "Microsoft Corporation", 
+            "vendor_options": [
+              {
+                "potential_vendor": "HCL Technologies,Ltd."
+              }, 
+              {
+                "potential_vendor": "GitHub, Inc."
+              }, 
+              {
+                "potential_vendor": "Whatsapp Inc."
+              }
+            ]
+          }, 
+          {
+            "city_list": "Saint Paul,Irvine,Maplewood,Meriden,Monroe,Red Wing,Methuen,Monrovia,Oakdale,Odessa,Rockland,The Woodlands,Eden Prairie,San Juan,Silver Spring,Royersford,Midway,Tilton,Ardmore,Tomball,Albany,Knoxville,San Diego,Bothell,Garden Grove,Port Saint Lucie,Hutchinson,Cynthiana,Menomonie,Brookings,Hartford City", 
+            "product": "Skype", 
+            "renewal_flag": "No", 
+            "renewal_month": "NA", 
+            "technology": "Team Collaborative Applications", 
+            "total_cities": "31", 
+            "vendor": "Microsoft Corporation", 
+            "vendor_options": [
+              {
+                "potential_vendor": "HCL Technologies,Ltd."
+              }, 
+              {
+                "potential_vendor": "GitHub, Inc."
+              }, 
+              {
+                "potential_vendor": "Whatsapp Inc."
+              }
+            ]
+          }, 
+          {
+            "city_list": "Saint Paul,Irvine,Maplewood,Meriden,Monroe,Red Wing,Methuen,Monrovia,Oakdale,Odessa,Rockland,The Woodlands,Eden Prairie,San Juan,Silver Spring,Royersford,Midway,Tilton,Ardmore,Tomball,Albany,Knoxville,San Diego,Bothell,Garden Grove,Port Saint Lucie,Hutchinson,Cynthiana,Menomonie,Brookings,Hartford City", 
+            "product": "ON24", 
+            "renewal_flag": "No", 
+            "renewal_month": "NA", 
+            "technology": "Conferencing Applications", 
+            "total_cities": "31", 
+            "vendor": "On24, Inc.", 
+            "vendor_options": [
+              {
+                "potential_vendor": "Zoom Video Communications, Inc."
+              }, 
+              {
+                "potential_vendor": "NA"
+              }, 
+              {
+                "potential_vendor": "NA"
+              }
+            ]
+          }, 
+          {
+            "city_list": "Saint Paul,Irvine,Maplewood,Meriden,Monroe,Red Wing,Methuen,Monrovia,Oakdale,Odessa,Rockland,The Woodlands,Eden Prairie,San Juan,Silver Spring,Royersford,Midway,Tilton,Ardmore,Tomball,Albany,Knoxville,San Diego,Bothell,Garden Grove,Port Saint Lucie,Hutchinson,Cynthiana,Menomonie,Brookings,Hartford City", 
+            "product": "OpenText RightFax", 
+            "renewal_flag": "No", 
+            "renewal_month": "NA", 
+            "technology": "File Synchronization and Sharing Software", 
+            "total_cities": "31", 
+            "vendor": "OpenText Corporation", 
+            "vendor_options": [
+              {
+                "potential_vendor": "NA"
+              }, 
+              {
+                "potential_vendor": "NA"
+              }, 
+              {
+                "potential_vendor": "NA"
+              }
+            ]
+          }, 
+          {
+            "city_list": "Saint Paul,Meriden", 
+            "product": "WhatsApp", 
+            "renewal_flag": "No", 
+            "renewal_month": "NA", 
+            "technology": "Team Collaborative Applications", 
+            "total_cities": "2", 
+            "vendor": "Whatsapp Inc.", 
+            "vendor_options": [
+              {
+                "potential_vendor": "HCL Technologies,Ltd."
+              }, 
+              {
+                "potential_vendor": "GitHub, Inc."
+              }, 
+              {
+                "potential_vendor": "Microsoft Corporation"
+              }
+            ]
+          }, 
+          {
+            "city_list": "Saint Paul,Irvine,Maplewood,Meriden,Monroe,Red Wing,Methuen,Monrovia,Oakdale,Odessa,Rockland,The Woodlands,Eden Prairie,San Juan,Silver Spring,Royersford,Midway,Tilton,Ardmore,Tomball,Albany,Knoxville,San Diego,Bothell,Garden Grove,Port Saint Lucie,Hutchinson,Cynthiana,Menomonie,Brookings,Hartford City", 
+            "product": "Zoom", 
+            "renewal_flag": "Yes", 
+            "renewal_month": "NA", 
+            "technology": "Conferencing Applications", 
+            "total_cities": "31", 
+            "vendor": "Zoom Video Communications, Inc.", 
+            "vendor_options": [
+              {
+                "potential_vendor": "On24, Inc."
+              }, 
+              {
+                "potential_vendor": "NA"
+              }, 
+              {
+                "potential_vendor": "NA"
+              }
+            ]
+          }
+        ], 
+        "Network Infrasturcture & Services": [
+          {
+            "city_list": "Saint Paul,Methuen,Red Wing", 
+            "product": "Akamai (Unspecified Product)", 
+            "renewal_flag": "No", 
+            "renewal_month": "NA", 
+            "technology": "Network Management", 
+            "total_cities": "3", 
+            "vendor": "Akamai Technologies, Inc.", 
+            "vendor_options": [
+              {
+                "potential_vendor": "SolarWinds North America, Inc."
+              }, 
+              {
+                "potential_vendor": "Amazon Web Services, Inc."
+              }, 
+              {
+                "potential_vendor": "Stackpath, LLC"
+              }
+            ]
+          }, 
+          {
+            "city_list": "Saint Paul,Irvine,Maplewood,Meriden,Monroe,Red Wing,Methuen,Monrovia,Oakdale,Odessa,Rockland,The Woodlands,Eden Prairie,San Juan,Silver Spring,Royersford,Midway,Tilton,Ardmore,Tomball,Albany,Knoxville,San Diego,Bothell,Garden Grove,Port Saint Lucie,Hutchinson,Cynthiana,Menomonie,Brookings,Hartford City", 
+            "product": "Aura Managed CDN", 
+            "renewal_flag": "No", 
+            "renewal_month": "NA", 
+            "technology": "Network Management", 
+            "total_cities": "31", 
+            "vendor": "Akamai Technologies, Inc.", 
+            "vendor_options": [
+              {
+                "potential_vendor": "SolarWinds North America, Inc."
+              }, 
+              {
+                "potential_vendor": "Amazon Web Services, Inc."
+              }, 
+              {
+                "potential_vendor": "Stackpath, LLC"
+              }
+            ]
+          }, 
+          {
+            "city_list": "Saint Paul,Irvine,Maplewood,Meriden,Monroe,Red Wing,Methuen,Monrovia,Oakdale,Odessa,Rockland,The Woodlands,Eden Prairie,San Juan,Silver Spring,Royersford,Midway,Tilton,Ardmore,Tomball,Albany,Knoxville,San Diego,Bothell,Garden Grove,Port Saint Lucie,Hutchinson,Cynthiana,Menomonie,Brookings,Hartford City", 
+            "product": "AWS Direct Connect", 
+            "renewal_flag": "No", 
+            "renewal_month": "NA", 
+            "technology": "Network Management", 
+            "total_cities": "31", 
+            "vendor": "Amazon Web Services, Inc.", 
+            "vendor_options": [
+              {
+                "potential_vendor": "SolarWinds North America, Inc."
+              }, 
+              {
+                "potential_vendor": "Akamai Technologies, Inc."
+              }, 
+              {
+                "potential_vendor": "Stackpath, LLC"
+              }
+            ]
+          }, 
+          {
+            "city_list": "Saint Paul,Irvine,Maplewood,Meriden,Monroe,Red Wing,Methuen,Monrovia,Oakdale,Odessa,Rockland,The Woodlands,Eden Prairie,San Juan,Silver Spring,Royersford,Midway,Tilton,Ardmore,Tomball,Albany,Knoxville,San Diego,Bothell,Garden Grove,Port Saint Lucie,Hutchinson,Cynthiana,Menomonie,Brookings,Hartford City", 
+            "product": "StackPath", 
+            "renewal_flag": "Yes", 
+            "renewal_month": "NA", 
+            "technology": "Network Management", 
+            "total_cities": "31", 
+            "vendor": "Stackpath, LLC", 
+            "vendor_options": [
+              {
+                "potential_vendor": "SolarWinds North America, Inc."
+              }, 
+              {
+                "potential_vendor": "Amazon Web Services, Inc."
+              }, 
+              {
+                "potential_vendor": "Akamai Technologies, Inc."
+              }
+            ]
+          }
+        ], 
+        "Operations Management": [
+          {
+            "city_list": "Saint Paul,Irvine,Maplewood,Meriden,Monroe,Red Wing,Methuen,Monrovia,Oakdale,Odessa,Rockland,The Woodlands,Eden Prairie,San Juan,Silver Spring,Royersford,Midway,Tilton,Ardmore,Tomball,Albany,Knoxville,San Diego,Bothell,Garden Grove,Port Saint Lucie,Hutchinson,Cynthiana,Menomonie,Brookings,Hartford City", 
+            "product": "AWS Cost Explorer", 
+            "renewal_flag": "No", 
+            "renewal_month": "NA", 
+            "technology": "IT Asset Management", 
+            "total_cities": "31", 
+            "vendor": "Amazon Web Services, Inc.", 
+            "vendor_options": [
+              {
+                "potential_vendor": "Nagios Enterprises, LLC"
+              }, 
+              {
+                "potential_vendor": "Microsoft Corporation"
+              }, 
+              {
+                "potential_vendor": "Red Hat, Inc."
+              }
+            ]
+          }, 
+          {
+            "city_list": "Saint Paul,Irvine,Maplewood,Meriden,Monroe,Red Wing,Methuen,Monrovia,Oakdale,Odessa,Rockland,The Woodlands,Eden Prairie,San Juan,Silver Spring,Royersford,Midway,Tilton,Ardmore,Tomball,Albany,Knoxville,San Diego,Bothell,Garden Grove,Port Saint Lucie,Hutchinson,Cynthiana,Menomonie,Brookings,Hartford City", 
+            "product": "Amazon Cloudwatch", 
+            "renewal_flag": "No", 
+            "renewal_month": "NA", 
+            "technology": "IT Asset Management", 
+            "total_cities": "31", 
+            "vendor": "Amazon Web Services, Inc.", 
+            "vendor_options": [
+              {
+                "potential_vendor": "Nagios Enterprises, LLC"
+              }, 
+              {
+                "potential_vendor": "Microsoft Corporation"
+              }, 
+              {
+                "potential_vendor": "Red Hat, Inc."
+              }
+            ]
+          }, 
+          {
+            "city_list": "Saint Paul,Irvine,Maplewood,Meriden,Monroe,Red Wing,Methuen,Monrovia,Oakdale,Odessa,Rockland,The Woodlands,Eden Prairie,San Juan,Silver Spring,Royersford,Midway,Tilton,Ardmore,Tomball,Albany,Knoxville,San Diego,Bothell,Garden Grove,Port Saint Lucie,Hutchinson,Cynthiana,Menomonie,Brookings,Hartford City", 
+            "product": "Amazon EC2", 
+            "renewal_flag": "No", 
+            "renewal_month": "NA", 
+            "technology": "IT Asset Management", 
+            "total_cities": "31", 
+            "vendor": "Amazon Web Services, Inc.", 
+            "vendor_options": [
+              {
+                "potential_vendor": "Nagios Enterprises, LLC"
+              }, 
+              {
+                "potential_vendor": "Microsoft Corporation"
+              }, 
+              {
+                "potential_vendor": "Red Hat, Inc."
+              }
+            ]
+          }, 
+          {
+            "city_list": "Saint Paul,Irvine,Maplewood,Meriden,Monroe,Red Wing,Methuen,Monrovia,Oakdale,Odessa,Rockland,The Woodlands,Eden Prairie,San Juan,Silver Spring,Royersford,Midway,Tilton,Ardmore,Tomball,Albany,Knoxville,San Diego,Bothell,Garden Grove,Port Saint Lucie,Hutchinson,Cynthiana,Menomonie,Brookings,Hartford City", 
+            "product": "Amazon Elastic Load Balancing", 
+            "renewal_flag": "No", 
+            "renewal_month": "NA", 
+            "technology": "IT Asset Management", 
+            "total_cities": "31", 
+            "vendor": "Amazon Web Services, Inc.", 
+            "vendor_options": [
+              {
+                "potential_vendor": "Nagios Enterprises, LLC"
+              }, 
+              {
+                "potential_vendor": "Microsoft Corporation"
+              }, 
+              {
+                "potential_vendor": "Red Hat, Inc."
+              }
+            ]
+          }, 
+          {
+            "city_list": "Saint Paul,Irvine,Maplewood,Meriden,Monroe,Red Wing,Methuen,Monrovia,Oakdale,Odessa,Rockland,The Woodlands,Eden Prairie,San Juan,Silver Spring,Royersford,Midway,Tilton,Ardmore,Tomball,Albany,Knoxville,San Diego,Bothell,Garden Grove,Port Saint Lucie,Hutchinson,Cynthiana,Menomonie,Brookings,Hartford City", 
+            "product": "Micro Focus Service Management Automation X", 
+            "renewal_flag": "No", 
+            "renewal_month": "NA", 
+            "technology": "IT Service Desk", 
+            "total_cities": "31", 
+            "vendor": "Micro Focus International PLC", 
+            "vendor_options": [
+              {
+                "potential_vendor": "NA"
+              }, 
+              {
+                "potential_vendor": "NA"
+              }, 
+              {
+                "potential_vendor": "NA"
+              }
+            ]
+          }, 
+          {
+            "city_list": "Saint Paul,Irvine,Maplewood,Meriden,Monroe,Red Wing,Methuen,Monrovia,Oakdale,Odessa,Rockland,The Woodlands,Eden Prairie,San Juan,Silver Spring,Royersford,Midway,Tilton,Ardmore,Tomball,Albany,Knoxville,San Diego,Bothell,Garden Grove,Port Saint Lucie,Hutchinson,Cynthiana,Menomonie,Brookings,Hartford City", 
+            "product": "Azure Cost Management", 
+            "renewal_flag": "No", 
+            "renewal_month": "NA", 
+            "technology": "IT Asset Management", 
+            "total_cities": "31", 
+            "vendor": "Microsoft Corporation", 
+            "vendor_options": [
+              {
+                "potential_vendor": "Nagios Enterprises, LLC"
+              }, 
+              {
+                "potential_vendor": "Red Hat, Inc."
+              }, 
+              {
+                "potential_vendor": "Amazon Web Services, Inc."
+              }
+            ]
+          }, 
+          {
+            "city_list": "Saint Paul,Irvine,Maplewood,Meriden,Monroe,Red Wing,Methuen,Monrovia,Oakdale,Odessa,Rockland,The Woodlands,Eden Prairie,San Juan,Silver Spring,Royersford,Midway,Tilton,Ardmore,Tomball,Albany,Knoxville,San Diego,Bothell,Garden Grove,Port Saint Lucie,Hutchinson,Cynthiana,Menomonie,Brookings,Hartford City", 
+            "product": "Nagios", 
+            "renewal_flag": "No", 
+            "renewal_month": "NA", 
+            "technology": "IT Asset Management", 
+            "total_cities": "31", 
+            "vendor": "Nagios Enterprises, LLC", 
+            "vendor_options": [
+              {
+                "potential_vendor": "Microsoft Corporation"
+              }, 
+              {
+                "potential_vendor": "Red Hat, Inc."
+              }, 
+              {
+                "potential_vendor": "Amazon Web Services, Inc."
+              }
+            ]
+          }, 
+          {
+            "city_list": "Saint Paul,Irvine,Maplewood,Meriden,Monroe,Red Wing,Methuen,Monrovia,Oakdale,Odessa,Rockland,The Woodlands,Eden Prairie,San Juan,Silver Spring,Royersford,Midway,Tilton,Ardmore,Tomball,Albany,Knoxville,San Diego,Bothell,Garden Grove,Port Saint Lucie,Hutchinson,Cynthiana,Menomonie,Brookings,Hartford City", 
+            "product": "Red Hat Ansible", 
+            "renewal_flag": "No", 
+            "renewal_month": "NA", 
+            "technology": "IT Asset Management", 
+            "total_cities": "31", 
+            "vendor": "Red Hat, Inc.", 
+            "vendor_options": [
+              {
+                "potential_vendor": "Nagios Enterprises, LLC"
+              }, 
+              {
+                "potential_vendor": "Microsoft Corporation"
+              }, 
+              {
+                "potential_vendor": "Amazon Web Services, Inc."
+              }
+            ]
+          }, 
+          {
+            "city_list": "Saint Paul,Irvine,Maplewood,Meriden,Monroe,Red Wing,Methuen,Monrovia,Oakdale,Odessa,Rockland,The Woodlands,Eden Prairie,San Juan,Silver Spring,Royersford,Midway,Tilton,Ardmore,Tomball,Albany,Knoxville,San Diego,Bothell,Garden Grove,Port Saint Lucie,Hutchinson,Cynthiana,Menomonie,Brookings,Hartford City", 
+            "product": "SolarWinds (Unspecified Product)", 
+            "renewal_flag": "No", 
+            "renewal_month": "NA", 
+            "technology": "Network Management", 
+            "total_cities": "31", 
+            "vendor": "SolarWinds North America, Inc.", 
+            "vendor_options": [
+              {
+                "potential_vendor": "Amazon Web Services, Inc."
+              }, 
+              {
+                "potential_vendor": "Akamai Technologies, Inc."
+              }, 
+              {
+                "potential_vendor": "Stackpath, LLC"
+              }
+            ]
+          }, 
+          {
+            "city_list": "Saint Paul,Irvine,Maplewood,Meriden,Monroe,Red Wing,Methuen,Monrovia,Oakdale,Odessa,Rockland,The Woodlands,Eden Prairie,San Juan,Silver Spring,Royersford,Midway,Tilton,Ardmore,Tomball,Albany,Knoxville,San Diego,Bothell,Garden Grove,Port Saint Lucie,Hutchinson,Cynthiana,Menomonie,Brookings,Hartford City", 
+            "product": "VMware SD-WAN by VeloCloud", 
+            "renewal_flag": "No", 
+            "renewal_month": "NA", 
+            "technology": "Network Management", 
+            "total_cities": "31", 
+            "vendor": "Vmware, Inc.", 
+            "vendor_options": [
+              {
+                "potential_vendor": "SolarWinds North America, Inc."
+              }, 
+              {
+                "potential_vendor": "Amazon Web Services, Inc."
+              }, 
+              {
+                "potential_vendor": "Akamai Technologies, Inc."
+              }
+            ]
+          }
+        ], 
+        "Overall": [], 
+        "Security": [
+          {
+            "city_list": "Saint Paul,Irvine,Maplewood,Meriden,Monroe,Red Wing,Methuen,Monrovia,Oakdale,Odessa,Rockland,The Woodlands,Eden Prairie,San Juan,Silver Spring,Royersford,Midway,Tilton,Ardmore,Tomball,Albany,Knoxville,San Diego,Bothell,Garden Grove,Port Saint Lucie,Hutchinson,Cynthiana,Menomonie,Brookings,Hartford City", 
+            "product": "AWS Identity and Access Management (IAM)", 
+            "renewal_flag": "No", 
+            "renewal_month": "NA", 
+            "technology": "Identity and Access Management", 
+            "total_cities": "31", 
+            "vendor": "Amazon Web Services, Inc.", 
+            "vendor_options": [
+              {
+                "potential_vendor": "NA"
+              }, 
+              {
+                "potential_vendor": "NA"
+              }, 
+              {
+                "potential_vendor": "NA"
+              }
+            ]
+          }, 
+          {
+            "city_list": "Saint Paul,Irvine,Maplewood,Meriden,Monroe,Red Wing,Methuen,Monrovia,Oakdale,Odessa,Rockland,The Woodlands,Eden Prairie,San Juan,Silver Spring,Royersford,Midway,Tilton,Ardmore,Tomball,Albany,Knoxville,San Diego,Bothell,Garden Grove,Port Saint Lucie,Hutchinson,Cynthiana,Menomonie,Brookings,Hartford City", 
+            "product": "Incapsula", 
+            "renewal_flag": "No", 
+            "renewal_month": "Apr, 2021", 
+            "technology": "Information and Threat Management", 
+            "total_cities": "31", 
+            "vendor": "Imperva, Inc.", 
+            "vendor_options": [
+              {
+                "potential_vendor": "Microsoft Corporation"
+              }, 
+              {
+                "potential_vendor": "NA"
+              }, 
+              {
+                "potential_vendor": "NA"
+              }
+            ]
+          }, 
+          {
+            "city_list": "Saint Paul,Irvine,Maplewood,Meriden,Monroe,Red Wing,Methuen,Monrovia,Oakdale,Odessa,Rockland,The Woodlands,Eden Prairie,San Juan,Silver Spring,Royersford,Midway,Tilton,Ardmore,Tomball,Albany,Knoxville,San Diego,Bothell,Garden Grove,Port Saint Lucie,Hutchinson,Cynthiana,Menomonie,Brookings,Hartford City", 
+            "product": "Microsoft Azure Virtual Network", 
+            "renewal_flag": "No", 
+            "renewal_month": "NA", 
+            "technology": "Information and Threat Management", 
+            "total_cities": "31", 
+            "vendor": "Microsoft Corporation", 
+            "vendor_options": [
+              {
+                "potential_vendor": "Imperva, Inc."
+              }, 
+              {
+                "potential_vendor": "NA"
+              }, 
+              {
+                "potential_vendor": "NA"
+              }
+            ]
+          }
+        ], 
+        "Software Infrasturcture": [
+          {
+            "city_list": "Saint Paul,Irvine,Maplewood,Meriden,Monroe,Red Wing,Methuen,Monrovia,Oakdale,Odessa,Rockland,The Woodlands,Eden Prairie,San Juan,Silver Spring,Royersford,Midway,Tilton,Ardmore,Tomball,Albany,Knoxville,San Diego,Bothell,Garden Grove,Port Saint Lucie,Hutchinson,Cynthiana,Menomonie,Brookings,Hartford City", 
+            "product": "Citrix (Unspecified Product)", 
+            "renewal_flag": "No", 
+            "renewal_month": "NA", 
+            "technology": "Server Infrastructure", 
+            "total_cities": "31", 
+            "vendor": "Citrix Systems, Inc.", 
+            "vendor_options": [
+              {
+                "potential_vendor": "Vmware, Inc."
+              }, 
+              {
+                "potential_vendor": "NA"
+              }, 
+              {
+                "potential_vendor": "NA"
+              }
+            ]
+          }, 
+          {
+            "city_list": "Saint Paul,Irvine,Maplewood,Meriden,Monroe,Red Wing,Methuen,Monrovia,Oakdale,Odessa,Rockland,The Woodlands,Eden Prairie,San Juan,Silver Spring,Royersford,Midway,Tilton,Ardmore,Tomball,Albany,Knoxville,San Diego,Bothell,Garden Grove,Port Saint Lucie,Hutchinson,Cynthiana,Menomonie,Brookings,Hartford City", 
+            "product": "Citrix Virtual Apps", 
+            "renewal_flag": "No", 
+            "renewal_month": "NA", 
+            "technology": "Virtual Desktops", 
+            "total_cities": "31", 
+            "vendor": "Citrix Systems, Inc.", 
+            "vendor_options": [
+              {
+                "potential_vendor": "Vmware, Inc."
+              }, 
+              {
+                "potential_vendor": "NA"
+              }, 
+              {
+                "potential_vendor": "NA"
+              }
+            ]
+          }, 
+          {
+            "city_list": "Saint Paul,Irvine,Maplewood,Meriden,Monroe,Red Wing,Methuen,Monrovia,Oakdale,Odessa,Rockland,The Woodlands,Eden Prairie,San Juan,Silver Spring,Royersford,Midway,Tilton,Ardmore,Tomball,Albany,Knoxville,San Diego,Bothell,Garden Grove,Port Saint Lucie,Hutchinson,Cynthiana,Menomonie,Brookings,Hartford City", 
+            "product": "Citrix Virtual Desktops", 
+            "renewal_flag": "No", 
+            "renewal_month": "NA", 
+            "technology": "Virtual Desktops", 
+            "total_cities": "31", 
+            "vendor": "Citrix Systems, Inc.", 
+            "vendor_options": [
+              {
+                "potential_vendor": "Vmware, Inc."
+              }, 
+              {
+                "potential_vendor": "NA"
+              }, 
+              {
+                "potential_vendor": "NA"
+              }
+            ]
+          }, 
+          {
+            "city_list": "Saint Paul,Irvine,Maplewood,Meriden,Monroe,Red Wing,Methuen,Monrovia,Oakdale,Odessa,Rockland,The Woodlands,Eden Prairie,San Juan,Silver Spring,Royersford,Midway,Tilton,Ardmore,Tomball,Albany,Knoxville,San Diego,Bothell,Garden Grove,Port Saint Lucie,Hutchinson,Cynthiana,Menomonie,Brookings,Hartford City", 
+            "product": "Microsoft IIS", 
+            "renewal_flag": "No", 
+            "renewal_month": "NA", 
+            "technology": "Server Management", 
+            "total_cities": "31", 
+            "vendor": "Microsoft Corporation", 
+            "vendor_options": [
+              {
+                "potential_vendor": "Red Hat, Inc."
+              }, 
+              {
+                "potential_vendor": "NA"
+              }, 
+              {
+                "potential_vendor": "NA"
+              }
+            ]
+          }, 
+          {
+            "city_list": "Saint Paul,Irvine,Maplewood,Meriden,Monroe,Red Wing,Methuen,Monrovia,Oakdale,Odessa,Rockland,The Woodlands,Eden Prairie,San Juan,Silver Spring,Royersford,Midway,Tilton,Ardmore,Tomball,Albany,Knoxville,San Diego,Bothell,Garden Grove,Port Saint Lucie,Hutchinson,Cynthiana,Menomonie,Brookings,Hartford City", 
+            "product": "Red Hat (Unspecified Product)", 
+            "renewal_flag": "No", 
+            "renewal_month": "NA", 
+            "technology": "Server Management", 
+            "total_cities": "31", 
+            "vendor": "Red Hat, Inc.", 
+            "vendor_options": [
+              {
+                "potential_vendor": "Microsoft Corporation"
+              }, 
+              {
+                "potential_vendor": "NA"
+              }, 
+              {
+                "potential_vendor": "NA"
+              }
+            ]
+          }, 
+          {
+            "city_list": "Saint Paul,Irvine,Maplewood,Meriden,Monroe,Red Wing,Methuen,Monrovia,Oakdale,Odessa,Rockland,The Woodlands,Eden Prairie,San Juan,Silver Spring,Royersford,Midway,Tilton,Ardmore,Tomball,Albany,Knoxville,San Diego,Bothell,Garden Grove,Port Saint Lucie,Hutchinson,Cynthiana,Menomonie,Brookings,Hartford City", 
+            "product": "VMware vFabric", 
+            "renewal_flag": "No", 
+            "renewal_month": "May, 2021", 
+            "technology": "Server Infrastructure", 
+            "total_cities": "31", 
+            "vendor": "Vmware, Inc.", 
+            "vendor_options": [
+              {
+                "potential_vendor": "Citrix Systems, Inc."
+              }, 
+              {
+                "potential_vendor": "NA"
+              }, 
+              {
+                "potential_vendor": "NA"
+              }
+            ]
+          }, 
+          {
+            "city_list": "Saint Paul,Irvine,Maplewood,Meriden,Monroe,Red Wing,Methuen,Monrovia,Oakdale,Odessa,Rockland,The Woodlands,Eden Prairie,San Juan,Silver Spring,Royersford,Midway,Tilton,Ardmore,Tomball,Albany,Knoxville,San Diego,Bothell,Garden Grove,Port Saint Lucie,Hutchinson,Cynthiana,Menomonie,Brookings,Hartford City", 
+            "product": "VMware (Unspecified Product)", 
+            "renewal_flag": "No", 
+            "renewal_month": "May, 2021", 
+            "technology": "Virtual Desktops", 
+            "total_cities": "31", 
+            "vendor": "Vmware, Inc.", 
+            "vendor_options": [
+              {
+                "potential_vendor": "Citrix Systems, Inc."
+              }, 
+              {
+                "potential_vendor": "NA"
+              }, 
+              {
+                "potential_vendor": "NA"
+              }
+            ]
+          }
+        ]
+      }, 
+      "active_competitors": 17, 
+      "active_contracts": 32, 
+      "renewal_contracts": 3, 
+      "vendors": {
+        "Collaboration": [
+          {
+            "active_products": "1", 
+            "affinity_score": "100", 
+            "competitor_name": "HCL Technologies,Ltd.", 
+            "competitor_rank": "1", 
+            "total_cities": "31", 
+            "total_years": "20.83835616"
+          }, 
+          {
+            "active_products": "2", 
+            "affinity_score": "95.81086204", 
+            "competitor_name": "Microsoft Corporation", 
+            "competitor_rank": "2", 
+            "total_cities": "31", 
+            "total_years": "20.85753425"
+          }, 
+          {
+            "active_products": "1", 
+            "affinity_score": "86.35946729", 
+            "competitor_name": "Cisco Systems, Inc.", 
+            "competitor_rank": "3", 
+            "total_cities": "31", 
+            "total_years": "15.74520548"
+          }
+        ], 
+        "Network Infrasturcture & Services": [
+          {
+            "active_products": "1", 
+            "affinity_score": "100", 
+            "competitor_name": "Amazon Web Services, Inc.", 
+            "competitor_rank": "1", 
+            "total_cities": "31", 
+            "total_years": "6.235616438"
+          }, 
+          {
+            "active_products": "2", 
+            "affinity_score": "92.81898335", 
+            "competitor_name": "Akamai Technologies, Inc.", 
+            "competitor_rank": "2", 
+            "total_cities": "31", 
+            "total_years": "6.18630137"
+          }, 
+          {
+            "active_products": "0", 
+            "affinity_score": "86.32885461", 
+            "competitor_name": "Cisco Systems, Inc.", 
+            "competitor_rank": "3", 
+            "total_cities": "0", 
+            "total_years": "19.62739726"
+          }
+        ], 
+        "Operations Management": [
+          {
+            "active_products": "1", 
+            "affinity_score": "100", 
+            "competitor_name": "Micro Focus International PLC", 
+            "competitor_rank": "1", 
+            "total_cities": "31", 
+            "total_years": "19.43561644"
+          }, 
+          {
+            "active_products": "1", 
+            "affinity_score": "90.18030725", 
+            "competitor_name": "Nagios Enterprises, LLC", 
+            "competitor_rank": "2", 
+            "total_cities": "31", 
+            "total_years": "15.90684932"
+          }, 
+          {
+            "active_products": "1", 
+            "affinity_score": "81.41272443", 
+            "competitor_name": "Microsoft Corporation", 
+            "competitor_rank": "3", 
+            "total_cities": "31", 
+            "total_years": "12.75616438"
+          }, 
+          {
+            "active_products": "0", 
+            "affinity_score": "23.30652232", 
+            "competitor_name": "Cisco Systems, Inc.", 
+            "competitor_rank": "9", 
+            "total_cities": "0", 
+            "total_years": "8.375342466"
+          }
+        ], 
+        "Overall": [
+          {
+            "active_products": "1", 
+            "affinity_score": "100", 
+            "competitor_name": "HCL Technologies,Ltd.", 
+            "competitor_rank": "1", 
+            "total_cities": "31", 
+            "total_years": "20.83835616"
+          }, 
+          {
+            "active_products": "5", 
+            "affinity_score": "99.69426814", 
+            "competitor_name": "Microsoft Corporation", 
+            "competitor_rank": "2", 
+            "total_cities": "31", 
+            "total_years": "20.85753425"
+          }, 
+          {
+            "active_products": "1", 
+            "affinity_score": "96.24316689", 
+            "competitor_name": "Micro Focus International PLC", 
+            "competitor_rank": "3", 
+            "total_cities": "31", 
+            "total_years": "19.43561644"
+          }, 
+          {
+            "active_products": "3", 
+            "affinity_score": "93.21112212", 
+            "competitor_name": "Cisco Systems, Inc.", 
+            "competitor_rank": "6", 
+            "total_cities": "31", 
+            "total_years": "19.74794521"
+          }
+        ], 
+        "Security": [
+          {
+            "active_products": "2", 
+            "affinity_score": "100", 
+            "competitor_name": "Cisco Systems, Inc.", 
+            "competitor_rank": "1", 
+            "total_cities": "31", 
+            "total_years": "19.16164384"
+          }, 
+          {
+            "active_products": "1", 
+            "affinity_score": "88.808345", 
+            "competitor_name": "Amazon Web Services, Inc.", 
+            "competitor_rank": "2", 
+            "total_cities": "31", 
+            "total_years": "13.76438356"
+          }, 
+          {
+            "active_products": "1", 
+            "affinity_score": "85.61666321", 
+            "competitor_name": "Microsoft Corporation", 
+            "competitor_rank": "3", 
+            "total_cities": "31", 
+            "total_years": "12.67671233"
+          }
+        ], 
+        "Software Infrasturcture": [
+          {
+            "active_products": "1", 
+            "affinity_score": "100", 
+            "competitor_name": "Microsoft Corporation", 
+            "competitor_rank": "1", 
+            "total_cities": "31", 
+            "total_years": "20.84657534"
+          }, 
+          {
+            "active_products": "3", 
+            "affinity_score": "95.73618294", 
+            "competitor_name": "Citrix Systems, Inc.", 
+            "competitor_rank": "2", 
+            "total_cities": "31", 
+            "total_years": "20.69863014"
+          }, 
+          {
+            "active_products": "2", 
+            "affinity_score": "93.56698334", 
+            "competitor_name": "Vmware, Inc.", 
+            "competitor_rank": "3", 
+            "total_cities": "31", 
+            "total_years": "20.02739726"
+          }
+        ]
+      }, 
+      "vendors_actvities": [
+        {
+          "description": "The healthcare cybersecurity market is expected to reach $26.1 billion by 2027, growing at a CAGR of 19.8% during the forecast period of 2020 to 2027. The growth of the healthcare cybersecurity market is majorly attributed to the factors such as the emergence.", 
+          "published_date": "2021 02 05T09  04  00Z", 
+          "source": "Business Wire", 
+          "title": "Global Healthcare Cybersecurity Market Forecast to 2027   Fireeye, Palo Alto Networks, Sophos, Juniper Network and Fortinet are Dominating   ResearchAndMarkets.com   Business Wire", 
+          "url": "https  www.businesswire.comnewshome20210204005501enGlobal Healthcare Cybersecurity Market Forecast to 2027  Fireeye Palo Alto Networks Sophos Juniper Network and Fortinet are Dominating  ResearchAndMarkets.com"
+        }, 
+        {
+          "description": "Summary List PlacementOn Tuesday, Microsoft CEO Satya Nadella announced that as part of the firm's strong Q2 earnings it recorded $10 billion in cybersecurity revenue over the past 12 months, a 40% year over year jump. Vasu Jakkal, the software giant's market.", 
+          "published_date": "2021 01 27T19  27  39Z", 
+          "source": "Business Insider", 
+          "title": "Microsoft exec says $10 billion cybersecurity business will grow cloud services and industrial tech tools (MSFT)", 
+          "url": "https  www.businessinsider.commicrosofts cybersecurity exec vasu jakkal growth cloud iot 2021 1"
+        }, 
+        {
+          "description": "BETHESDA, Md. (BUSINESS WIRE)  5G 5G LLC and Google are working together to solve for the whole 5G and connectivity challenge outside and inside a property.", 
+          "published_date": "2020 12 15T20  10  42Z", 
+          "source": "Business Wire", 
+          "title": "5G LLC Is Advancing Wireless Connectivity in Commercial Real Estate With Google Orion", 
+          "url": "https  www.businesswire.comnewshome20201215006065en5G LLC Is Advancing Wireless Connectivity in Commercial Real Estate With Google Orion"
+        }, 
+        {
+          "description": "DAVIDSON, N.C. (BUSINESS WIRE) Leveraging Google Cloud's architecture and connected data will make Ingersoll Rand products smarter and more efficient for their operators.", 
+          "published_date": "2021 02 18T12  09  21Z", 
+          "source": "Business Wire", 
+          "title": "Ingersoll Rand Selects Google Cloud to Accelerate IoT Innovation Across Its Global Industrial Portfolio", 
+          "url": "https  www.businesswire.comnewshome20210218005358enIngersoll Rand Selects Google Cloud to Accelerate IoT Innovation Across Its Global Industrial Portfolio"
+        }, 
+        {
+          "description": "Solera Holdings, Inc. (\"Solera\" or the \"company\"), a global leader in risk and asset management data and software solutions for the insurance and automotive .", 
+          "published_date": "2020 12 03T14  30  00Z", 
+          "source": "Yahoo Entertainment", 
+          "title": "Solera Announces Advances In Break Through A.I. Solution Qapter, In Collaboration With Google Cloud, To Drive Speed, Savings And Scale In Automotive Claims Management", 
+          "url": "https  finance.yahoo.comnewssolera announces advances break solution 143000328.html",
+          "competitor": "google"
+        }
+      ]
+    }
+  ]

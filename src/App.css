@@ -1,38 +1,61 @@
-.App {
-  text-align: center;
+.counts {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid black;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.counts > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.counts > div > p {
+    margin: 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.accounts {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.accountsAdd {
+    color: #ffffff;
+    outline: 0 !important;
+    border: none !important;
+    border-radius: 25px;
+    margin: 0 !important;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.accountsRemove {
+    color: #ffffff;
+    background-color: #ff0000;
+    outline: 0 !important;
+    border: none !important;
+    border-radius: 25px;
+    margin: 0 !important;
 }
+
+.vendors {
+    display: grid;
+    grid-template-columns: repeat(4, 3fr);
+    column-gap: 20px;
+    padding: 10px;
+}
+
+.vendors > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+}
+
+.vendors > div > p {
+    margin: 0 !important;
+}
+
