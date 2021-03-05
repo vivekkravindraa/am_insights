@@ -71,8 +71,14 @@
     margin: 0 !important;
 }
 
+.react-bootstrap-table-pagination {
+    padding-left: 15px;
+    width: 100% !important;
+}
+
 .react-bootstrap-table-pagination-list {
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    padding-right: 0 !important;
 }
