@@ -82,3 +82,84 @@
     align-items: center;
     padding-right: 0 !important;
 }
+
+/*
+
+.ReactTable .rt-table .rt-tbody {
+	display: table !important;
+}
+.ReactTable .rt-table .rt-tbody .rt-tr-group .rt-tr {
+	display: table-cell !important;
+}
+.ReactTable .rt-table .rt-tbody .rt-tr-group .rt-tr .rt-td {
+	display: block !important;
+    background-color: orange !important;
+}
+
+*/
+
+table tbody {
+	display: grid;
+    grid-template-columns: repeat(5, 2fr);
+    font-size: 14px;
+}
+
+table tr {
+	display: table-cell;
+    padding: 0px;
+}
+
+table tr td {
+	display: block;
+}
+
+td {
+    text-align: left;
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    height: 50px;
+}
+
+tr:first-child {
+    font-weight: 600;
+}
+
+tr:first-child > td:first-child,
+tr:nth-child(2) > td:nth-child(1),
+tr:nth-child(3) > td:nth-child(1),
+tr:nth-child(4) > td:nth-child(1),
+tr:nth-child(5) > td:nth-child(1) {
+    color: #ffffff !important;
+    background-color: darkblue;
+    text-align: center;
+    display: flex;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+tr:first-child > td:nth-child(2),
+tr:nth-child(2) > td:nth-child(2),
+tr:nth-child(3) > td:nth-child(2),
+tr:nth-child(4) > td:nth-child(2) {
+    color: #222222 !important;
+    background-color: cyan;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+td > span:first-child {
+    background-color: #9FA8DA;
+}
+
+td > span:nth-child(2) {
+    color: #ffffff;
+    background-color: #3F51B5;
+}
+
+td > span:nth-child(3) {
+    color: #ffffff;
+    background-color: #1A237E;
+}
