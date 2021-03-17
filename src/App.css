@@ -153,45 +153,55 @@ td > span:nth-child(3) {
 
 */
 
+.rt-th {
+    font-weight: 300;
+    color: #ffffff;
+    background-color: #049FD9;
+}
+
+.rt-td:nth-child(5),
+.rt-td:nth-child(6) {
+    margin: auto;
+}
+
 .rt-thead .rt-tr .rt-th:nth-child(2) {
-    background-color: #00ffff;
+    color: #ffffff;
+    background-color: #26C6DA;
     border-bottom: 1px solid #f5f5f5;
 }
 
 .rt-tbody .rt-tr-group .rt-tr .rt-td:nth-child(2) {
-    background-color: #00ffff;
+    background-color: #26C6DA;
 }
 
-.top3InvestmentCategories > span:first-child {
-    background-color: #B39DDB;
-    border: 1px solid black;
-}
-
-.top3InvestmentCategories > span:nth-child(2) {
-    color: #ffffff;
-    background-color: #673AB7;
-    border: 1px solid black;
-}
-
-.top3InvestmentCategories > span:nth-child(3) {
-    color: #ffffff;
-    background-color: #311B92;
-    border: 1px solid black;
-}
-
+.top3InvestmentCategories > span:first-child,
 .spendDistribution > span:first-child {
-    background-color: #B39DDB;
-    border: 1px solid black;
+    background-color: #C4D6ED;
 }
 
+.top3InvestmentCategories > span:nth-child(2),
 .spendDistribution > span:nth-child(2) {
     color: #ffffff;
-    background-color: #673AB7;
-    border: 1px solid black;
+    background-color: #097DBC;
 }
 
+.top3InvestmentCategories > span:nth-child(3),
 .spendDistribution > span:nth-child(3) {
     color: #ffffff;
-    background-color: #311B92;
-    border: 1px solid black;
+    background-color: #004BAF;
+}
+
+.rt-table::-webkit-scrollbar {
+    height: 8px;
+}
+
+.rt-table::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+}
+
+.rt-table::-webkit-scrollbar-thumb {
+    background-color: #9E9EA2;
+    outline: 0;
+    border-radius: 20px;
 }

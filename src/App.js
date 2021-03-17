@@ -18,14 +18,6 @@ function App() {
     .catch((err) => console.log(err));
   }, []);
 
-  // useEffect(() => {
-  //   const overallTEQScoreElementsObtained = document.getElementsByClassName('overallTEQScore');
-  //   console.log(overallTEQScoreElementsObtained);
-  //   // overallTEQScoreElementsObtained.length && overallTEQScoreElementsObtained.forEach((item) => {
-  //   //   console.log(item.innerText);
-  //   // });
-  // }, [ teq ]);
-
   return (
     <div style={{ margin: '0 40px' }}>
       {/* {customerNamesAsColumns.length && <BootstrapTable
@@ -48,7 +40,12 @@ function App() {
             resizable: true,
             filterable: false,
             Cell: props => <span style={{ 'whiteSpace': 'normal' }}>{props.original.customerName}</span>,
-            style: { textAlign: 'left' }
+            style: {
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              verticalAlign: 'middle'
+            },
           },
           {
             Header: <b style={{ 'whiteSpace': 'normal' }}>Overall TEQ Score</b>,
@@ -57,7 +54,12 @@ function App() {
             resizable: true,
             filterable: false,
             Cell: props => <span id="overallTEQScore" className="overallTEQScore">{props.original.overallTEQScore}</span>,
-            style: { textAlign: 'left' }
+            style: {
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'flex-start',
+              verticalAlign: 'middle'
+            },
           },
           {
             Header: <b style={{ 'whiteSpace': 'normal' }}>Customers Affinity Towards Cisco</b>,
@@ -66,7 +68,12 @@ function App() {
             resizable: true,
             filterable: false,
             Cell: props => <span>{props.original.customersAffinityTowardsCisco}</span>,
-            style: { textAlign: 'left' }
+            style: {
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'flex-start',
+              verticalAlign: 'middle'
+            },
           },
           {
             Header: <b style={{ 'whiteSpace': 'normal' }}>Tech Adoption</b>,
@@ -75,7 +82,12 @@ function App() {
             resizable: true,
             filterable: false,
             Cell: props => <span style={{ 'whiteSpace': 'normal' }}>{props.original.techAdoption}</span>,
-            style: { textAlign: 'left' }
+            style: {
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'flex-start',
+              verticalAlign: 'middle'
+            },
           },
           {
             Header: <b style={{ 'whiteSpace': 'normal' }}>Top 3 Investment Categories</b>,
@@ -104,7 +116,7 @@ function App() {
                 </span>
               })}
             </span>,
-            style: { textAlign: 'left' },
+            style: { textAlign: 'center' },
             width: 400
           },
           {
@@ -132,7 +144,7 @@ function App() {
                 </span>
               })}
             </span>,
-            style: { textAlign: 'left' },
+            style: { textAlign: 'center' },
             width: 250
           },
           {
@@ -142,7 +154,12 @@ function App() {
             resizable: true,
             filterable: false,
             Cell: props => <span style={{ 'whiteSpace': 'normal' }}>{props.original.top3PotentialPurchases}</span>,
-            style: { textAlign: 'left' },
+            style: {
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'flex-start',
+              verticalAlign: 'middle'
+            },
             width: 150
           },
           {
@@ -152,7 +169,12 @@ function App() {
             resizable: true,
             filterable: false,
             Cell: props => <span style={{ backgroundColor: 'yellow' }}>{props.original.recentDealsClosed}</span>,
-            style: { textAlign: 'left' }
+            style: {
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'flex-start',
+              verticalAlign: 'middle'
+            },
           },
           {
             Header: <b style={{ 'whiteSpace': 'normal' }}>Qualified Use Cases</b>,
@@ -161,7 +183,12 @@ function App() {
             resizable: true,
             filterable: false,
             Cell: props => <span style={{ 'whiteSpace': 'normal' }}>{props.original.qualifiedUseCases}</span>,
-            style: { textAlign: 'left' }
+            style: {
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'flex-start',
+              verticalAlign: 'middle'
+            },
           },
         ]}
         defaultPageSize={5}
