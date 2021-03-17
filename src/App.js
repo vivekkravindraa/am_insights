@@ -27,14 +27,74 @@ function App() {
   return (
     <div style={{ margin: '0 40px' }}>
 
-      {/* {customerNamesAsColumns.length && <BootstrapTable
+      {/*
+      
+      {customerNamesAsColumns.length && <BootstrapTable
         keyField="id"
         striped
         hover
         condensed
         noDataIndication="Table is Empty"
         data={ teq }
-      />} */}
+      />}
+      
+      */}
+
+      <div className="container">
+        <h1 style={{ fontFamily: 'Times New Roman' }}>T.E.Q.</h1>
+        <table className="table" border="0" style={{ borderBottom: '0.1px solid lightgray', boxShadow: '5px 10px 18px #888888' }}>
+          <tbody>
+            <tr style={{ borderRight: '0.1px solid lightgray', borderLeft: '0.1px solid lightgray' }} key="-1">
+              <td></td>
+              <td>Overall TEQ Score</td>
+              <td>Customer's Affinity Towards Cisco</td>
+              <td>Tech Adoption</td>
+              <td>Top 3 Investment Categories</td>
+              <td>Spend Distribution (SW, HW, Subs)</td>
+              <td></td>
+              <td>Top 3 Potential Purchases</td>
+              <td>Recent Deals Closed</td>
+              <td>Qualified Use Cases</td>
+            </tr>
+            {teq.map((item, index) => {
+              return (
+                <tr key={index} style={{ borderRight: '0.1px solid lightgray' }}>
+                  <td>{item.customerName}</td>
+                  <td>{item.overallTEQScore}</td>
+                  <td>{item.customersAffinityTowardsCisco}</td>
+                  <td>{item.techAdoption}</td>
+                  <td style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 4fr)', padding: '4px 10px' }}>
+                    {Object.keys(item.top3InvestmentCategories).map((i, index) => {
+                      return <span key={index} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: 10, fontWeight: 600, textAlign: 'center', height: '-webkit-fill-available', width: `${(item.top3InvestmentCategories[i] / Object.values(item.top3InvestmentCategories).reduce((a,b) => a + b)) * 100}%`
+                    }}>{i}</span>
+                    })}
+                  </td>
+                  <td style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 4fr)', padding: '4px 10px' }}>
+                    {Object.keys(item.spendDistribution).map((i, index) => {
+                      return <span key={index} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: 10, fontWeight: 600, textAlign: 'center', height: '-webkit-fill-available', width: `${item.spendDistribution[i]}%`
+                      }}>{i}</span>
+                    })}
+                  </td>
+                  <td></td>
+                  <td>{item.top3PotentialPurchases}</td>
+                  <td><span style={{ backgroundColor: 'yellow' }}>{item.recentDealsClosed}</span></td>
+                  <td>{item.qualifiedUseCases}</td>
+                </tr>
+              )
+            })}
+            <tr style={{ borderRight: '0.1px solid lightgray' }} key={teq.length}>
+              <td>Current Account</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
 
       <p style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', margin: 0 }}><h1 style={{ margin: '0px 8px 0px 0px' }}>T.E.Q.</h1>w/o Graphs</p>
       <ReactTable
@@ -70,7 +130,7 @@ function App() {
             },
           },
           {
-            Header: <b style={{ 'whiteSpace': 'normal' }}>Customers Affinity Towards Cisco</b>,
+            Header: <b style={{ 'whiteSpace': 'normal' }}>Customer's Affinity Towards Cisco</b>,
             accessor: "customersAffinityTowardsCisco",
             sortable: true,
             resizable: true,
@@ -115,6 +175,7 @@ function App() {
                     justifyContent: 'center',
                     alignItems: 'center',
                     textAlign: 'center',
+                    padding: '8px 0',
                     height: '-webkit-fill-available',
                     width: `${(props.original.top3InvestmentCategories[i] / Object.values(props.original.top3InvestmentCategories).reduce((a,b) => a + b)) * 100}%`
                   }}
@@ -151,6 +212,7 @@ function App() {
                     justifyContent: 'center',
                     alignItems: 'center',
                     textAlign: 'center',
+                    padding: '8px 0',
                     height: '-webkit-fill-available',
                     width: `${(props.original.spendDistribution[i] / Object.values(props.original.spendDistribution).reduce((a,b) => a + b)) * 100}%`
                   }}
@@ -220,7 +282,7 @@ function App() {
         className="-striped -highlight"
       />
 
-      <p style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', marginTop: 160 }}><h1 style={{ margin: '0px 8px 0px 0px' }}>T.E.Q.</h1>w/ Graphs</p>
+      <p style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', margin: 0 }}><h1 style={{ margin: '0px 8px 0px 0px' }}>T.E.Q.</h1>w/ Graphs</p>
       <ReactTable
         data={teq}
         // filterable
@@ -254,7 +316,7 @@ function App() {
             },
           },
           {
-            Header: <b style={{ 'whiteSpace': 'normal' }}>Customers Affinity Towards Cisco</b>,
+            Header: <b style={{ 'whiteSpace': 'normal' }}>Customer's Affinity Towards Cisco</b>,
             accessor: "customersAffinityTowardsCisco",
             sortable: true,
             resizable: true,
@@ -316,7 +378,7 @@ function App() {
               />
               </div>,
             style: { textAlign: 'center' },
-            width: 400
+            width: 240
           },
           {
             Header: <b style={{ 'whiteSpace': 'normal' }}>Spend Distribution</b>,
@@ -352,7 +414,7 @@ function App() {
               />
               </div>,
             style: { textAlign: 'center' },
-            width: 250
+            width: 240
           },
           {
             Header: <b style={{ 'whiteSpace': 'normal' }}>Top 3 Potential Purchases</b>,
@@ -400,66 +462,12 @@ function App() {
         ]}
         defaultPageSize={2}
         onPageChange={() => getTEQ()}
-        style={{ }}
+        style={{ marginBottom: 25 }}
         className="-striped -highlight"
       />
 
-      {/* <div className="container">
-        <h1 style={{ fontFamily: 'Times New Roman' }}>T.E.Q.</h1>
-        <table className="table" border="0" style={{ borderBottom: '0.1px solid lightgray', boxShadow: '5px 10px 18px #888888' }}>
-          <tbody>
-            <tr style={{ borderRight: '0.1px solid lightgray', borderLeft: '0.1px solid lightgray' }} key="-1">
-              <td></td>
-              <td>Overall TEQ Score</td>
-              <td>Customer's Affinity Towards Cisco</td>
-              <td>Tech Adoption</td>
-              <td>Top 3 Investment Categories</td>
-              <td>Spend Distribution (SW, HW, Subs)</td>
-              <td></td>
-              <td>Top 3 Potential Purchases</td>
-              <td>Recent Deals Closed</td>
-              <td>Qualified Use Cases</td>
-            </tr>
-            {teq.map((item, index) => {
-              return (
-                <tr key={index} style={{ borderRight: '0.1px solid lightgray' }}>
-                  <td>{item.customerName}</td>
-                  <td>{item.overallTEQScore}</td>
-                  <td>{item.customersAffinityTowardsCisco}</td>
-                  <td>{item.techAdoption}</td>
-                  <td style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 4fr)', padding: '4px 10px' }}>
-                    {Object.keys(item.top3InvestmentCategories).map((i, index) => {
-                      return <span key={index} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: 10, fontWeight: 600, textAlign: 'center', height: '-webkit-fill-available', width: `${(item.top3InvestmentCategories[i] / Object.values(item.top3InvestmentCategories).reduce((a,b) => a + b)) * 100}%`
-                    }}>{i}</span>
-                    })}
-                  </td>
-                  <td style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 4fr)', padding: '4px 10px' }}>
-                    {Object.keys(item.spendDistribution).map((i, index) => {
-                      return <span key={index} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: 10, fontWeight: 600, textAlign: 'center', height: '-webkit-fill-available', width: `${item.spendDistribution[i]}%`
-                      }}>{i}</span>
-                    })}
-                  </td>
-                  <td></td>
-                  <td>{item.top3PotentialPurchases}</td>
-                  <td><span style={{ backgroundColor: 'yellow' }}>{item.recentDealsClosed}</span></td>
-                  <td>{item.qualifiedUseCases}</td>
-                </tr>
-              )
-            })}
-            <tr style={{ borderRight: '0.1px solid lightgray' }} key={teq.length}>
-              <td>Current Account</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
-      </div> */}
+      </div>
+
     </div>
   )
 }
