@@ -36,7 +36,7 @@ function App() {
         data={ teq }
       />} */}
 
-      <h1>T.E.Q.</h1>
+      <p style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', margin: 0 }}><h1 style={{ margin: '0px 8px 0px 0px' }}>T.E.Q.</h1>w/o Graphs</p>
       <ReactTable
         data={teq}
         // filterable
@@ -215,6 +215,190 @@ function App() {
           },
         ]}
         defaultPageSize={5}
+        onPageChange={() => getTEQ()}
+        style={{ }}
+        className="-striped -highlight"
+      />
+
+      <p style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', marginTop: 160 }}><h1 style={{ margin: '0px 8px 0px 0px' }}>T.E.Q.</h1>w/ Graphs</p>
+      <ReactTable
+        data={teq}
+        // filterable
+        columns={[
+          {
+            Header: <p style={{ 'whiteSpace': 'normal' }}>Customer Name</p>,
+            accessor: "customerName",
+            sortable: true,
+            resizable: true,
+            filterable: false,
+            Cell: props => <span style={{ 'whiteSpace': 'normal' }}>{props.original.customerName}</span>,
+            style: {
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              verticalAlign: 'middle'
+            },
+          },
+          {
+            Header: <b style={{ 'whiteSpace': 'normal' }}>Overall TEQ Score</b>,
+            accessor: "overallTEQScore",
+            sortable: true,
+            resizable: true,
+            filterable: false,
+            Cell: props => <span id="overallTEQScore" className="overallTEQScore">{props.original.overallTEQScore}</span>,
+            style: {
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'flex-start',
+              verticalAlign: 'middle'
+            },
+          },
+          {
+            Header: <b style={{ 'whiteSpace': 'normal' }}>Customers Affinity Towards Cisco</b>,
+            accessor: "customersAffinityTowardsCisco",
+            sortable: true,
+            resizable: true,
+            filterable: false,
+            Cell: props => <span>{props.original.customersAffinityTowardsCisco}</span>,
+            style: {
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'flex-start',
+              verticalAlign: 'middle'
+            },
+          },
+          {
+            Header: <b style={{ 'whiteSpace': 'normal' }}>Tech Adoption</b>,
+            accessor: "techAdoption",
+            sortable: true,
+            resizable: true,
+            filterable: false,
+            Cell: props => <span style={{ 'whiteSpace': 'normal' }}>{props.original.techAdoption}</span>,
+            style: {
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'flex-start',
+              verticalAlign: 'middle'
+            },
+          },
+          {
+            Header: <b style={{ 'whiteSpace': 'normal' }}>Top 3 Investment Categories</b>,
+            accessor: "top3InvestmentCategories",
+            sortable: true,
+            resizable: true,
+            filterable: false,
+            // Cell: props => <span className="top3InvestmentCategories" style={{
+            //   display: 'flex', justifyContent: 'center', alignItems: 'center',
+            //   padding: '0 10px'
+            // }}>
+            //   {Object.keys(props.original.top3InvestmentCategories).map((i, index) => {
+            //     return <span
+            //       key={index}
+            //       style={{
+            //         display: 'flex',
+            //         justifyContent: 'center',
+            //         alignItems: 'center',
+            //         textAlign: 'center',
+            //         height: '-webkit-fill-available',
+            //         width: `${(props.original.top3InvestmentCategories[i] / Object.values(props.original.top3InvestmentCategories).reduce((a,b) => a + b)) * 100}%`
+            //       }}
+            //     >
+            //       {i}
+            //     </span>
+            //   })}
+            // </span>,
+            Cell: props => <div>
+              <C3Chart
+                data={{
+                  type: 'pie',
+                  columns: Object.entries(props.original.top3InvestmentCategories)
+                }}
+              />
+              </div>,
+            style: { textAlign: 'center' },
+            width: 400
+          },
+          {
+            Header: <b style={{ 'whiteSpace': 'normal' }}>Spend Distribution</b>,
+            accessor: "spendDistribution",
+            sortable: true,
+            resizable: true,
+            filterable: false,
+            // Cell: props => <span className="spendDistribution" style={{
+            //   display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '0 10px'
+            // }}>
+            //   {Object.keys(props.original.spendDistribution).map((i, index) => {
+            //     return <span
+            //       key={index}
+            //       style={{
+            //         display: 'flex',
+            //         justifyContent: 'center',
+            //         alignItems: 'center',
+            //         textAlign: 'center',
+            //         height: '-webkit-fill-available',
+            //         width: `${(props.original.spendDistribution[i] / Object.values(props.original.spendDistribution).reduce((a,b) => a + b)) * 100}%`
+            //       }}
+            //     >
+            //       {i}
+            //     </span>
+            //   })}
+            // </span>,
+            Cell: props => <div>
+              <C3Chart
+                data={{
+                  type : 'pie',
+                  columns: Object.entries(props.original.spendDistribution)
+                }}
+              />
+              </div>,
+            style: { textAlign: 'center' },
+            width: 250
+          },
+          {
+            Header: <b style={{ 'whiteSpace': 'normal' }}>Top 3 Potential Purchases</b>,
+            accessor: "top3PotentialPurchases",
+            sortable: true,
+            resizable: true,
+            filterable: false,
+            Cell: props => <span style={{ 'whiteSpace': 'normal' }}>{props.original.top3PotentialPurchases}</span>,
+            style: {
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'flex-start',
+              verticalAlign: 'middle'
+            },
+            width: 150
+          },
+          {
+            Header: <b style={{ 'whiteSpace': 'normal' }}>Recent Deals Closed</b>,
+            accessor: "recentDealsClosed",
+            sortable: true,
+            resizable: true,
+            filterable: false,
+            Cell: props => <span style={{ backgroundColor: '#FFFF00', padding: '1px 4px' }}>{props.original.recentDealsClosed}</span>,
+            style: {
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'flex-start',
+              verticalAlign: 'middle'
+            },
+          },
+          {
+            Header: <b style={{ 'whiteSpace': 'normal' }}>Qualified Use Cases</b>,
+            accessor: "qualifiedUseCases",
+            sortable: true,
+            resizable: true,
+            filterable: false,
+            Cell: props => <span style={{ 'whiteSpace': 'normal' }}>{props.original.qualifiedUseCases}</span>,
+            style: {
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'flex-start',
+              verticalAlign: 'middle'
+            },
+          },
+        ]}
+        defaultPageSize={2}
         onPageChange={() => getTEQ()}
         style={{ }}
         className="-striped -highlight"
