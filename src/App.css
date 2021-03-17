@@ -85,19 +85,6 @@
 
 /*
 
-.ReactTable .rt-table .rt-tbody {
-	display: table !important;
-}
-.ReactTable .rt-table .rt-tbody .rt-tr-group .rt-tr {
-	display: table-cell !important;
-}
-.ReactTable .rt-table .rt-tbody .rt-tr-group .rt-tr .rt-td {
-	display: block !important;
-    background-color: orange !important;
-}
-
-*/
-
 table tbody {
 	display: grid;
     grid-template-columns: repeat(5, 2fr);
@@ -162,4 +149,49 @@ td > span:nth-child(2) {
 td > span:nth-child(3) {
     color: #ffffff;
     background-color: #1A237E;
+}
+
+*/
+
+.rt-thead .rt-tr .rt-th:nth-child(2) {
+    background-color: #00ffff;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.rt-tbody .rt-tr-group .rt-tr .rt-td:nth-child(2) {
+    background-color: #00ffff;
+}
+
+.top3InvestmentCategories > span:first-child {
+    background-color: #B39DDB;
+    border: 1px solid black;
+}
+
+.top3InvestmentCategories > span:nth-child(2) {
+    color: #ffffff;
+    background-color: #673AB7;
+    border: 1px solid black;
+}
+
+.top3InvestmentCategories > span:nth-child(3) {
+    color: #ffffff;
+    background-color: #311B92;
+    border: 1px solid black;
+}
+
+.spendDistribution > span:first-child {
+    background-color: #B39DDB;
+    border: 1px solid black;
+}
+
+.spendDistribution > span:nth-child(2) {
+    color: #ffffff;
+    background-color: #673AB7;
+    border: 1px solid black;
+}
+
+.spendDistribution > span:nth-child(3) {
+    color: #ffffff;
+    background-color: #311B92;
+    border: 1px solid black;
 }

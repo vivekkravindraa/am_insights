@@ -1,109 +1,33 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-// import ReactTable from "react-table-6";
+import ReactTable from "react-table-6";
 // import BootstrapSwitchButton from 'bootstrap-switch-button-react';
 // import BootstrapTable from 'react-bootstrap-table-next';
 // import paginationFactory from 'react-bootstrap-table2-paginator';
-import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
+// import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 import './App.css';
 
 function App() {
   const [ teq, setTEQ ] = useState([]);
-  // const [ customerNamesAsColumns, setCustomerNamesAsColumns ] = useState([]);
 
   useEffect(() => {
     axios.get(`${process.env.PUBLIC_URL}/data/customer_insights.json`)
     .then((res) => {
-      // let row1 = [ 'Customer Name' ];
-      // res.data && res.data.forEach((customer) => {
-      //   row1.push(customer.customerName)
-      // });
-
-      // let row2 = [{ 'overallTEQScore': 'Overall TEQ Scores' }];
-      // res.data && res.data.forEach((customer) => {
-      //   row2.push({ 'overallTEQScore': customer.overallTEQScore })
-      // });
-
-      // let row3 = [{ 'customersAffinityTowardsCisco': 'Customers Affinity Towards Cisco' }];
-      // res.data && res.data.forEach((customer) => {
-      //   row3.push({ 'customersAffinityTowardsCisco': customer.customersAffinityTowardsCisco })
-      // });
-
-      // let row4 = [{ 'techAdoption': 'techAdoption' }];
-      // res.data && res.data.forEach((customer) => {
-      //   row4.push({ 'techAdoption': customer.techAdoption })
-      // });
-
-      // let row5 = [{ 'top3InvestmentCategories': 'Top 3 Investment Categories'}];
-      // res.data && res.data.forEach((customer) => {
-      //   row5.push({ 'top3InvestmentCategories': customer.top3InvestmentCategories })
-      // });
-
-      // let row6 = [{ 'spendDistribution': 'Spend Distribution' }];
-      // res.data && res.data.forEach((customer) => {
-      //   row6.push({ 'spendDistribution': customer.spendDistribution })
-      // });
-
-      // let row7 = [{ 'top3PotentialPurchases': 'Top 3 Potential Purchases' }];
-      // res.data && res.data.forEach((customer) => {
-      //   row7.push({ 'top3PotentialPurchases': customer.top3PotentialPurchases })
-      // });
-
-      // let row8 = [{ 'recentDealsClosed': 'Recent Deals Closed' }];
-      // res.data && res.data.forEach((customer) => {
-      //   row8.push({ 'recentDealsClosed': customer.recentDealsClosed })
-      // });
-
-      // let row9 = [{ 'qualifiedUseCases': 'Qualified Use Cases' }];
-      // res.data && res.data.forEach((customer) => {
-      //   row9.push({ 'qualifiedUseCases': customer.qualifiedUseCases })
-      // });
-
-      // console.log('customerName', row1);
-      // console.log('overallTEQScore', row2);
-      // console.log('customersAffinityTowardsCisco', row3);
-      // console.log('techAdoption', row4);
-      // console.log('top3InvestmentCategories', row5);
-      // console.log('spendDistribution', row6);
-      // console.log('top3PotentialPurchases', row7);
-      // console.log('recentDealsClosed', row8);
-      // console.log('qualifiedUseCases', row9);
-
-      // let row1Obj = {};
-      // console.log(row1Obj);
-
-      // let data = [
-      //   // row1Obj,
-      // ];
-      // console.log(data);
-
-      // let customerNamesAsColumns = [{
-      //   "dataField": '',
-      //   "text": ""
-      // }];
-
-      // res.data && res.data.forEach((customer) => {
-      //   customerNamesAsColumns.push({
-      //     "dataField": `${customer.customerName}`,
-      //     "text": `${customer.customerName}`
-      //   })
-      // });
-
-      // customerNamesAsColumns.push({
-      //   "dataField": "",
-      //   "text": "Current Account"
-      // });
-
-      // setCustomerNamesAsColumns(customerNamesAsColumns);
       setTEQ(res.data);
     })
     .catch((err) => console.log(err));
   }, []);
 
+  // useEffect(() => {
+  //   const overallTEQScoreElementsObtained = document.getElementsByClassName('overallTEQScore');
+  //   console.log(overallTEQScoreElementsObtained);
+  //   // overallTEQScoreElementsObtained.length && overallTEQScoreElementsObtained.forEach((item) => {
+  //   //   console.log(item.innerText);
+  //   // });
+  // }, [ teq ]);
+
   return (
     <div>
-      {/* <pre>{JSON.stringify(customerNamesAsColumns, null, 2)}</pre> */}
-
       {/* {customerNamesAsColumns.length && <BootstrapTable
         keyField="id"
         striped
@@ -111,56 +35,151 @@ function App() {
         condensed
         noDataIndication="Table is Empty"
         data={ teq }
-        columns={ customerNamesAsColumns }
       />} */}
 
-      {/* <ReactTable
+      <ReactTable
         data={teq}
         // filterable
         columns={[
           {
-            Header: <b style={{ 'whiteSpace': 'normal' }}></b>,
+            Header: <b style={{ }}>Customer Name</b>,
             accessor: "customerName",
             sortable: true,
             resizable: true,
             filterable: false,
             Cell: props => props.original.customerName,
-            style: { textAlign: 'center' }
+            style: { textAlign: 'center' },
+            width: 200
           },
           {
-            Header: <b style={{ 'whiteSpace': 'normal' }}>Customer 1</b>,
+            Header: <b style={{ }}>Overall TEQ Score</b>,
             accessor: "overallTEQScore",
             sortable: true,
             resizable: true,
             filterable: false,
-            Cell: props => props.original.overallTEQScore,
-            style: { textAlign: 'center' }
+            Cell: props => <span className="overallTEQScore" id="overallTEQScore">{props.original.overallTEQScore}</span>,
+            style: { textAlign: 'center' },
+            width: 200
           },
           {
-            Header: <b style={{ 'whiteSpace': 'normal' }}>Customer 2</b>,
+            Header: <b style={{ }}>Customers Affinity Towards Cisco</b>,
             accessor: "customersAffinityTowardsCisco",
             sortable: true,
             resizable: true,
             filterable: false,
             Cell: props => props.original.customersAffinityTowardsCisco,
-            style: { textAlign: 'center' }
+            style: { textAlign: 'center' },
+            width: 400
           },
           {
-            Header: <b style={{ 'whiteSpace': 'normal' }}>Customer 3</b>,
+            Header: <b style={{ }}>Tech Adoption</b>,
             accessor: "techAdoption",
             sortable: true,
             resizable: true,
             filterable: false,
             Cell: props => props.original.techAdoption,
+            style: { textAlign: 'center' },
+            width: 200
+          },
+          {
+            Header: <b style={{ }}>Top 3 Investment Categories</b>,
+            accessor: "top3InvestmentCategories",
+            sortable: true,
+            resizable: true,
+            filterable: false,
+            // Cell: props => <span>{JSON.stringify(props.original.top3InvestmentCategories)}</span>,
+            Cell: props => <span className="top3InvestmentCategories" style={{
+              display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '0 10px'
+            }}>
+              {Object.keys(props.original.top3InvestmentCategories).map((i, index) => {
+                return <span
+                  key={index}
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    fontSize: 10,
+                    fontWeight: 600,
+                    textAlign: 'center',
+                    height: '-webkit-fill-available',
+                    width: `${(props.original.top3InvestmentCategories[i] / Object.values(props.original.top3InvestmentCategories).reduce((a,b) => a + b)) * 100}%`
+                  }}
+                >
+                  {i}
+                </span>
+              })}
+            </span>,
+            style: { textAlign: 'center' },
+            width: 500
+          },
+          {
+            Header: <b style={{ }}>Spend Distribution</b>,
+            accessor: "spendDistribution",
+            sortable: true,
+            resizable: true,
+            filterable: false,
+            // Cell: props => <span>{JSON.stringify(props.original.spendDistribution)}</span>,
+            Cell: props => <span className="spendDistribution" style={{
+              display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '0 10px'
+            }}>
+              {Object.keys(props.original.spendDistribution).map((i, index) => {
+                return <span
+                  key={index}
+                  style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    fontSize: 10,
+                    fontWeight: 600,
+                    textAlign: 'center',
+                    height: '-webkit-fill-available',
+                    width: `${props.original.spendDistribution[i]}%`
+                  }}
+                >
+                  {i}
+                </span>
+              })}
+            </span>,
+            width: 250,
             style: { textAlign: 'center' }
-          }
+          },
+          {
+            Header: <b style={{ }}>Top 3 Potential Purchases</b>,
+            accessor: "top3PotentialPurchases",
+            sortable: true,
+            resizable: true,
+            filterable: false,
+            Cell: props => props.original.top3PotentialPurchases,
+            style: { textAlign: 'center' },
+            width: 400
+          },
+          {
+            Header: <b style={{ }}>Recent Deals Closed</b>,
+            accessor: "recentDealsClosed",
+            sortable: true,
+            resizable: true,
+            filterable: false,
+            Cell: props => <span style={{ backgroundColor: 'yellow' }}>{props.original.recentDealsClosed}</span>,
+            style: { textAlign: 'center' },
+            width: 200
+          },
+          {
+            Header: <b style={{ }}>Qualified Use Cases</b>,
+            accessor: "qualifiedUseCases",
+            sortable: true,
+            resizable: true,
+            filterable: false,
+            Cell: props => props.original.qualifiedUseCases,
+            style: { textAlign: 'center' },
+            width: 200
+          },
         ]}
         defaultPageSize={10}
-        style={{ height: "400px" }}
+        style={{ }}
         className="-striped -highlight"
-      /> */}
+      />
 
-      <div className="container">
+      {/* <div className="container">
         <h1 style={{ fontFamily: 'Times New Roman' }}>T.E.Q.</h1>
         <table className="table" border="0" style={{ borderBottom: '0.1px solid lightgray', boxShadow: '5px 10px 18px #888888' }}>
           <tbody>
@@ -184,15 +203,12 @@ function App() {
                   <td>{item.customersAffinityTowardsCisco}</td>
                   <td>{item.techAdoption}</td>
                   <td style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 4fr)', padding: '4px 10px' }}>
-                    {/* {JSON.stringify(item.top3InvestmentCategories)} */}
                     {Object.keys(item.top3InvestmentCategories).map((i, index) => {
                       return <span key={index} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: 10, fontWeight: 600, textAlign: 'center', height: '-webkit-fill-available', width: `${(item.top3InvestmentCategories[i] / Object.values(item.top3InvestmentCategories).reduce((a,b) => a + b)) * 100}%`
                     }}>{i}</span>
-                    // return <span>{(item.top3InvestmentCategories[i] / Object.values(item.top3InvestmentCategories).reduce((a,b) => a + b) * 100)}</span>
                     })}
                   </td>
                   <td style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 4fr)', padding: '4px 10px' }}>
-                    {/* {JSON.stringify(item.spendDistribution)} */}
                     {Object.keys(item.spendDistribution).map((i, index) => {
                       return <span key={index} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: 10, fontWeight: 600, textAlign: 'center', height: '-webkit-fill-available', width: `${item.spendDistribution[i]}%`
                       }}>{i}</span>
@@ -218,7 +234,7 @@ function App() {
             </tr>
           </tbody>
         </table>
-      </div>
+      </div> */}
     </div>
   )
 }
