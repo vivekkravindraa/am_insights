@@ -41,7 +41,10 @@ function App() {
       */}
 
       <div className="container">
-        <h1 style={{ fontFamily: 'Times New Roman' }}>T.E.Q.</h1>
+
+        <p>All three tables below are constructed with the same JSON.</p>
+
+        <p><h1 style={{ fontFamily: 'Times New Roman' }}>T.E.Q.</h1>Built with HTML and Transposed in CSS</p>
         <table className="table" border="0" style={{ borderBottom: '0.1px solid lightgray', boxShadow: '5px 10px 18px #888888' }}>
           <tbody>
             <tr style={{ borderRight: '0.1px solid lightgray', borderLeft: '0.1px solid lightgray' }} key="-1">
