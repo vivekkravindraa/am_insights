@@ -1,25 +1,32 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import C3Chart from 'react-c3js';
 import ReactTable from "react-table-6";
 // import BootstrapSwitchButton from 'bootstrap-switch-button-react';
 // import BootstrapTable from 'react-bootstrap-table-next';
 // import paginationFactory from 'react-bootstrap-table2-paginator';
 // import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
+import 'c3/c3.css';
 import './App.css';
 
 function App() {
   const [ teq, setTEQ ] = useState([]);
 
   useEffect(() => {
+    getTEQ();
+  }, []);
+
+  const getTEQ = () => {
     axios.get(`${process.env.PUBLIC_URL}/data/customer_insights.json`)
     .then((res) => {
       setTEQ(res.data);
     })
     .catch((err) => console.log(err));
-  }, []);
+  }
 
   return (
     <div style={{ margin: '0 40px' }}>
+
       {/* {customerNamesAsColumns.length && <BootstrapTable
         keyField="id"
         striped
@@ -28,13 +35,14 @@ function App() {
         noDataIndication="Table is Empty"
         data={ teq }
       />} */}
+
       <h1>T.E.Q.</h1>
       <ReactTable
         data={teq}
         // filterable
         columns={[
           {
-            Header: <b style={{ 'whiteSpace': 'normal' }}>Customer Name</b>,
+            Header: <p style={{ 'whiteSpace': 'normal' }}>Customer Name</p>,
             accessor: "customerName",
             sortable: true,
             resizable: true,
@@ -95,7 +103,6 @@ function App() {
             sortable: true,
             resizable: true,
             filterable: false,
-            // Cell: props => <span>{JSON.stringify(props.original.top3InvestmentCategories)}</span>,
             Cell: props => <span className="top3InvestmentCategories" style={{
               display: 'flex', justifyContent: 'center', alignItems: 'center',
               padding: '0 10px'
@@ -116,6 +123,14 @@ function App() {
                 </span>
               })}
             </span>,
+            // Cell: props => <div>
+            //   <C3Chart
+            //     data={{
+            //       type: 'pie',
+            //       columns: Object.entries(props.original.top3InvestmentCategories)
+            //     }}
+            //   />
+            //   </div>,
             style: { textAlign: 'center' },
             width: 400
           },
@@ -144,6 +159,14 @@ function App() {
                 </span>
               })}
             </span>,
+            // Cell: props => <div>
+            //   <C3Chart
+            //     data={{
+            //       type : 'pie',
+            //       columns: Object.entries(props.original.spendDistribution)
+            //     }}
+            //   />
+            //   </div>,
             style: { textAlign: 'center' },
             width: 250
           },
@@ -168,7 +191,7 @@ function App() {
             sortable: true,
             resizable: true,
             filterable: false,
-            Cell: props => <span style={{ backgroundColor: 'yellow' }}>{props.original.recentDealsClosed}</span>,
+            Cell: props => <span style={{ backgroundColor: '#FFFF00', padding: '1px 4px' }}>{props.original.recentDealsClosed}</span>,
             style: {
               display: 'flex',
               alignItems: 'center',
@@ -192,6 +215,7 @@ function App() {
           },
         ]}
         defaultPageSize={5}
+        onPageChange={() => getTEQ()}
         style={{ }}
         className="-striped -highlight"
       />

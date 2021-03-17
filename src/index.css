@@ -1,6 +1,8 @@
 body {
   margin: 0;
-  font-family: 'Patrick Hand', cursive;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
   letter-spacing: 0.8px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

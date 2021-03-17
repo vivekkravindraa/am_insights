@@ -7,13 +7,13 @@
         "techAdoption": "Early Adopters",
         "top3InvestmentCategories": {
             "Security": 750,
-            "Data Center": 750,
-            "Networking": 1500
+            "Data Center": 650,
+            "Networking": 1250
         },
         "spendDistribution": {
             "SW": 20,
-            "HW": 30,
-            "Subs": 50
+            "HW": 35,
+            "Subs": 45
         },
         "top3PotentialPurchases": "Collaboration, Meraki",
         "recentDealsClosed": "TBD",
