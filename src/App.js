@@ -27,7 +27,7 @@ function App() {
   // }, [ teq ]);
 
   return (
-    <div>
+    <div style={{ margin: '0 40px' }}>
       {/* {customerNamesAsColumns.length && <BootstrapTable
         keyField="id"
         striped
@@ -36,60 +36,57 @@ function App() {
         noDataIndication="Table is Empty"
         data={ teq }
       />} */}
-
+      <h1>T.E.Q.</h1>
       <ReactTable
         data={teq}
         // filterable
         columns={[
           {
-            Header: <b style={{ }}>Customer Name</b>,
+            Header: <b style={{ 'whiteSpace': 'normal' }}>Customer Name</b>,
             accessor: "customerName",
             sortable: true,
             resizable: true,
             filterable: false,
-            Cell: props => props.original.customerName,
-            style: { textAlign: 'center' },
-            width: 200
+            Cell: props => <span style={{ 'whiteSpace': 'normal' }}>{props.original.customerName}</span>,
+            style: { textAlign: 'left' }
           },
           {
-            Header: <b style={{ }}>Overall TEQ Score</b>,
+            Header: <b style={{ 'whiteSpace': 'normal' }}>Overall TEQ Score</b>,
             accessor: "overallTEQScore",
             sortable: true,
             resizable: true,
             filterable: false,
-            Cell: props => <span className="overallTEQScore" id="overallTEQScore">{props.original.overallTEQScore}</span>,
-            style: { textAlign: 'center' },
-            width: 200
+            Cell: props => <span id="overallTEQScore" className="overallTEQScore">{props.original.overallTEQScore}</span>,
+            style: { textAlign: 'left' }
           },
           {
-            Header: <b style={{ }}>Customers Affinity Towards Cisco</b>,
+            Header: <b style={{ 'whiteSpace': 'normal' }}>Customers Affinity Towards Cisco</b>,
             accessor: "customersAffinityTowardsCisco",
             sortable: true,
             resizable: true,
             filterable: false,
-            Cell: props => props.original.customersAffinityTowardsCisco,
-            style: { textAlign: 'center' },
-            width: 400
+            Cell: props => <span>{props.original.customersAffinityTowardsCisco}</span>,
+            style: { textAlign: 'left' }
           },
           {
-            Header: <b style={{ }}>Tech Adoption</b>,
+            Header: <b style={{ 'whiteSpace': 'normal' }}>Tech Adoption</b>,
             accessor: "techAdoption",
             sortable: true,
             resizable: true,
             filterable: false,
-            Cell: props => props.original.techAdoption,
-            style: { textAlign: 'center' },
-            width: 200
+            Cell: props => <span style={{ 'whiteSpace': 'normal' }}>{props.original.techAdoption}</span>,
+            style: { textAlign: 'left' }
           },
           {
-            Header: <b style={{ }}>Top 3 Investment Categories</b>,
+            Header: <b style={{ 'whiteSpace': 'normal' }}>Top 3 Investment Categories</b>,
             accessor: "top3InvestmentCategories",
             sortable: true,
             resizable: true,
             filterable: false,
             // Cell: props => <span>{JSON.stringify(props.original.top3InvestmentCategories)}</span>,
             Cell: props => <span className="top3InvestmentCategories" style={{
-              display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '0 10px'
+              display: 'flex', justifyContent: 'center', alignItems: 'center',
+              padding: '0 10px'
             }}>
               {Object.keys(props.original.top3InvestmentCategories).map((i, index) => {
                 return <span
@@ -98,8 +95,6 @@ function App() {
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    fontSize: 10,
-                    fontWeight: 600,
                     textAlign: 'center',
                     height: '-webkit-fill-available',
                     width: `${(props.original.top3InvestmentCategories[i] / Object.values(props.original.top3InvestmentCategories).reduce((a,b) => a + b)) * 100}%`
@@ -109,16 +104,15 @@ function App() {
                 </span>
               })}
             </span>,
-            style: { textAlign: 'center' },
-            width: 500
+            style: { textAlign: 'left' },
+            width: 400
           },
           {
-            Header: <b style={{ }}>Spend Distribution</b>,
+            Header: <b style={{ 'whiteSpace': 'normal' }}>Spend Distribution</b>,
             accessor: "spendDistribution",
             sortable: true,
             resizable: true,
             filterable: false,
-            // Cell: props => <span>{JSON.stringify(props.original.spendDistribution)}</span>,
             Cell: props => <span className="spendDistribution" style={{
               display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '0 10px'
             }}>
@@ -129,52 +123,48 @@ function App() {
                     display: 'flex',
                     justifyContent: 'center',
                     alignItems: 'center',
-                    fontSize: 10,
-                    fontWeight: 600,
                     textAlign: 'center',
                     height: '-webkit-fill-available',
-                    width: `${props.original.spendDistribution[i]}%`
+                    width: `${(props.original.spendDistribution[i] / Object.values(props.original.spendDistribution).reduce((a,b) => a + b)) * 100}%`
                   }}
                 >
                   {i}
                 </span>
               })}
             </span>,
-            width: 250,
-            style: { textAlign: 'center' }
+            style: { textAlign: 'left' },
+            width: 250
           },
           {
-            Header: <b style={{ }}>Top 3 Potential Purchases</b>,
+            Header: <b style={{ 'whiteSpace': 'normal' }}>Top 3 Potential Purchases</b>,
             accessor: "top3PotentialPurchases",
             sortable: true,
             resizable: true,
             filterable: false,
-            Cell: props => props.original.top3PotentialPurchases,
-            style: { textAlign: 'center' },
-            width: 400
+            Cell: props => <span style={{ 'whiteSpace': 'normal' }}>{props.original.top3PotentialPurchases}</span>,
+            style: { textAlign: 'left' },
+            width: 150
           },
           {
-            Header: <b style={{ }}>Recent Deals Closed</b>,
+            Header: <b style={{ 'whiteSpace': 'normal' }}>Recent Deals Closed</b>,
             accessor: "recentDealsClosed",
             sortable: true,
             resizable: true,
             filterable: false,
             Cell: props => <span style={{ backgroundColor: 'yellow' }}>{props.original.recentDealsClosed}</span>,
-            style: { textAlign: 'center' },
-            width: 200
+            style: { textAlign: 'left' }
           },
           {
-            Header: <b style={{ }}>Qualified Use Cases</b>,
+            Header: <b style={{ 'whiteSpace': 'normal' }}>Qualified Use Cases</b>,
             accessor: "qualifiedUseCases",
             sortable: true,
             resizable: true,
             filterable: false,
-            Cell: props => props.original.qualifiedUseCases,
-            style: { textAlign: 'center' },
-            width: 200
+            Cell: props => <span style={{ 'whiteSpace': 'normal' }}>{props.original.qualifiedUseCases}</span>,
+            style: { textAlign: 'left' }
           },
         ]}
-        defaultPageSize={10}
+        defaultPageSize={5}
         style={{ }}
         className="-striped -highlight"
       />
