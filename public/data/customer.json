@@ -44,19 +44,19 @@
     {
         "propertyName": "Spend Distribution (SW, HW, Subs)",
         "customer0": {
-            "Security": 750,
-            "Data Center": 650,
-            "Networking": 1250
+            "SW": 20,
+            "HW": 35,
+            "Subs": 45
         },
         "customer1": {
-            "Networking": 1000,
-            "Data Center": 1250,
-            "Security": 750
+            "SW": 30,
+            "HW": 50,
+            "Subs": 20
         },
         "customer2": {
-            "Collaboration": 1250,
-            "Networking": 1000,
-            "Wireless": 750
+            "SW": 50,
+            "HW": 20,
+            "Subs": 40
         }
     },
     {
