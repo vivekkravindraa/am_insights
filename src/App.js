@@ -2,10 +2,14 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import C3Chart from 'react-c3js';
 import ReactTable from "react-table-6";
+// import { Table } from "antd";
+// import { Table, Column, HeaderCell, Cell } from 'rsuite-table';
 // import BootstrapSwitchButton from 'bootstrap-switch-button-react';
 // import BootstrapTable from 'react-bootstrap-table-next';
 // import paginationFactory from 'react-bootstrap-table2-paginator';
 // import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
+// import 'rsuite-table/dist/css/rsuite-table.css';
+// import 'antd/dist/antd.css';
 import 'c3/c3.css';
 import './App.css';
 
