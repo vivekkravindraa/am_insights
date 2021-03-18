@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import C3Chart from 'react-c3js';
+// import C3Chart from 'react-c3js';
 import ReactTable from "react-table-6";
 // import { Table } from "antd";
 // import { Table, Column, HeaderCell, Cell } from 'rsuite-table';
@@ -14,21 +14,21 @@ import 'c3/c3.css';
 import './App.css';
 
 function App() {
-  const [ teq, setTEQ ] = useState([]);
+  // const [ teq, setTEQ ] = useState([]);
   const [ newTEQ, setNewTEQ ] = useState([]);
 
   useEffect(() => {
-    getTEQ();
+    // getTEQ();
     getNewTEQ();
   }, []);
 
-  const getTEQ = () => {
-    axios.get(`${process.env.PUBLIC_URL}/data/customer_insights.json`)
-    .then((res) => {
-      setTEQ(res.data);
-    })
-    .catch((err) => console.log(err));
-  }
+  // const getTEQ = () => {
+  //   axios.get(`${process.env.PUBLIC_URL}/data/customer_insights.json`)
+  //   .then((res) => {
+  //     setTEQ(res.data);
+  //   })
+  //   .catch((err) => console.log(err));
+  // }
 
   const getNewTEQ = () => {
     axios.get(`${process.env.PUBLIC_URL}/data/customer.json`)
