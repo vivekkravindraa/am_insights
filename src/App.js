@@ -113,7 +113,7 @@ function App() {
           </tbody>
         </table> */}
 
-      <p><h1>T.E.Q.</h1>Transposed</p>
+      <p style={{ display: 'flex', alignItems: 'baseline', margin: 0 }}><h1 style={{ marginRight: 8 }}>T.E.Q.</h1></p>
       <ReactTable
         data={newTEQ}
         // filterable
@@ -127,7 +127,7 @@ function App() {
             style: {
               display: 'flex',
               alignItems: 'center',
-              justifyContent: 'center',
+              justifyContent: 'flex-start',
               verticalAlign: 'middle'
             },
           },
@@ -138,8 +138,7 @@ function App() {
             filterable: false,
             Cell: props => typeof props.original.customer0 === "object" ? 
               <span className="top3InvestmentCategories" style={{
-                display: 'flex', justifyContent: 'center', alignItems: 'center',
-                padding: '0 10px'
+                display: 'flex', justifyContent: 'center', alignItems: 'center'
               }}>
                 {Object.keys(props.original.customer0).map((i, index) => {
                   return <span
@@ -149,9 +148,10 @@ function App() {
                       justifyContent: 'center',
                       alignItems: 'center',
                       textAlign: 'center',
-                      fontSize: 8,
+                      fontSize: 10,
+                      whiteSpace: 'normal',
                       padding: '8px 0',
-                      height: '-webkit-fill-available',
+                      height: 40,
                       width: `${(props.original.customer0[i] / Object.values(props.original.customer0).reduce((a,b) => a + b)) * 100}%`
                     }}
                   >
@@ -168,8 +168,7 @@ function App() {
             filterable: false,
             Cell: props => typeof props.original.customer1 === "object" ?
               <span className="top3InvestmentCategories" style={{
-                display: 'flex', justifyContent: 'center', alignItems: 'center',
-                padding: '0 10px'
+                display: 'flex', justifyContent: 'center', alignItems: 'center'
               }}>
                 {Object.keys(props.original.customer1).map((i, index) => {
                   return <span
@@ -179,9 +178,10 @@ function App() {
                       justifyContent: 'center',
                       alignItems: 'center',
                       textAlign: 'center',
-                      fontSize: 8,
+                      fontSize: 10,
+                      whiteSpace: 'normal',
                       padding: '8px 0',
-                      height: '-webkit-fill-available',
+                      height: 40,
                       width: `${(props.original.customer1[i] / Object.values(props.original.customer1).reduce((a,b) => a + b)) * 100}%`
                     }}
                   >
@@ -198,8 +198,7 @@ function App() {
             filterable: false,
             Cell: props => typeof props.original.customer2 === "object" ?
               <span className="top3InvestmentCategories" style={{
-                display: 'flex', justifyContent: 'center', alignItems: 'center',
-                padding: '0 10px'
+                display: 'flex', justifyContent: 'center', alignItems: 'center'
               }}>
                 {Object.keys(props.original.customer2).map((i, index) => {
                   return <span
@@ -209,9 +208,10 @@ function App() {
                       justifyContent: 'center',
                       alignItems: 'center',
                       textAlign: 'center',
-                      fontSize: 8,
+                      fontSize: 10,
+                      whiteSpace: 'normal',
                       padding: '8px 0',
-                      height: '-webkit-fill-available',
+                      height: 40,
                       width: `${(props.original.customer2[i] / Object.values(props.original.customer2).reduce((a,b) => a + b)) * 100}%`
                     }}
                   >
@@ -222,7 +222,7 @@ function App() {
             : <span style={{ 'whiteSpace': 'normal' }}>{props.original.customer2}</span>
           },
         ]}
-        defaultPageSize={10}
+        defaultPageSize={9}
       />
 
       {/* <p style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', margin: 0 }}><h1 style={{ margin: '0px 8px 0px 0px' }}>T.E.Q.</h1>w/o Graphs</p>

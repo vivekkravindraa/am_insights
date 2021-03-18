@@ -24,12 +24,6 @@
         "customer2": "Late Majority"
     },
     {
-        "propertyName": "Top 3 Potential Purchases",
-        "customer0": "Collaboration, Meraki",
-        "customer1": "Security, Meraki",
-        "customer2": "Data Center Networking, Meraki"
-    },
-    {
         "propertyName": "Top 3 Investment Categories",
         "customer0": {
             "Security": 750,
@@ -64,6 +58,12 @@
             "Networking": 1000,
             "Wireless": 750
         }
+    },
+    {
+        "propertyName": "Top 3 Potential Purchases",
+        "customer0": "Collaboration, Meraki",
+        "customer1": "Security, Meraki",
+        "customer2": "Data Center Networking, Meraki"
     },
     {
         "propertyName": "Recent Deals Closed",

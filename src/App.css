@@ -212,5 +212,29 @@ td > span:nth-child(3) {
 
 .rt-tbody .rt-tr-group:first-child {
     color: white;
-    background-color: darkblue;
+    background-color: #004BAF;
+}
+
+.rt-tbody .rt-tr-group:nth-child(3) .rt-td:first-child,
+.rt-tbody .rt-tr-group:nth-child(4) .rt-td:first-child,
+.rt-tbody .rt-tr-group:nth-child(5) .rt-td:first-child,
+.rt-tbody .rt-tr-group:nth-child(6) .rt-td:first-child,
+.rt-tbody .rt-tr-group:nth-child(7) .rt-td:first-child,
+.rt-tbody .rt-tr-group:nth-child(8) .rt-td:first-child,
+.rt-tbody .rt-tr-group:nth-child(9) .rt-td:first-child {
+    font-weight: 600;
+}
+
+.rt-tbody .rt-tr-group:nth-child(8) .rt-td > span {
+    background-color: #ffff00;
+    padding: 0 10px;
+}
+
+.rt-tbody .rt-tr-group:nth-child(8) .rt-td:first-child > span {
+    background-color: #ffffff;
+    padding: 0;
+}
+
+.pagination-bottom {
+    display: none;
 }
