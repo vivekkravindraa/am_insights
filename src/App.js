@@ -377,6 +377,7 @@ function App() {
             },
           ]}
           defaultPageSize={9}
+          className="-striped -highlight"
         />
 
         {/* <p style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', margin: 0 }}><h1 style={{ margin: '0px 8px 0px 0px' }}>T.E.Q.</h1>w/o Graphs</p>
