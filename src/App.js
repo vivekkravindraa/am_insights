@@ -113,7 +113,7 @@ function App() {
           </tbody>
         </table> */}
 
-      <p style={{ display: 'flex', alignItems: 'baseline', margin: 0 }}><h1 style={{ marginRight: 8 }}>T.E.Q.</h1></p>
+      <p style={{ display: 'flex', alignItems: 'baseline', margin: 0 }}><h1 style={{ marginRight: 8 }}><u>T.E.Q.</u></h1></p>
       <ReactTable
         data={newTEQ}
         // filterable
