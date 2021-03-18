@@ -164,15 +164,15 @@ td > span:nth-child(3) {
     margin: auto;
 }
 
-.rt-thead .rt-tr .rt-th:nth-child(2) {
+.rt-tbody .rt-tr-group:nth-child(2) {
     color: #ffffff;
     background-color: #26C6DA;
     border-bottom: 1px solid #f5f5f5;
 }
 
-.rt-tbody .rt-tr-group .rt-tr .rt-td:nth-child(2) {
+/* .rt-tbody .rt-tr-group .rt-tr .rt-td:nth-child(2) {
     background-color: #26C6DA;
-}
+} */
 
 .top3InvestmentCategories > span:first-child,
 .spendDistribution > span:first-child {
@@ -204,4 +204,13 @@ td > span:nth-child(3) {
     background-color: #9E9EA2;
     outline: 0;
     border-radius: 20px;
+}
+
+.rt-thead .rt-tr {
+    display: none;
+}
+
+.rt-tbody .rt-tr-group:first-child {
+    color: white;
+    background-color: darkblue;
 }

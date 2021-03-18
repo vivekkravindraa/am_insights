@@ -15,15 +15,25 @@ import './App.css';
 
 function App() {
   const [ teq, setTEQ ] = useState([]);
+  const [ newTEQ, setNewTEQ ] = useState([]);
 
   useEffect(() => {
     getTEQ();
+    getNewTEQ();
   }, []);
 
   const getTEQ = () => {
     axios.get(`${process.env.PUBLIC_URL}/data/customer_insights.json`)
     .then((res) => {
       setTEQ(res.data);
+    })
+    .catch((err) => console.log(err));
+  }
+
+  const getNewTEQ = () => {
+    axios.get(`${process.env.PUBLIC_URL}/data/customer.json`)
+    .then((res) => {
+      setNewTEQ(res.data);
     })
     .catch((err) => console.log(err));
   }
@@ -46,7 +56,7 @@ function App() {
 
       <div className="container">
 
-        <p>All three tables below are constructed with the same JSON.</p>
+        {/* <p>All three tables below are constructed with the same JSON.</p>
 
         <p><h1 style={{ fontFamily: 'Times New Roman' }}>T.E.Q.</h1>Built with HTML and Transposed in CSS</p>
         <table className="table" border="0" style={{ borderBottom: '0.1px solid lightgray', boxShadow: '5px 10px 18px #888888' }}>
@@ -101,9 +111,121 @@ function App() {
               <td></td>
             </tr>
           </tbody>
-        </table>
+        </table> */}
 
-      <p style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', margin: 0 }}><h1 style={{ margin: '0px 8px 0px 0px' }}>T.E.Q.</h1>w/o Graphs</p>
+      <p><h1>T.E.Q</h1>Transposed</p>
+      <ReactTable
+        data={newTEQ}
+        // filterable
+        columns={[
+          {
+            accessor: "propertyName",
+            sortable: true,
+            resizable: true,
+            filterable: false,
+            Cell: props => <span style={{ 'whiteSpace': 'normal' }}>{props.original.propertyName}</span>,
+            style: {
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              verticalAlign: 'middle'
+            },
+          },
+          {
+            accessor: "customer0",
+            sortable: true,
+            resizable: true,
+            filterable: false,
+            Cell: props => typeof props.original.customer0 === "object" ? 
+              <span className="top3InvestmentCategories" style={{
+                display: 'flex', justifyContent: 'center', alignItems: 'center',
+                padding: '0 10px'
+              }}>
+                {Object.keys(props.original.customer0).map((i, index) => {
+                  return <span
+                    key={index}
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      textAlign: 'center',
+                      fontSize: 8,
+                      padding: '8px 0',
+                      height: '-webkit-fill-available',
+                      width: `${(props.original.customer0[i] / Object.values(props.original.customer0).reduce((a,b) => a + b)) * 100}%`
+                    }}
+                  >
+                    {i}
+                  </span>
+                })}
+              </span>
+            : <span style={{ 'whiteSpace': 'normal' }}>{props.original.customer0}</span>
+          },
+          {
+            accessor: "customer1",
+            sortable: true,
+            resizable: true,
+            filterable: false,
+            Cell: props => typeof props.original.customer1 === "object" ?
+              <span className="top3InvestmentCategories" style={{
+                display: 'flex', justifyContent: 'center', alignItems: 'center',
+                padding: '0 10px'
+              }}>
+                {Object.keys(props.original.customer1).map((i, index) => {
+                  return <span
+                    key={index}
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      textAlign: 'center',
+                      fontSize: 8,
+                      padding: '8px 0',
+                      height: '-webkit-fill-available',
+                      width: `${(props.original.customer1[i] / Object.values(props.original.customer1).reduce((a,b) => a + b)) * 100}%`
+                    }}
+                  >
+                    {i}
+                  </span>
+                })}
+              </span>
+            : <span style={{ 'whiteSpace': 'normal' }}>{props.original.customer1}</span>
+          },
+          {
+            accessor: "customer2",
+            sortable: true,
+            resizable: true,
+            filterable: false,
+            Cell: props => typeof props.original.customer2 === "object" ?
+              <span className="top3InvestmentCategories" style={{
+                display: 'flex', justifyContent: 'center', alignItems: 'center',
+                padding: '0 10px'
+              }}>
+                {Object.keys(props.original.customer2).map((i, index) => {
+                  return <span
+                    key={index}
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                      textAlign: 'center',
+                      fontSize: 8,
+                      padding: '8px 0',
+                      height: '-webkit-fill-available',
+                      width: `${(props.original.customer2[i] / Object.values(props.original.customer2).reduce((a,b) => a + b)) * 100}%`
+                    }}
+                  >
+                    {i}
+                  </span>
+                })}
+              </span>
+            : <span style={{ 'whiteSpace': 'normal' }}>{props.original.customer2}</span>
+          },
+        ]}
+        defaultPageSize={10}
+      />
+
+      {/* <p style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', margin: 0 }}><h1 style={{ margin: '0px 8px 0px 0px' }}>T.E.Q.</h1>w/o Graphs</p>
       <ReactTable
         data={teq}
         // filterable
@@ -471,7 +593,7 @@ function App() {
         onPageChange={() => getTEQ()}
         style={{ marginBottom: 25 }}
         className="-striped -highlight"
-      />
+      /> */}
 
       </div>
 
