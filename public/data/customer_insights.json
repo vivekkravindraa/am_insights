@@ -1,6 +1,5 @@
 [
     {
-        "id": "1",
         "customerName": "Customer - 1",
         "overallTEQScore": "7/10",
         "customersAffinityTowardsCisco": "3/11",
@@ -20,7 +19,6 @@
         "qualifiedUseCases": "Industrial Automation"
     },
     {
-        "id": "2",
         "customerName": "Customer - 2",
         "overallTEQScore": "7.3/10",
         "customersAffinityTowardsCisco": "4/13",
@@ -40,7 +38,6 @@
         "qualifiedUseCases": "Industrial Automation"
     },
     {
-        "id": "3",
         "customerName": "Customer - 3",
         "overallTEQScore": "6.5/10",
         "customersAffinityTowardsCisco": "1/11",
