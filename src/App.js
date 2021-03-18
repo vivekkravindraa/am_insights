@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-// import C3Chart from 'react-c3js';
 import ReactTable from "react-table-6";
+// import C3Chart from 'react-c3js';
 // import { Table } from "antd";
 // import { Table, Column, HeaderCell, Cell } from 'rsuite-table';
 // import BootstrapSwitchButton from 'bootstrap-switch-button-react';
@@ -113,7 +113,7 @@ function App() {
           </tbody>
         </table> */}
 
-      <p><h1>T.E.Q</h1>Transposed</p>
+      <p><h1>T.E.Q.</h1>Transposed</p>
       <ReactTable
         data={newTEQ}
         // filterable
