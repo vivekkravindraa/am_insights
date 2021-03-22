@@ -10,6 +10,7 @@
     "axios": "^0.21.1",
     "bootstrap-switch-button-react": "^1.2.0",
     "react": "^17.0.1",
+    "react-bootstrap": "^1.5.2",
     "react-bootstrap-table-next": "^4.0.3",
     "react-bootstrap-table2-paginator": "^2.1.2",
     "react-c3js": "^0.1.20",

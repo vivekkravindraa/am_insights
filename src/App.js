@@ -1,7 +1,11 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
-import ReactTable from "react-table-6";
-// import C3Chart from 'react-c3js';
+// import c3 from 'c3';
+// import d3 from 'd3';
+// import axios from 'axios';
+// import ReactTable from "react-table-6";
+import { Button } from 'react-bootstrap';
+import C3Chart from 'react-c3js';
+import { competitorInsightsData } from './competitor_insights';
 // import { Table } from "antd";
 // import { Table, Column, HeaderCell, Cell } from 'rsuite-table';
 // import BootstrapSwitchButton from 'bootstrap-switch-button-react';
@@ -13,79 +17,209 @@ import ReactTable from "react-table-6";
 import 'c3/c3.css';
 import './App.css';
 
+// require.config({
+//   baseUrl: '/js',
+//   paths: {
+//     d3: "http://d3js.org/d3.v5.min"
+//   }
+// });
+
+// require(["d3", "c3"], function(d3, c3) {
+//   c3.generate({
+//     bindto: '#chart',
+//     data: {
+//       columns: [
+//         ['data1', 30, 200, 100, 400, 150, 250],
+//         ['data2', 50, 20, 10, 40, 15, 25]
+//       ]
+//     }
+//   });
+// });
+
 function App() {
-  const [ teq, setTEQ ] = useState([]);
-  const [ result, setResult ] = useState([]);
-  // const [ newTEQ, setNewTEQ ] = useState([]);
+  // const [ teq, setTEQ ] = useState([]);
+  // const [ result, setResult ] = useState([]);
+  const [ selectedCategory, setSelectedCategory ] = useState("");
+  const [ competitorSpends, setCompetitorSpends ] = useState([]);
+  const [ totalEstimatedSpend, setTotalEstimatedSpend ] = useState("");
 
   useEffect(() => {
-    getTEQ();
-    // getNewTEQ();
+    // getTEQ();
+    getOverallSpends();
   }, []);
 
-  useEffect(() => {
-    const reducer = (a, item) => {
-      return { ...a, ...item };
-    };
-    const result = teq && teq[0] && Object.keys(teq[0]).map((key) => {
-      return {
-        propertyName: key,
-        ...teq
-          .map((a, i) => {
-            return {
-              [`customer${i}`]: a[key]
-            };
-          })
-          .reduce(reducer)
-      };
-    });
-    setResult(result);
-  }, [teq])
+  // useEffect(() => {
+  //   const reducer = (a, item) => {
+  //     return { ...a, ...item };
+  //   };
+  //   const result = teq && teq[0] && Object.keys(teq[0]).map((key) => {
+  //     return {
+  //       propertyName: key,
+  //       ...teq
+  //         .map((a, i) => {
+  //           return {
+  //             [`customer${i}`]: a[key]
+  //           };
+  //         })
+  //         .reduce(reducer)
+  //     };
+  //   });
+  //   setResult(result);
+  // }, [teq]);
 
-  const getTEQ = () => {
-    axios.get(`${process.env.PUBLIC_URL}/data/customer_insights.json`)
-    .then((res) => {
-      setTEQ(res.data);
-    })
-    .catch((err) => console.log(err));
-  }
-
-  // const getNewTEQ = () => {
-  //   axios.get(`${process.env.PUBLIC_URL}/data/customer.json`)
+  // const getTEQ = () => {
+  //   axios.get(`${process.env.PUBLIC_URL}/data/customer_insights.json`)
   //   .then((res) => {
-  //     setNewTEQ(res.data);
+  //     setTEQ(res.data);
   //   })
   //   .catch((err) => console.log(err));
   // }
 
-  const capitalizePropertyNames = (propertyName) => {
-    switch(propertyName) {
-      case 'customerName':
-        return 'Customer Name';
-      case 'overallTEQScore':
-        return 'Overall TEQ Score';
-      case 'customersAffinityTowardsCisco':
-        return `Customer's Affinity Towards Cisco`;
-      case 'techAdoption':
-        return 'Tech Adoption';
-      case 'top3InvestmentCategories':
-        return 'Top 3 Investment Categories';
-      case 'spendDistribution':
-        return 'Spend Distribution';
-      case 'top3PotentialPurchases':
-        return 'Top 3 Potential Purchases';
-      case 'recentDealsClosed':
-        return 'Recent Deals Closed';
-      case 'qualifiedUseCases':
-        return 'Qualified Use Cases';
-      default:
-        return;
+  // const capitalizePropertyNames = (propertyName) => {
+  //   switch(propertyName) {
+  //     case 'customerName':
+  //       return 'Customer Name';
+  //     case 'overallTEQScore':
+  //       return 'Overall TEQ Score';
+  //     case 'customersAffinityTowardsCisco':
+  //       return `Customer's Affinity Towards Cisco`;
+  //     case 'techAdoption':
+  //       return 'Tech Adoption';
+  //     case 'top3InvestmentCategories':
+  //       return 'Top 3 Investment Categories';
+  //     case 'spendDistribution':
+  //       return 'Spend Distribution';
+  //     case 'top3PotentialPurchases':
+  //       return 'Top 3 Potential Purchases';
+  //     case 'recentDealsClosed':
+  //       return 'Recent Deals Closed';
+  //     case 'qualifiedUseCases':
+  //       return 'Qualified Use Cases';
+  //     default:
+  //       return;
+  //   }
+  // }
+
+  const getOverallSpends = () => {
+    setSelectedCategory("Overall");
+
+    const result = competitorInsightsData[0].vendors["Overall"].map((a) => {
+      return {
+        categoryName: "Overall",
+        estimatedSpend: competitorInsightsData[0].vendors["Overall"][0].estimated_spend,
+        categoryEstimatedSpend: a.category_estimated_spend,
+        competitorName: a.competitor_name
+      };
+    })
+
+    const chartArray = result.map((obj) => {
+      return [ obj.competitorName, obj.categoryEstimatedSpend ]
+    })
+
+    setCompetitorSpends([ ...chartArray ]);
+
+    let total = competitorInsightsData[0].vendors["Overall"][0].estimated_spend
+    let value = total.toLocaleString("en-US", { style: "currency", currency: "USD" });
+    setTotalEstimatedSpend(value);
+  }
+
+  const getSpends = (e, category) => {
+    const result = competitorInsightsData[0].vendors[category].map((a) => {
+      return {
+        categoryName: category,
+        estimatedSpend: competitorInsightsData[0].vendors[category][0].estimated_spend,
+        categoryEstimatedSpend: a.category_estimated_spend,
+        competitorName: a.competitor_name
+      };
+    })
+
+    const chartArray = result.map((obj) => {
+      return [ obj.competitorName, obj.categoryEstimatedSpend ]
+    })
+
+    setCompetitorSpends([ ...chartArray ]);
+
+    const total = competitorInsightsData[0].vendors[category][0].estimated_spend;
+    let value = total.toLocaleString("en-US", { style: "currency", currency: "USD" });
+    setTotalEstimatedSpend(value);
+  }
+
+  const donutChart = {
+    data: {
+      type: 'donut',
+      columns: competitorSpends,
+      labels: true,
+      unload: true
+    },
+    donut: {
+      // title: totalEstimatedSpend,
+      label: {
+        show: true
+      }
+    },
+    tooltip: {
+      show: true,
+      format: {
+        value: function (value, ratio, id, index) {
+          return value.toLocaleString("en-US", { style: "currency", currency: "USD" });
+        }
+      }
+    },
+    legend: {
+      hide: true
+    },
+    size: {
+      height: 420
     }
   }
 
   return (
     <div style={{ margin: '0 40px' }}>
       <div className="container">
+
+        <div className="d-flex justify-content-between align-items-center" style={{ paddingTop: 10 }}>
+          {Object.keys(competitorInsightsData[0].vendors)
+            .filter((item) => item !== 'Overall')
+            .map((category) => {
+              return <Button key={category} variant="primary" onClick={(e) => {
+                setSelectedCategory(category);
+                getSpends(e, category);
+              }}>{category}</Button>
+            })
+          }
+        </div>
+
+        {/* {renderChart()} */}
+
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 6fr)' }}>
+          <pre style={{ paddingTop: 10 }}>
+            <b>
+              {JSON.stringify({
+                selectedCategory,
+                competitorSpends,
+                totalEstimatedSpend
+              }, null, '\t')}
+            </b>
+          </pre>
+
+          <div>
+            <b
+              className="d-flex justify-content-center"
+              style={{ position: 'absolute', top: 230, right: 310 }}
+            >
+              {totalEstimatedSpend}
+            </b>
+            <C3Chart
+              data={donutChart.data}
+              donut={donutChart.donut}
+              tooltip={donutChart.tooltip}
+              legend={donutChart.legend}
+              size={donutChart.size}
+            />
+          </div>
+
+          {/* <div id="chart"></div> */}
+        </div>
 
         {/* <p>All three tables below are constructed with the same JSON.</p>
 
@@ -156,118 +290,6 @@ function App() {
         */}
 
         {/* <p style={{ display: 'flex', alignItems: 'baseline', margin: 0 }}><h1 style={{ marginRight: 8 }}><u>T.E.Q.</u></h1></p>
-        <ReactTable
-          data={newTEQ}
-          // filterable
-          columns={[
-            {
-              accessor: "propertyName",
-              sortable: true,
-              resizable: true,
-              filterable: false,
-              Cell: props => <span style={{ 'whiteSpace': 'normal' }}>{props.original.propertyName}</span>,
-              style: {
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'flex-start',
-                verticalAlign: 'middle'
-              },
-            },
-            {
-              accessor: "customer0",
-              sortable: true,
-              resizable: true,
-              filterable: false,
-              Cell: props => typeof props.original.customer0 === "object" ? 
-                <span className="top3InvestmentCategories" style={{
-                  display: 'flex', justifyContent: 'center', alignItems: 'center'
-                }}>
-                  {Object.keys(props.original.customer0).map((i, index) => {
-                    return <span
-                      key={index}
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        textAlign: 'center',
-                        fontSize: 10,
-                        whiteSpace: 'normal',
-                        padding: '8px 0',
-                        height: 40,
-                        width: `${(props.original.customer0[i] / Object.values(props.original.customer0).reduce((a,b) => a + b)) * 100}%`
-                      }}
-                    >
-                      {i}
-                    </span>
-                  })}
-                </span>
-              : <span style={{ 'whiteSpace': 'normal' }}>{props.original.customer0}</span>
-            },
-            {
-              accessor: "customer1",
-              sortable: true,
-              resizable: true,
-              filterable: false,
-              Cell: props => typeof props.original.customer1 === "object" ?
-                <span className="top3InvestmentCategories" style={{
-                  display: 'flex', justifyContent: 'center', alignItems: 'center'
-                }}>
-                  {Object.keys(props.original.customer1).map((i, index) => {
-                    return <span
-                      key={index}
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        textAlign: 'center',
-                        fontSize: 10,
-                        whiteSpace: 'normal',
-                        padding: '8px 0',
-                        height: 40,
-                        width: `${(props.original.customer1[i] / Object.values(props.original.customer1).reduce((a,b) => a + b)) * 100}%`
-                      }}
-                    >
-                      {i}
-                    </span>
-                  })}
-                </span>
-              : <span style={{ 'whiteSpace': 'normal' }}>{props.original.customer1}</span>
-            },
-            {
-              accessor: "customer2",
-              sortable: true,
-              resizable: true,
-              filterable: false,
-              Cell: props => typeof props.original.customer2 === "object" ?
-                <span className="top3InvestmentCategories" style={{
-                  display: 'flex', justifyContent: 'center', alignItems: 'center'
-                }}>
-                  {Object.keys(props.original.customer2).map((i, index) => {
-                    return <span
-                      key={index}
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        textAlign: 'center',
-                        fontSize: 10,
-                        whiteSpace: 'normal',
-                        padding: '8px 0',
-                        height: 40,
-                        width: `${(props.original.customer2[i] / Object.values(props.original.customer2).reduce((a,b) => a + b)) * 100}%`
-                      }}
-                    >
-                      {i}
-                    </span>
-                  })}
-                </span>
-              : <span style={{ 'whiteSpace': 'normal' }}>{props.original.customer2}</span>
-            },
-          ]}
-          defaultPageSize={9}
-        /> */}
-
-        <p style={{ display: 'flex', alignItems: 'baseline', margin: 0 }}><h1 style={{ marginRight: 8 }}><u>T.E.Q.</u></h1></p>
         <ReactTable
           data={result}
           // filterable
@@ -378,360 +400,8 @@ function App() {
           ]}
           defaultPageSize={9}
           className="-striped -highlight"
-        />
-
-        {/* <p style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', margin: 0 }}><h1 style={{ margin: '0px 8px 0px 0px' }}>T.E.Q.</h1>w/o Graphs</p>
-        <ReactTable
-          data={teq}
-          // filterable
-          columns={[
-            {
-              Header: <p style={{ 'whiteSpace': 'normal' }}>Customer Name</p>,
-              accessor: "customerName",
-              sortable: true,
-              resizable: true,
-              filterable: false,
-              Cell: props => <span style={{ 'whiteSpace': 'normal' }}>{props.original.customerName}</span>,
-              style: {
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                verticalAlign: 'middle'
-              },
-            },
-            {
-              Header: <b style={{ 'whiteSpace': 'normal' }}>Overall TEQ Score</b>,
-              accessor: "overallTEQScore",
-              sortable: true,
-              resizable: true,
-              filterable: false,
-              Cell: props => <span id="overallTEQScore" className="overallTEQScore">{props.original.overallTEQScore}</span>,
-              style: {
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'flex-start',
-                verticalAlign: 'middle'
-              },
-            },
-            {
-              Header: <b style={{ 'whiteSpace': 'normal' }}>Customer's Affinity Towards Cisco</b>,
-              accessor: "customersAffinityTowardsCisco",
-              sortable: true,
-              resizable: true,
-              filterable: false,
-              Cell: props => <span>{props.original.customersAffinityTowardsCisco}</span>,
-              style: {
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'flex-start',
-                verticalAlign: 'middle'
-              },
-            },
-            {
-              Header: <b style={{ 'whiteSpace': 'normal' }}>Tech Adoption</b>,
-              accessor: "techAdoption",
-              sortable: true,
-              resizable: true,
-              filterable: false,
-              Cell: props => <span style={{ 'whiteSpace': 'normal' }}>{props.original.techAdoption}</span>,
-              style: {
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'flex-start',
-                verticalAlign: 'middle'
-              },
-            },
-            {
-              Header: <b style={{ 'whiteSpace': 'normal' }}>Top 3 Investment Categories</b>,
-              accessor: "top3InvestmentCategories",
-              sortable: true,
-              resizable: true,
-              filterable: false,
-              Cell: props => <span className="top3InvestmentCategories" style={{
-                display: 'flex', justifyContent: 'center', alignItems: 'center',
-                padding: '0 10px'
-              }}>
-                {Object.keys(props.original.top3InvestmentCategories).map((i, index) => {
-                  return <span
-                    key={index}
-                    style={{
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      textAlign: 'center',
-                      padding: '8px 0',
-                      height: '-webkit-fill-available',
-                      width: `${(props.original.top3InvestmentCategories[i] / Object.values(props.original.top3InvestmentCategories).reduce((a,b) => a + b)) * 100}%`
-                    }}
-                  >
-                    {i}
-                  </span>
-                })}
-              </span>,
-              style: { textAlign: 'center' },
-              width: 400
-            },
-            {
-              Header: <b style={{ 'whiteSpace': 'normal' }}>Spend Distribution</b>,
-              accessor: "spendDistribution",
-              sortable: true,
-              resizable: true,
-              filterable: false,
-              Cell: props => <span className="spendDistribution" style={{
-                display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '0 10px'
-              }}>
-                {Object.keys(props.original.spendDistribution).map((i, index) => {
-                  return <span
-                    key={index}
-                    style={{
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      textAlign: 'center',
-                      padding: '8px 0',
-                      height: '-webkit-fill-available',
-                      width: `${(props.original.spendDistribution[i] / Object.values(props.original.spendDistribution).reduce((a,b) => a + b)) * 100}%`
-                    }}
-                  >
-                    {i}
-                  </span>
-                })}
-              </span>,
-              style: { textAlign: 'center' },
-              width: 250
-            },
-            {
-              Header: <b style={{ 'whiteSpace': 'normal' }}>Top 3 Potential Purchases</b>,
-              accessor: "top3PotentialPurchases",
-              sortable: true,
-              resizable: true,
-              filterable: false,
-              Cell: props => <span style={{ 'whiteSpace': 'normal' }}>{props.original.top3PotentialPurchases}</span>,
-              style: {
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'flex-start',
-                verticalAlign: 'middle'
-              },
-              width: 150
-            },
-            {
-              Header: <b style={{ 'whiteSpace': 'normal' }}>Recent Deals Closed</b>,
-              accessor: "recentDealsClosed",
-              sortable: true,
-              resizable: true,
-              filterable: false,
-              Cell: props => <span style={{ backgroundColor: '#FFFF00', padding: '1px 4px' }}>{props.original.recentDealsClosed}</span>,
-              style: {
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'flex-start',
-                verticalAlign: 'middle'
-              },
-            },
-            {
-              Header: <b style={{ 'whiteSpace': 'normal' }}>Qualified Use Cases</b>,
-              accessor: "qualifiedUseCases",
-              sortable: true,
-              resizable: true,
-              filterable: false,
-              Cell: props => <span style={{ 'whiteSpace': 'normal' }}>{props.original.qualifiedUseCases}</span>,
-              style: {
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'flex-start',
-                verticalAlign: 'middle'
-              },
-            },
-          ]}
-          defaultPageSize={5}
-          style={{ }}
-          className="-striped -highlight"
         /> */}
 
-        {/* <p style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', margin: 0 }}><h1 style={{ margin: '0px 8px 0px 0px' }}>T.E.Q.</h1>w/ Graphs</p>
-        <ReactTable
-          data={teq}
-          // filterable
-          columns={[
-            {
-              Header: <p style={{ 'whiteSpace': 'normal' }}>Customer Name</p>,
-              accessor: "customerName",
-              sortable: true,
-              resizable: true,
-              filterable: false,
-              Cell: props => <span style={{ 'whiteSpace': 'normal' }}>{props.original.customerName}</span>,
-              style: {
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                verticalAlign: 'middle'
-              },
-            },
-            {
-              Header: <b style={{ 'whiteSpace': 'normal' }}>Overall TEQ Score</b>,
-              accessor: "overallTEQScore",
-              sortable: true,
-              resizable: true,
-              filterable: false,
-              Cell: props => <span id="overallTEQScore" className="overallTEQScore">{props.original.overallTEQScore}</span>,
-              style: {
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'flex-start',
-                verticalAlign: 'middle'
-              },
-            },
-            {
-              Header: <b style={{ 'whiteSpace': 'normal' }}>Customer's Affinity Towards Cisco</b>,
-              accessor: "customersAffinityTowardsCisco",
-              sortable: true,
-              resizable: true,
-              filterable: false,
-              Cell: props => <span>{props.original.customersAffinityTowardsCisco}</span>,
-              style: {
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'flex-start',
-                verticalAlign: 'middle'
-              },
-            },
-            {
-              Header: <b style={{ 'whiteSpace': 'normal' }}>Tech Adoption</b>,
-              accessor: "techAdoption",
-              sortable: true,
-              resizable: true,
-              filterable: false,
-              Cell: props => <span style={{ 'whiteSpace': 'normal' }}>{props.original.techAdoption}</span>,
-              style: {
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'flex-start',
-                verticalAlign: 'middle'
-              },
-            },
-            {
-              Header: <b style={{ 'whiteSpace': 'normal' }}>Top 3 Investment Categories</b>,
-              accessor: "top3InvestmentCategories",
-              sortable: true,
-              resizable: true,
-              filterable: false,
-              // Cell: props => <span className="top3InvestmentCategories" style={{
-              //   display: 'flex', justifyContent: 'center', alignItems: 'center',
-              //   padding: '0 10px'
-              // }}>
-              //   {Object.keys(props.original.top3InvestmentCategories).map((i, index) => {
-              //     return <span
-              //       key={index}
-              //       style={{
-              //         display: 'flex',
-              //         justifyContent: 'center',
-              //         alignItems: 'center',
-              //         textAlign: 'center',
-              //         height: '-webkit-fill-available',
-              //         width: `${(props.original.top3InvestmentCategories[i] / Object.values(props.original.top3InvestmentCategories).reduce((a,b) => a + b)) * 100}%`
-              //       }}
-              //     >
-              //       {i}
-              //     </span>
-              //   })}
-              // </span>,
-              Cell: props => <div>
-                <C3Chart
-                  data={{
-                    type: 'pie',
-                    columns: Object.entries(props.original.top3InvestmentCategories)
-                  }}
-                />
-                </div>,
-              style: { textAlign: 'center' },
-              width: 240
-            },
-            {
-              Header: <b style={{ 'whiteSpace': 'normal' }}>Spend Distribution</b>,
-              accessor: "spendDistribution",
-              sortable: true,
-              resizable: true,
-              filterable: false,
-              // Cell: props => <span className="spendDistribution" style={{
-              //   display: 'flex', justifyContent: 'center', alignItems: 'center', padding: '0 10px'
-              // }}>
-              //   {Object.keys(props.original.spendDistribution).map((i, index) => {
-              //     return <span
-              //       key={index}
-              //       style={{
-              //         display: 'flex',
-              //         justifyContent: 'center',
-              //         alignItems: 'center',
-              //         textAlign: 'center',
-              //         height: '-webkit-fill-available',
-              //         width: `${(props.original.spendDistribution[i] / Object.values(props.original.spendDistribution).reduce((a,b) => a + b)) * 100}%`
-              //       }}
-              //     >
-              //       {i}
-              //     </span>
-              //   })}
-              // </span>,
-              Cell: props => <div>
-                <C3Chart
-                  data={{
-                    type : 'pie',
-                    columns: Object.entries(props.original.spendDistribution)
-                  }}
-                />
-                </div>,
-              style: { textAlign: 'center' },
-              width: 240
-            },
-            {
-              Header: <b style={{ 'whiteSpace': 'normal' }}>Top 3 Potential Purchases</b>,
-              accessor: "top3PotentialPurchases",
-              sortable: true,
-              resizable: true,
-              filterable: false,
-              Cell: props => <span style={{ 'whiteSpace': 'normal' }}>{props.original.top3PotentialPurchases}</span>,
-              style: {
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'flex-start',
-                verticalAlign: 'middle'
-              },
-              width: 150
-            },
-            {
-              Header: <b style={{ 'whiteSpace': 'normal' }}>Recent Deals Closed</b>,
-              accessor: "recentDealsClosed",
-              sortable: true,
-              resizable: true,
-              filterable: false,
-              Cell: props => <span style={{ backgroundColor: '#FFFF00', padding: '1px 4px' }}>{props.original.recentDealsClosed}</span>,
-              style: {
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'flex-start',
-                verticalAlign: 'middle'
-              },
-            },
-            {
-              Header: <b style={{ 'whiteSpace': 'normal' }}>Qualified Use Cases</b>,
-              accessor: "qualifiedUseCases",
-              sortable: true,
-              resizable: true,
-              filterable: false,
-              Cell: props => <span style={{ 'whiteSpace': 'normal' }}>{props.original.qualifiedUseCases}</span>,
-              style: {
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'flex-start',
-                verticalAlign: 'middle'
-              },
-            },
-          ]}
-          defaultPageSize={2}
-          onPageChange={() => getTEQ()}
-          style={{ marginBottom: 25 }}
-          className="-striped -highlight"
-        /> */}
       </div>
     </div>
   )

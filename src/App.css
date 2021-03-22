@@ -87,7 +87,7 @@
 
 /* HTML TABLE STYLES */
 
-table tbody {
+/* table tbody {
 	display: grid;
     grid-template-columns: repeat(5, 2fr);
     font-size: 14px;
@@ -151,7 +151,7 @@ td > span:nth-child(2) {
 td > span:nth-child(3) {
     color: #ffffff;
     background-color: #1A237E;
-}
+} */
 
 /* REACT TABLE STYLES */
 
