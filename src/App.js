@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 // import c3 from 'c3';
-// import d3 from 'd3';
+import d3 from 'd3';
 // import axios from 'axios';
 // import ReactTable from "react-table-6";
 import { Button } from 'react-bootstrap';
@@ -106,19 +106,19 @@ function App() {
     const result = competitorInsightsData[0].vendors["Overall"].map((a) => {
       return {
         categoryName: "Overall",
-        estimatedSpend: competitorInsightsData[0].vendors["Overall"][0].estimated_spend,
+        estimatedSpend: a.estimated_spend,
         categoryEstimatedSpend: a.category_estimated_spend,
         competitorName: a.competitor_name
       };
-    })
+    });
 
     const chartArray = result.map((obj) => {
-      return [ obj.competitorName, obj.categoryEstimatedSpend ]
-    })
+      return [ obj.competitorName, obj.estimatedSpend ]
+    });
 
     setCompetitorSpends([ ...chartArray ]);
 
-    let total = competitorInsightsData[0].vendors["Overall"][0].estimated_spend
+    let total = competitorInsightsData[0].vendors["Overall"][0].category_estimated_spend;
     let value = total.toLocaleString("en-US", { style: "currency", currency: "USD" });
     setTotalEstimatedSpend(value);
   }
@@ -127,19 +127,22 @@ function App() {
     const result = competitorInsightsData[0].vendors[category].map((a) => {
       return {
         categoryName: category,
-        estimatedSpend: competitorInsightsData[0].vendors[category][0].estimated_spend,
+        estimatedSpend: a.estimated_spend,
         categoryEstimatedSpend: a.category_estimated_spend,
         competitorName: a.competitor_name
       };
-    })
+    });
 
-    const chartArray = result.map((obj) => {
-      return [ obj.competitorName, obj.categoryEstimatedSpend ]
-    })
+    let chartArray = result.map((obj) => {
+      return [ obj.competitorName, obj.estimatedSpend ]
+    });
+
+    // const others = competitorInsightsData[0].vendors[category][0].estimated_spend - competitorInsightsData[0].vendors[category].map((item) => item.category_estimated_spend).reduce((b,c) => b + c);
+    // chartArray.push([ "Others", others ]);
 
     setCompetitorSpends([ ...chartArray ]);
 
-    const total = competitorInsightsData[0].vendors[category][0].estimated_spend;
+    const total = competitorInsightsData[0].vendors[category][0].category_estimated_spend;
     let value = total.toLocaleString("en-US", { style: "currency", currency: "USD" });
     setTotalEstimatedSpend(value);
   }
@@ -149,7 +152,13 @@ function App() {
       type: 'donut',
       columns: competitorSpends,
       labels: true,
-      unload: true
+      unload: true,
+      onmouseover: function (d, i) {
+        d3.select(i).attr("transform", "scale(1.1)")
+      },
+      onmouseout: function (d, i) {
+        d3.select(i).attr("transform", "scale(1)")
+      }
     },
     donut: {
       // title: totalEstimatedSpend,
@@ -170,6 +179,9 @@ function App() {
     },
     size: {
       height: 420
+    },
+    pie: {
+      expand: true
     }
   }
 
@@ -202,10 +214,10 @@ function App() {
             </b>
           </pre>
 
-          <div>
+          <div style={{ position: 'relative' }}>
             <b
               className="d-flex justify-content-center"
-              style={{ position: 'absolute', top: 230, right: 310 }}
+              style={{ position: 'absolute', top: 180, right: '50%', marginRight: -20 }}
             >
               {totalEstimatedSpend}
             </b>
@@ -215,6 +227,7 @@ function App() {
               tooltip={donutChart.tooltip}
               legend={donutChart.legend}
               size={donutChart.size}
+              pie={donutChart.pie}
             />
           </div>
 
