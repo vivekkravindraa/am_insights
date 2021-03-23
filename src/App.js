@@ -163,7 +163,8 @@ function App() {
     donut: {
       // title: totalEstimatedSpend,
       label: {
-        show: true
+        show: true,
+        format: function (value) { return null; }
       }
     },
     tooltip: {
