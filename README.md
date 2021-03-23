@@ -1,10 +1,12 @@
 # Deployment
 
 ### Locally build react production code from source
-`cd react`
-`yarn install`
-`yarn build`
-`cd ..`
+```
+cd react
+yarn install
+yarn build
+cd ..
+```
 
 ### Locally build docker image
 docker build -t am-insights-app .
