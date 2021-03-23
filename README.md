@@ -38,3 +38,21 @@ gcloud config set project dao-aa-poc-uyim
 gcloud auth application-default login
 gcloud auth configure docker
 ```
+
+```
+# Set CRLF to LF
+git config --global core.eol lf
+git config --global core.autocrlf input
+find . -type f -print0 | xargs -0 dos2unix
+# The same can be done in VS Code editor
+```
+
+```
+# Add to Dockerfile
+RUN cat /run.sh | tr -d '\r' > /run.sh
+```
+
+```
+# Change at entrypoint.sh
+Change #!/bin/bash to #!/bin/sh
+```
