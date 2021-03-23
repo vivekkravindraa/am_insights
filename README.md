@@ -1,7 +1,7 @@
 # Deployment
 
 ```
-### Locally build react production code from source
+# Locally build react production code from source
 cd react
 yarn install
 yarn build
