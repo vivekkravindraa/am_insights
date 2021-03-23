@@ -22,7 +22,7 @@ docker run -it -p 8080:8080 gcr.io/dao-aa-poc-uyim/am-insights-app
 ```
 
 ```
-### Push and deploy image in GCP
+# Push and deploy image in GCP
 docker push gcr.io/dao-aa-poc-uyim/am-insights-app
 gcloud app deploy --image-url gcr.io/dao-aa-poc-uyim/am-insights-app
 ```
