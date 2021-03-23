@@ -643,30 +643,30 @@
                 {
                     "active_products": "1",
                     "affinity_score": 100,
-                    "category_estimated_spend": 0.131649142,
+                    "category_estimated_spend": 6538207,
                     "competitor_name": "HCL Technologies,Ltd.",
                     "competitor_rank": "1",
-                    "estimated_spend": 6538207,
+                    "estimated_spend": 0.131649142,
                     "total_cities": "31",
                     "total_years": 20
                 },
                 {
                     "active_products": "2",
                     "affinity_score": 95,
-                    "category_estimated_spend": 0.126134178,
+                    "category_estimated_spend": 6538207,
                     "competitor_name": "Microsoft Corporation",
                     "competitor_rank": "2",
-                    "estimated_spend": 6538207,
+                    "estimated_spend": 0.126134178,
                     "total_cities": "31",
                     "total_years": 20
                 },
                 {
                     "active_products": "1",
                     "affinity_score": 86,
-                    "category_estimated_spend": 0.407049178,
+                    "category_estimated_spend": 6538207,
                     "competitor_name": "Cisco Systems, Inc.",
                     "competitor_rank": "3",
-                    "estimated_spend": 6538207,
+                    "estimated_spend": 0.407049178,
                     "total_cities": "31",
                     "total_years": 15
                 }
@@ -675,30 +675,30 @@
                 {
                     "active_products": "1",
                     "affinity_score": 100,
-                    "category_estimated_spend": 0.320953856,
+                    "category_estimated_spend": 45066309,
                     "competitor_name": "Amazon Web Services, Inc.",
                     "competitor_rank": "1",
-                    "estimated_spend": 45066309,
+                    "estimated_spend": 0.320953856,
                     "total_cities": "31",
                     "total_years": 6
                 },
                 {
                     "active_products": "2",
                     "affinity_score": 92,
-                    "category_estimated_spend": 0.297906106,
+                    "category_estimated_spend": 45066309,
                     "competitor_name": "Akamai Technologies, Inc.",
                     "competitor_rank": "2",
-                    "estimated_spend": 45066309,
+                    "estimated_spend": 0.297906106,
                     "total_cities": "31",
                     "total_years": 6
                 },
                 {
                     "active_products": "0",
                     "affinity_score": 86,
-                    "category_estimated_spend": 0.110697206,
+                    "category_estimated_spend": 45066309,
                     "competitor_name": "Cisco Systems, Inc.",
                     "competitor_rank": "3",
-                    "estimated_spend": 45066309,
+                    "estimated_spend": 0.110697206,
                     "total_cities": "0",
                     "total_years": 19
                 }
@@ -707,40 +707,40 @@
                 {
                     "active_products": "1",
                     "affinity_score": 100,
-                    "category_estimated_spend": -0.09867271,
+                    "category_estimated_spend": 3683784,
                     "competitor_name": "Micro Focus International PLC",
                     "competitor_rank": "1",
-                    "estimated_spend": 3683784,
+                    "estimated_spend": -0.09867271,
                     "total_cities": "31",
                     "total_years": 19
                 },
                 {
                     "active_products": "1",
                     "affinity_score": 90,
-                    "category_estimated_spend": -0.088983353,
+                    "category_estimated_spend": 3683784,
                     "competitor_name": "Nagios Enterprises, LLC",
                     "competitor_rank": "2",
-                    "estimated_spend": 3683784,
+                    "estimated_spend": -0.088983353,
                     "total_cities": "31",
                     "total_years": 15
                 },
                 {
                     "active_products": "1",
                     "affinity_score": 81,
-                    "category_estimated_spend": -0.080332141,
+                    "category_estimated_spend": 3683784,
                     "competitor_name": "Microsoft Corporation",
                     "competitor_rank": "3",
-                    "estimated_spend": 3683784,
+                    "estimated_spend": -0.080332141,
                     "total_cities": "31",
                     "total_years": 12
                 },
                 {
                     "active_products": "0",
                     "affinity_score": 23,
-                    "category_estimated_spend": 1.601515917,
+                    "category_estimated_spend": 3683784,
                     "competitor_name": "Cisco Systems, Inc.",
                     "competitor_rank": "9",
-                    "estimated_spend": 3683784,
+                    "estimated_spend": 1.601515917,
                     "total_cities": "0",
                     "total_years": 8
                 }
@@ -749,40 +749,40 @@
                 {
                     "active_products": "1",
                     "affinity_score": 100,
-                    "category_estimated_spend": 0.06632276,
+                    "category_estimated_spend": 93142946.25,
                     "competitor_name": "HCL Technologies,Ltd.",
                     "competitor_rank": "1",
-                    "estimated_spend": 93142946.25,
+                    "estimated_spend": 0.06632276,
                     "total_cities": "31",
                     "total_years": 20
                 },
                 {
                     "active_products": "5",
                     "affinity_score": 99,
-                    "category_estimated_spend": 0.06611999,
+                    "category_estimated_spend": 93142946.25,
                     "competitor_name": "Microsoft Corporation",
                     "competitor_rank": "2",
-                    "estimated_spend": 93142946.25,
+                    "estimated_spend": 0.06611999,
                     "total_cities": "31",
                     "total_years": 20
                 },
                 {
                     "active_products": "1",
                     "affinity_score": 96,
-                    "category_estimated_spend": 0.063831124,
+                    "category_estimated_spend": 93142946.25,
                     "competitor_name": "Micro Focus International PLC",
                     "competitor_rank": "3",
-                    "estimated_spend": 93142946.25,
+                    "estimated_spend": 0.063831124,
                     "total_cities": "31",
                     "total_years": 19
                 },
                 {
                     "active_products": "3",
                     "affinity_score": 93,
-                    "category_estimated_spend": 0.186999188,
+                    "category_estimated_spend": 93142946.25,
                     "competitor_name": "Cisco Systems, Inc.",
                     "competitor_rank": "6",
-                    "estimated_spend": 93142946.25,
+                    "estimated_spend": 0.186999188,
                     "total_cities": "31",
                     "total_years": 19
                 }
@@ -791,30 +791,30 @@
                 {
                     "active_products": "2",
                     "affinity_score": 100,
-                    "category_estimated_spend": 0.041476047,
+                    "category_estimated_spend": 10800561,
                     "competitor_name": "Cisco Systems, Inc.",
                     "competitor_rank": "1",
-                    "estimated_spend": 10800561,
+                    "estimated_spend": 0.041476047,
                     "total_cities": "31",
                     "total_years": 19
                 },
                 {
                     "active_products": "1",
                     "affinity_score": 88,
-                    "category_estimated_spend": 0.320339294,
+                    "category_estimated_spend": 10800561,
                     "competitor_name": "Amazon Web Services, Inc.",
                     "competitor_rank": "2",
-                    "estimated_spend": 10800561,
+                    "estimated_spend": 0.320339294,
                     "total_cities": "31",
                     "total_years": 13
                 },
                 {
                     "active_products": "1",
                     "affinity_score": 85,
-                    "category_estimated_spend": 0.308826625,
+                    "category_estimated_spend": 10800561,
                     "competitor_name": "Microsoft Corporation",
                     "competitor_rank": "3",
-                    "estimated_spend": 10800561,
+                    "estimated_spend": 0.308826625,
                     "total_cities": "31",
                     "total_years": 12
                 }
@@ -823,30 +823,30 @@
                 {
                     "active_products": "1",
                     "affinity_score": 100,
-                    "category_estimated_spend": 0.182476234,
+                    "category_estimated_spend": 6002885,
                     "competitor_name": "Microsoft Corporation",
                     "competitor_rank": "1",
-                    "estimated_spend": 6002885,
+                    "estimated_spend": 0.182476234,
                     "total_cities": "31",
                     "total_years": 20
                 },
                 {
                     "active_products": "3",
                     "affinity_score": 95,
-                    "category_estimated_spend": 0.174695781,
+                    "category_estimated_spend": 6002885,
                     "competitor_name": "Citrix Systems, Inc.",
                     "competitor_rank": "2",
-                    "estimated_spend": 6002885,
+                    "estimated_spend": 0.174695781,
                     "total_cities": "31",
                     "total_years": 20
                 },
                 {
                     "active_products": "2",
                     "affinity_score": 93,
-                    "category_estimated_spend": 0.170737508,
+                    "category_estimated_spend": 6002885,
                     "competitor_name": "Vmware, Inc.",
                     "competitor_rank": "3",
-                    "estimated_spend": 6002885,
+                    "estimated_spend": 0.170737508,
                     "total_cities": "31",
                     "total_years": 20
                 }

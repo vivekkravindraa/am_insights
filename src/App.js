@@ -45,7 +45,7 @@ function App() {
 
   useEffect(() => {
     // getTEQ();
-    getOverallSpends();
+    // getOverallSpends();
   }, []);
 
   // useEffect(() => {
@@ -100,28 +100,28 @@ function App() {
   //   }
   // }
 
-  const getOverallSpends = () => {
-    setSelectedCategory("Overall");
+  // const getOverallSpends = () => {
+  //   setSelectedCategory("Overall");
 
-    const result = competitorInsightsData[0].vendors["Overall"].map((a) => {
-      return {
-        categoryName: "Overall",
-        estimatedSpend: a.estimated_spend,
-        categoryEstimatedSpend: a.category_estimated_spend,
-        competitorName: a.competitor_name
-      };
-    });
+  //   const result = competitorInsightsData[0].vendors["Overall"].map((a) => {
+  //     return {
+  //       categoryName: "Overall",
+  //       estimatedSpend: a.estimated_spend,
+  //       categoryEstimatedSpend: a.category_estimated_spend,
+  //       competitorName: a.competitor_name
+  //     };
+  //   });
 
-    const chartArray = result.map((obj) => {
-      return [ obj.competitorName, obj.estimatedSpend ]
-    });
+  //   const chartArray = result.map((obj) => {
+  //     return [ obj.competitorName, obj.estimatedSpend ]
+  //   });
 
-    setCompetitorSpends([ ...chartArray ]);
+  //   setCompetitorSpends([ ...chartArray ]);
 
-    let total = competitorInsightsData[0].vendors["Overall"][0].category_estimated_spend;
-    let value = total.toLocaleString("en-US", { style: "currency", currency: "USD" });
-    setTotalEstimatedSpend(value);
-  }
+  //   let total = competitorInsightsData[0].vendors["Overall"][0].category_estimated_spend;
+  //   let value = total.toLocaleString("en-US", { style: "currency", currency: "USD" });
+  //   setTotalEstimatedSpend(value);
+  // }
 
   const getSpends = (e, category) => {
     const result = competitorInsightsData[0].vendors[category].map((a) => {
@@ -137,8 +137,8 @@ function App() {
       return [ obj.competitorName, obj.estimatedSpend ]
     });
 
-    // const others = competitorInsightsData[0].vendors[category][0].estimated_spend - competitorInsightsData[0].vendors[category].map((item) => item.category_estimated_spend).reduce((b,c) => b + c);
-    // chartArray.push([ "Others", others ]);
+    const others = 1 - competitorInsightsData[0].vendors[category].map((item) => item.estimated_spend).reduce((b,c) => b + c);
+    chartArray.push([ "Others", others ]);
 
     setCompetitorSpends([ ...chartArray ]);
 
