@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
-// import c3 from 'c3';
-import d3 from 'd3';
+import c3 from 'c3';
+// import d3 from 'd3';
 // import axios from 'axios';
 import ReactTable from "react-table-6";
 import { Button } from 'react-bootstrap';
-import C3Chart from 'react-c3js';
+// import C3Chart from 'react-c3js';
 import { competitorInsightsData } from './competitor_insights';
 import { teq } from './customer_insights';
 // import { Table } from "antd";
@@ -23,7 +23,33 @@ function App() {
   const [ selectedCategory, setSelectedCategory ] = useState("");
   const [ competitorSpends, setCompetitorSpends ] = useState([]);
   const [ totalEstimatedSpend, setTotalEstimatedSpend ] = useState("");
-  const [ colorCodesObj, setColorCodesObj ] = useState({});
+  // const [ colorCodesObj, setColorCodesObj ] = useState({});
+
+  useEffect(() => {
+    loadChart();  
+  }, []);
+
+  useEffect(() => {
+    loadChart();
+  }, [ competitorSpends ]);
+
+  const loadChart = () => {
+    c3.generate({
+      bindto: "#chart",
+      data: {
+        columns: competitorSpends,
+        type: "donut",
+        colors: {
+          'Others': '#808080',
+          "Cisco Systems, Inc.": '#049AD2'
+        },
+        unload: true
+      },
+      size: {
+        height: 400
+      }
+    });
+  }
 
   useEffect(() => {
     const reducer = (a, item) => {
@@ -69,6 +95,27 @@ function App() {
     }
   }
 
+  // const pickRandomColor = () => {
+  //   var colorCodes = [
+  //     '#FBAB18',
+  //     '#6EBE4A',
+  //     '#00BCEB',
+  //     // '#1E4471',
+  //     '#5E5E5E',
+  //     '#D74DB3',
+  //     '#F94D6E',
+  //     '#C8F4FF',
+  //     '#329489',
+  //     '#89AEDE',
+  //     '#E2F3E0',
+  //     '#B6D3AA'
+  //   ];
+    
+  //   let randomColor = colorCodes[ Math.floor(Math.random() * colorCodes.length) ];
+  //   // console.log(randomColor);
+  //   return randomColor;
+  // }
+
   const getSpends = (e, category) => {
     const result = competitorInsightsData[0].vendors[category].map((a) => {
       return {
@@ -79,72 +126,120 @@ function App() {
       };
     });
 
-    const colors = result.map((item) => {
-      return {
-        "vendor": item.competitorName,
-        "color": item.competitorName === "Cisco Systems, Inc." ? "#1a65b0" : "#d9d9d9"
-      }
-    })
-    console.log(colors);
-
-    const colorCodesObj = colors.reduce((obj, item) => Object.assign(obj, { [item.vendor]: item.color }), {});
-    console.log(colorCodesObj);
-
-    setColorCodesObj(colorCodesObj);
-
     let chartArray = result.map((obj) => {
       return [ obj.competitorName, obj.estimatedSpend ]
     });
 
-    // const others = 1 - competitorInsightsData[0].vendors[category].map((item) => item.estimated_spend).reduce((b,c) => b + c);
-    // chartArray.push([ "Others", others ]);
+    const others = competitorInsightsData[0].vendors[category].map((item) => item.estimated_spend).reduce((b,c) => b + c);
+    chartArray.push([ "Others", others ]);
 
     setCompetitorSpends([ ...chartArray ]);
 
     const total = competitorInsightsData[0].vendors[category][0].category_estimated_spend;
     let value = total.toLocaleString("en-US", { style: "currency", currency: "USD" });
     setTotalEstimatedSpend(value);
+
+    // const colors = chartArray.map((item) => {
+    //   return {
+    //     "vendor": item[0],
+    //     "color": item[0] === "Cisco Systems, Inc." ? "#1A65B0" :
+    //       item[0] === "Others" ? "#d9d9d9"
+    //       : item[0] !== ( "Cisco Systems, Inc." || "Others") ? pickRandomColor() : pickRandomColor()
+    //   }
+    // })
+
+    // ISSUE:
+    // let allColors = [
+    //   "#C8F4FF",
+    //   "#C8F4FF",
+    //   "#C8F4FF",
+    //   "#1A65B0",
+    //   "#d9d9d9"
+    // ];
+
+    // const repeatedColors = [
+    //   {vendor: "HCL Technologies,Ltd.", color: "#00BCEB"},
+    //   {vendor: "Microsoft Corporation", color: "#00BCEB"},
+    //   {vendor: "Cisco Systems, Inc.", color: "#1A65B0"},
+    //   {vendor: "Others", color: "#d9d9d9"}
+    // ];
+    // console.log(repeatedColors);
+
+    // let final = Object.values(repeatedColors.reduce((acc,cur)=>Object.assign(acc,{[cur.color]:cur}),{}));
+    // console.log(final);
+
+    // const colorCodesObj = colors.reduce((obj, item) => Object.assign(obj, { [item.vendor]: item.color }), {});
+    // setColorCodesObj(colorCodesObj);
   }
 
-  const donutChart = {
-    data: {
-      type: 'donut',
-      columns: competitorSpends,
-      labels: true,
-      unload: true,
-      colors: colorCodesObj,
-      onmouseover: function (d, i) {
-        d3.select(i).attr("transform", "scale(1.1)")
-      },
-      onmouseout: function (d, i) {
-        d3.select(i).attr("transform", "scale(1)")
-      }
-    },
-    donut: {
-      // title: totalEstimatedSpend,
-      label: {
-        show: true,
-        format: function (value) { return null; }
-      }
-    },
-    tooltip: {
-      show: false,
-      format: {
-        value: function (value, ratio, id, index) {
-          return value;
-        }
-      }
-    },
-    legend: {
-      hide: true
-    },
-    size: {
-      height: 420
-    },
-    pie: {
-      expand: true
-    }
-  }
+  // const donutChart = {
+  //   data: {
+  //     type: 'donut',
+  //     columns: competitorSpends,
+  //     labels: true,
+  //     unload: true,
+  //     colors: colorCodesObj,
+  //     // color: {
+  //     //     pattern: ['red', 'green', 'blue', 'orange', 'turquoise'], // colors for values
+  //     //     threshold: {
+  //     //       values: [30, 60, 90, 100, 150]
+  //     //     }
+  //     // },
+  //     // color: function (color, d) {
+  //     // console.log(color, d)
+  //     // },
+  //     // colors: {
+  //     //   "Cisco Systems, Inc.": "#1A65B0",
+  //     //   "Others": "#d9d9d9"
+  //     // },
+  //     // colors: {
+  //     //   pattern: [
+  //     //     '#FBAB18',
+  //     //     '#6EBE4A',
+  //     //     '#00BCEB',
+  //     //     '#1E4471',
+  //     //     '#5E5E5E',
+  //     //     '#D74DB3',
+  //     //     '#F94D6E',
+  //     //     '#C8F4FF',
+  //     //     '#329489',
+  //     //     '#89AEDE',
+  //     //     '#E2F3E0',
+  //     //     '#B6D3AA'
+  //     //   ]
+  //     // },
+  //     onmouseover: function (d, i) {
+  //       d3.select(i).attr("transform", "scale(1.1)")
+  //     },
+  //     onmouseout: function (d, i) {
+  //       d3.select(i).attr("transform", "scale(1)")
+  //     }
+  //   },
+  //   donut: {
+  //     // title: totalEstimatedSpend,
+  //     label: {
+  //       show: true,
+  //       format: function (value) { return null; }
+  //     }
+  //   },
+  //   tooltip: {
+  //     show: false,
+  //     format: {
+  //       value: function (value, ratio, id, index) {
+  //         return value;
+  //       }
+  //     }
+  //   },
+  //   legend: {
+  //     hide: false
+  //   },
+  //   size: {
+  //     height: 420
+  //   },
+  //   pie: {
+  //     expand: true
+  //   }
+  // }
 
   return (
     <div style={{ margin: '0 40px' }}>
@@ -180,14 +275,15 @@ function App() {
             >
               {totalEstimatedSpend}
             </b>
-            <C3Chart
+            <div id="chart"></div>
+            {/* <C3Chart
               data={donutChart.data}
               donut={donutChart.donut}
               tooltip={donutChart.tooltip}
               legend={donutChart.legend}
               size={donutChart.size}
               pie={donutChart.pie}
-            />
+            /> */}
           </div>
         </div>
 
