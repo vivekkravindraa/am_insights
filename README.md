@@ -36,7 +36,7 @@ gcloud auth revoke vivekkravindraa@gmail.com
 gcloud config set account vivekrav@cisco.com
 gcloud config set project dao-aa-poc-uyim
 gcloud auth application-default login
-gcloud auth configure docker
+gcloud auth configure-docker
 ```
 
 ```
