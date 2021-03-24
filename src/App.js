@@ -2,10 +2,11 @@ import { useState, useEffect } from 'react';
 // import c3 from 'c3';
 import d3 from 'd3';
 // import axios from 'axios';
-// import ReactTable from "react-table-6";
+import ReactTable from "react-table-6";
 import { Button } from 'react-bootstrap';
 import C3Chart from 'react-c3js';
 import { competitorInsightsData } from './competitor_insights';
+import { teq } from './customer_insights';
 // import { Table } from "antd";
 // import { Table, Column, HeaderCell, Cell } from 'rsuite-table';
 // import BootstrapSwitchButton from 'bootstrap-switch-button-react';
@@ -17,111 +18,56 @@ import { competitorInsightsData } from './competitor_insights';
 import 'c3/c3.css';
 import './App.css';
 
-// require.config({
-//   baseUrl: '/js',
-//   paths: {
-//     d3: "http://d3js.org/d3.v5.min"
-//   }
-// });
-
-// require(["d3", "c3"], function(d3, c3) {
-//   c3.generate({
-//     bindto: '#chart',
-//     data: {
-//       columns: [
-//         ['data1', 30, 200, 100, 400, 150, 250],
-//         ['data2', 50, 20, 10, 40, 15, 25]
-//       ]
-//     }
-//   });
-// });
-
 function App() {
-  // const [ teq, setTEQ ] = useState([]);
-  // const [ result, setResult ] = useState([]);
+  const [ result, setResult ] = useState([]);
   const [ selectedCategory, setSelectedCategory ] = useState("");
   const [ competitorSpends, setCompetitorSpends ] = useState([]);
   const [ totalEstimatedSpend, setTotalEstimatedSpend ] = useState("");
+  const [ colorCodesObj, setColorCodesObj ] = useState({});
 
   useEffect(() => {
-    // getTEQ();
-    // getOverallSpends();
+    const reducer = (a, item) => {
+      return { ...a, ...item };
+    };
+    const result = teq && teq[0] && Object.keys(teq[0]).map((key) => {
+      return {
+        propertyName: key,
+        ...teq
+          .map((a, i) => {
+            return {
+              [`customer${i}`]: a[key]
+            };
+          })
+          .reduce(reducer)
+      };
+    });
+    setResult(result);
   }, []);
 
-  // useEffect(() => {
-  //   const reducer = (a, item) => {
-  //     return { ...a, ...item };
-  //   };
-  //   const result = teq && teq[0] && Object.keys(teq[0]).map((key) => {
-  //     return {
-  //       propertyName: key,
-  //       ...teq
-  //         .map((a, i) => {
-  //           return {
-  //             [`customer${i}`]: a[key]
-  //           };
-  //         })
-  //         .reduce(reducer)
-  //     };
-  //   });
-  //   setResult(result);
-  // }, [teq]);
-
-  // const getTEQ = () => {
-  //   axios.get(`${process.env.PUBLIC_URL}/data/customer_insights.json`)
-  //   .then((res) => {
-  //     setTEQ(res.data);
-  //   })
-  //   .catch((err) => console.log(err));
-  // }
-
-  // const capitalizePropertyNames = (propertyName) => {
-  //   switch(propertyName) {
-  //     case 'customerName':
-  //       return 'Customer Name';
-  //     case 'overallTEQScore':
-  //       return 'Overall TEQ Score';
-  //     case 'customersAffinityTowardsCisco':
-  //       return `Customer's Affinity Towards Cisco`;
-  //     case 'techAdoption':
-  //       return 'Tech Adoption';
-  //     case 'top3InvestmentCategories':
-  //       return 'Top 3 Investment Categories';
-  //     case 'spendDistribution':
-  //       return 'Spend Distribution';
-  //     case 'top3PotentialPurchases':
-  //       return 'Top 3 Potential Purchases';
-  //     case 'recentDealsClosed':
-  //       return 'Recent Deals Closed';
-  //     case 'qualifiedUseCases':
-  //       return 'Qualified Use Cases';
-  //     default:
-  //       return;
-  //   }
-  // }
-
-  // const getOverallSpends = () => {
-  //   setSelectedCategory("Overall");
-
-  //   const result = competitorInsightsData[0].vendors["Overall"].map((a) => {
-  //     return {
-  //       categoryName: "Overall",
-  //       estimatedSpend: a.estimated_spend,
-  //       categoryEstimatedSpend: a.category_estimated_spend,
-  //       competitorName: a.competitor_name
-  //     };
-  //   });
-
-  //   const chartArray = result.map((obj) => {
-  //     return [ obj.competitorName, obj.estimatedSpend ]
-  //   });
-
-  //   setCompetitorSpends([ ...chartArray ]);
-
-  //   let total = competitorInsightsData[0].vendors["Overall"][0].category_estimated_spend;
-  //   let value = total.toLocaleString("en-US", { style: "currency", currency: "USD" });
-  //   setTotalEstimatedSpend(value);
-  // }
+  const capitalizePropertyNames = (propertyName) => {
+    switch(propertyName) {
+      case 'customerName':
+        return 'Customer Name';
+      case 'overallTEQScore':
+        return 'Overall TEQ Score';
+      case 'customersAffinityTowardsCisco':
+        return `Customer's Affinity Towards Cisco`;
+      case 'techAdoption':
+        return 'Tech Adoption';
+      case 'top3InvestmentCategories':
+        return 'Top 3 Investment Categories';
+      case 'spendDistribution':
+        return 'Spend Distribution';
+      case 'top3PotentialPurchases':
+        return 'Top 3 Potential Purchases';
+      case 'recentDealsClosed':
+        return 'Recent Deals Closed';
+      case 'qualifiedUseCases':
+        return 'Qualified Use Cases';
+      default:
+        return;
+    }
+  }
 
   const getSpends = (e, category) => {
     const result = competitorInsightsData[0].vendors[category].map((a) => {
@@ -133,12 +79,25 @@ function App() {
       };
     });
 
+    const colors = result.map((item) => {
+      return {
+        "vendor": item.competitorName,
+        "color": item.competitorName === "Cisco Systems, Inc." ? "#1a65b0" : "#d9d9d9"
+      }
+    })
+    console.log(colors);
+
+    const colorCodesObj = colors.reduce((obj, item) => Object.assign(obj, { [item.vendor]: item.color }), {});
+    console.log(colorCodesObj);
+
+    setColorCodesObj(colorCodesObj);
+
     let chartArray = result.map((obj) => {
       return [ obj.competitorName, obj.estimatedSpend ]
     });
 
-    const others = 1 - competitorInsightsData[0].vendors[category].map((item) => item.estimated_spend).reduce((b,c) => b + c);
-    chartArray.push([ "Others", others ]);
+    // const others = 1 - competitorInsightsData[0].vendors[category].map((item) => item.estimated_spend).reduce((b,c) => b + c);
+    // chartArray.push([ "Others", others ]);
 
     setCompetitorSpends([ ...chartArray ]);
 
@@ -153,6 +112,7 @@ function App() {
       columns: competitorSpends,
       labels: true,
       unload: true,
+      colors: colorCodesObj,
       onmouseover: function (d, i) {
         d3.select(i).attr("transform", "scale(1.1)")
       },
@@ -168,10 +128,10 @@ function App() {
       }
     },
     tooltip: {
-      show: true,
+      show: false,
       format: {
         value: function (value, ratio, id, index) {
-          return value.toLocaleString("en-US", { style: "currency", currency: "USD" });
+          return value;
         }
       }
     },
@@ -202,8 +162,6 @@ function App() {
           }
         </div>
 
-        {/* {renderChart()} */}
-
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 6fr)' }}>
           <pre style={{ paddingTop: 10 }}>
             <b>
@@ -231,79 +189,9 @@ function App() {
               pie={donutChart.pie}
             />
           </div>
-
-          {/* <div id="chart"></div> */}
         </div>
 
-        {/* <p>All three tables below are constructed with the same JSON.</p>
-
-        <p><h1 style={{ fontFamily: 'Times New Roman' }}>T.E.Q.</h1>Built with HTML and Transposed in CSS</p>
-        <table className="table" border="0" style={{ borderBottom: '0.1px solid lightgray', boxShadow: '5px 10px 18px #888888' }}>
-          <tbody>
-            <tr style={{ borderRight: '0.1px solid lightgray', borderLeft: '0.1px solid lightgray' }} key="-1">
-              <td></td>
-              <td>Overall TEQ Score</td>
-              <td>Customer's Affinity Towards Cisco</td>
-              <td>Tech Adoption</td>
-              <td>Top 3 Investment Categories</td>
-              <td>Spend Distribution (SW, HW, Subs)</td>
-              <td></td>
-              <td>Top 3 Potential Purchases</td>
-              <td>Recent Deals Closed</td>
-              <td>Qualified Use Cases</td>
-            </tr>
-            {teq.map((item, index) => {
-              return (
-                <tr key={index} style={{ borderRight: '0.1px solid lightgray' }}>
-                  <td>{item.customerName}</td>
-                  <td>{item.overallTEQScore}</td>
-                  <td>{item.customersAffinityTowardsCisco}</td>
-                  <td>{item.techAdoption}</td>
-                  <td style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 4fr)', padding: '4px 10px' }}>
-                    {Object.keys(item.top3InvestmentCategories).map((i, index) => {
-                      return <span key={index} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: 10, fontWeight: 600, textAlign: 'center', height: '-webkit-fill-available', width: `${(item.top3InvestmentCategories[i] / Object.values(item.top3InvestmentCategories).reduce((a,b) => a + b)) * 100}%`
-                    }}>{i}</span>
-                    })}
-                  </td>
-                  <td style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 4fr)', padding: '4px 10px' }}>
-                    {Object.keys(item.spendDistribution).map((i, index) => {
-                      return <span key={index} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', fontSize: 10, fontWeight: 600, textAlign: 'center', height: '-webkit-fill-available', width: `${item.spendDistribution[i]}%`
-                      }}>{i}</span>
-                    })}
-                  </td>
-                  <td></td>
-                  <td>{item.top3PotentialPurchases}</td>
-                  <td><span style={{ backgroundColor: 'yellow' }}>{item.recentDealsClosed}</span></td>
-                  <td>{item.qualifiedUseCases}</td>
-                </tr>
-              )
-            })}
-            <tr style={{ borderRight: '0.1px solid lightgray' }} key={teq.length}>
-              <td>Current Account</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table> */}
-
-        {/*
-          {customerNamesAsColumns.length && <BootstrapTable
-            keyField="id"
-            striped
-            hover
-            condensed
-            noDataIndication="Table is Empty"
-            data={ teq }
-          />}
-        */}
-
-        {/* <p style={{ display: 'flex', alignItems: 'baseline', margin: 0 }}><h1 style={{ marginRight: 8 }}><u>T.E.Q.</u></h1></p>
+        <p style={{ display: 'flex', alignItems: 'baseline', margin: 0, color: '#005073' }}><h3 style={{ marginRight: 8 }}>T.E.Q.</h3></p>
         <ReactTable
           data={result}
           // filterable
@@ -413,9 +301,9 @@ function App() {
             },
           ]}
           defaultPageSize={9}
-          className="-striped -highlight"
-        /> */}
-
+          style={{ marginBottom: 25 }}
+          className="-highlight"
+        />
       </div>
     </div>
   )

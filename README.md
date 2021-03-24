@@ -49,7 +49,7 @@ find . -type f -print0 | xargs -0 dos2unix
 
 ```
 # Add to Dockerfile
-RUN cat /run.sh | tr -d '\r' > /run.sh
+RUN cat /entrypoint.sh | tr -d '\r' > /entrypoint.sh
 ```
 
 ```

@@ -1,4 +1,4 @@
-[
+export const teq = [
     {
         "customerName": "Customer - 1",
         "overallTEQScore": "7/10",
