@@ -179,13 +179,9 @@
 }
 
 .deepDive {
-    .rt-thead .rt-tr {
-        background-color: #3f51b5;
+    thead {
         color: #ffffff;
-    }
-
-    .rt-tbody .rt-tr {
-        background-color: #c5cae9;
+        background-color: #1a65b0;
     }
 }
 

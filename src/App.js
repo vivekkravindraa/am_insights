@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import ReactExport from "react-export-excel";
-import { CSVLink, CSVDownload } from "react-csv";
+import { CSVLink } from "react-csv";
 import c3 from 'c3';
 // import d3 from 'd3';
 // import axios from 'axios';
@@ -12,9 +12,9 @@ import { teq } from './customer_insights';
 // import { Table } from "antd";
 // import { Table, Column, HeaderCell, Cell } from 'rsuite-table';
 // import BootstrapSwitchButton from 'bootstrap-switch-button-react';
-// import BootstrapTable from 'react-bootstrap-table-next';
-// import paginationFactory from 'react-bootstrap-table2-paginator';
-// import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
+import BootstrapTable from 'react-bootstrap-table-next';
+import paginationFactory from 'react-bootstrap-table2-paginator';
+import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
 // import 'rsuite-table/dist/css/rsuite-table.css';
 // import 'antd/dist/antd.css';
 import 'c3/c3.css';
@@ -280,7 +280,7 @@ function App() {
         x: 'x',
         columns: [
           ['x', 'Storage', 'Network Infra', 'Security', 'Collaboration' ],
-          [ 'data1', 1000, 2000, 3000, 4000 ]
+          [ 'data1', 4000, 3000, 2000, 1000 ]
         ],
         type: "bar",
         labels: true,
@@ -317,7 +317,7 @@ function App() {
         x: 'x',
         columns: [
           ['x', 'Vendor4', 'Vendor3', 'Vendor2', 'Vendor1' ],
-          [ 'data1', 1000, 2000, 3000, 4000 ]
+          [ 'data1', 4000, 3000, 2000, 1000 ]
         ],
         type: "bar",
         labels: true,
@@ -349,16 +349,46 @@ function App() {
     });
   }, [ showDeepDive ])
 
-  const multiDataSet = [
+  // const multiDataSet = [
+  //   {
+  //     columns: teq,
+  //     data: [
+  //       [
+  //         {value: "Yellow", style: {fill: {patternType: "solid", fgColor: {rgb: "FFFFFF"}}}},
+  //       ],[],[],[],[],[],[]
+  //     ]
+  //   }
+  // ]
+
+  const data = [
     {
-      columns: teq,
-      data: [
-        [
-          {value: "Yellow", style: {fill: {patternType: "solid", fgColor: {rgb: "FFFFFF"}}}},
-        ],[],[],[],[],[],[]
-      ]
+      "vendor": "Vendor1",
+      "product": "Product1",
+      "category": "Category1"
+    },
+    {
+      "vendor": "Vendor2",
+      "product": "Product2",
+      "category": "Category2"
     }
-  ]
+  ];
+
+  const columns = [
+    {
+      dataField: 'vendor',
+      text: 'Vendor'
+    }, {
+      dataField: 'product',
+      text: 'Product'
+    }, {
+      dataField: 'category',
+      text: 'Category'
+    }
+  ];
+
+  const paginationOption = {
+    sizePerPage: 5
+  };
 
   return (
     <div style={{ margin: '0 40px' }}>
@@ -367,7 +397,7 @@ function App() {
         {/* Deep Dive Modal */}
         <>
           <Modal dialogClassName="deepDiveModal" show={showDeepDive} onHide={handleCloseDeepDive}>
-            <Modal.Header closeButton>
+            <Modal.Header closeButton style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '0 auto' }}>
               <p style={{ fontSize: 14, fontWeight: 600, margin: 0, color: '#808080' }}>Displaceable market - deep dive</p>
             </Modal.Header>
             <Modal.Body>
@@ -382,64 +412,15 @@ function App() {
                 </div>
               </div>
               <div className="deepDive" style={{ paddingTop: 20 }}>
-                <ReactTable
-                  defaultPageSize={3}
-                  data={[
-                    {
-                      "vendor": "Vendor1",
-                      "product": "Product1",
-                      "category": "Category1"
-                    },
-                    {
-                      "vendor": "Vendor2",
-                      "product": "Product2",
-                      "category": "Category2"
-                    }
-                  ]}
-                  columns={[
-                    {
-                      Header: <b>Vendor</b>,
-                      accessor: "vendor",
-                      sortable: true,
-                      resizable: true,
-                      filterable: false,
-                      Cell: props => <span style={{ 'whiteSpace': 'normal' }}>{props.original.vendor}</span>,
-                      style: {
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'flex-start',
-                        verticalAlign: 'middle'
-                      },
-                    },
-                    {
-                      Header: <b>Product</b>,
-                      accessor: "product",
-                      sortable: true,
-                      resizable: true,
-                      filterable: false,
-                      Cell: props => <span style={{ 'whiteSpace': 'normal' }}>{props.original.product}</span>,
-                      style: {
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'flex-start',
-                        verticalAlign: 'middle'
-                      },
-                    },
-                    {
-                      Header: <b>Category</b>,
-                      accessor: "category",
-                      sortable: true,
-                      resizable: true,
-                      filterable: false,
-                      Cell: props => <span style={{ 'whiteSpace': 'normal' }}>{props.original.category}</span>,
-                      style: {
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'flex-start',
-                        verticalAlign: 'middle'
-                      },
-                    },
-                  ]}
+                <BootstrapTable
+                  keyField="id"
+                  striped
+                  hover
+                  condensed
+                  noDataIndication="Table is Empty"
+                  data={ data }
+                  columns={ columns }
+                  pagination={ paginationFactory(paginationOption) }
                 />
               </div>
             </Modal.Body>
@@ -497,11 +478,11 @@ function App() {
             </div>
             <div>
               <CSVLink data={teq}>
-                <Button className="export" color="primary" style={{ marginRight: 10 }}>Export T.E.Q. in CSV</Button>
+                <Button className="export" color="primary" style={{ marginRight: 10 }}>Export T.E.Q. in .csv</Button>
               </CSVLink>
               <ExcelFile
                 filename="T.E.Q"
-                element={<Button className="export" color="primary">Export T.E.Q. in Excel</Button>}
+                element={<Button className="export" color="primary">Export T.E.Q. in .xlsx</Button>}
               >
                 <ExcelSheet data={newTeq} name="T.E.Q">
                   <ExcelColumn label="Customer Name" value="customerName"/>
