@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import ReactExport from "react-export-excel";
+import { CSVLink, CSVDownload } from "react-csv";
 import c3 from 'c3';
 // import d3 from 'd3';
 // import axios from 'axios';
@@ -25,8 +27,34 @@ function App() {
   const [ totalEstimatedSpend, setTotalEstimatedSpend ] = useState("");
   // const [ colorCodesObj, setColorCodesObj ] = useState({});
   const [ showDeepDive, setShowDeepDive ] = useState(false);
+  const [ newTeq, setNewTeq ] = useState([]);
+
+  const handleCloseDeepDive = () => setShowDeepDive(false);
+  const handleShowDeepDive = () => setShowDeepDive(true);
+
+  const ExcelFile = ReactExport.ExcelFile;
+  const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
+  const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
 
   useEffect(() => {
+
+    const newTeq = teq.map((item) => {
+      return  {
+        customerName: item.customerName,
+        overallTEQScore: item.overallTEQScore,
+        customersAffinityTowardsCisco: item.customersAffinityTowardsCisco,
+        techAdoption: item.techAdoption,
+        top3InvestmentCategories: JSON.stringify(item.top3InvestmentCategories),
+        spendDistribution: JSON.stringify(item.spendDistribution),
+        top3PotentialPurchases: item.top3PotentialPurchases,
+        recentDealsClosed: item.recentDealsClosed,
+        qualifiedUseCases: item.qualifiedUseCases
+      }
+    })
+
+    console.log(newTeq);
+    setNewTeq(newTeq);
+
     loadChart();  
   }, []);
 
@@ -47,7 +75,7 @@ function App() {
         unload: true
       },
       size: {
-        height: 400
+        height: 300
       },
       donut: {
         title: totalEstimatedSpend
@@ -321,8 +349,16 @@ function App() {
     });
   }, [ showDeepDive ])
 
-  const handleCloseDeepDive = () => setShowDeepDive(false);
-  const handleShowDeepDive = () => setShowDeepDive(true);
+  const multiDataSet = [
+    {
+      columns: teq,
+      data: [
+        [
+          {value: "Yellow", style: {fill: {patternType: "solid", fgColor: {rgb: "FFFFFF"}}}},
+        ],[],[],[],[],[],[]
+      ]
+    }
+  ]
 
   return (
     <div style={{ margin: '0 40px' }}>
@@ -422,19 +458,7 @@ function App() {
           }
         </div>
 
-        <div>
-          {/* <pre style={{ paddingTop: 10 }}>
-            <b>
-              {JSON.stringify({
-                selectedCategory,
-                competitorSpends,
-                totalEstimatedSpend
-              }, null, '\t')}
-            </b>
-          </pre> */}
-          <Button style={{ marginTop: 20 }} onClick={handleShowDeepDive}>Deep Dive</Button>
-
-          <div style={{ position: 'relative' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 6fr)', position: 'relative' }}>
             {/* <b
               className="d-flex justify-content-center"
               style={{ position: 'absolute', top: 180, right: '50%', marginRight: -20 }}
@@ -449,13 +473,50 @@ function App() {
               size={donutChart.size}
               pie={donutChart.pie}
             /> */}
-
-            <div id="chart"></div>
+            <div>
+              <pre style={{ paddingTop: 10 }}>
+                <b>
+                  {JSON.stringify({
+                    selectedCategory,
+                    competitorSpends,
+                    totalEstimatedSpend
+                  }, null, '\t')}
+                </b>
+              </pre>
+            </div>
+            <div>
+              <Button variant="info" style={{ marginTop: 20 }} onClick={handleShowDeepDive}>Deep Dive</Button>
+              <div id="chart"></div>
+            </div>
           </div>
-        </div>
 
         <div className="teq">
-          <p style={{ display: 'flex', alignItems: 'baseline', margin: 0, color: '#005073' }}><h3 style={{ marginRight: 8 }}>T.E.Q.</h3></p>
+          <div className="d-flex justify-content-between align-items-center" style={{ paddingBottom: 10 }}>
+            <div>
+              <p style={{ display: 'flex', alignItems: 'baseline', margin: 0, color: '#005073', fontSize: 24 }}><b style={{ marginRight: 8 }}>T.E.Q.</b></p>
+            </div>
+            <div>
+              <CSVLink data={teq}>
+                <Button className="export" color="primary" style={{ marginRight: 10 }}>Export T.E.Q. in CSV</Button>
+              </CSVLink>
+              <ExcelFile
+                filename="T.E.Q"
+                element={<Button className="export" color="primary">Export T.E.Q. in Excel</Button>}
+              >
+                <ExcelSheet data={newTeq} name="T.E.Q">
+                  <ExcelColumn label="Customer Name" value="customerName"/>
+                  <ExcelColumn label="Overall TEQ Score" value="overallTEQScore" />
+                  <ExcelColumn label="Customers Affinity Towards Cisco" value="customersAffinityTowardsCisco" />
+                  <ExcelColumn label="Tech Adoption" value="techAdoption" />
+                  <ExcelColumn label="Top 3 Investment Categories" value={(col) => JSON.stringify(col.top3InvestmentCategories)} />
+                  <ExcelColumn label="Spend Distribution" value={(col) => JSON.stringify(col.spendDistribution)} />
+                  <ExcelColumn label="Top 3 Potential Purchases" value="top3PotentialPurchases" />
+                  <ExcelColumn label="Recent Deals Closed" value="recentDealsClosed" bgColor='yellow' />
+                  <ExcelColumn label="Qualified Use Cases" value="qualifiedUseCases"/>
+                </ExcelSheet>
+              </ExcelFile>
+            </div>
+          </div>
           <ReactTable
             data={result}
             // filterable
