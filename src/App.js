@@ -258,6 +258,14 @@ function App() {
         labels: true,
         unload: true
       },
+      bar: {
+        width: {
+          ratio: 0.3
+        }
+      },
+      size: {
+        height: 200
+      },
       axis: {
         rotated: true,
         x: {
@@ -286,6 +294,14 @@ function App() {
         type: "bar",
         labels: true,
         unload: true
+      },
+      bar: {
+        width: {
+          ratio: 0.3
+        }
+      },
+      size: {
+        height: 200
       },
       axis: {
         rotated: true,
