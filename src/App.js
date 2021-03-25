@@ -3,7 +3,7 @@ import c3 from 'c3';
 // import d3 from 'd3';
 // import axios from 'axios';
 import ReactTable from "react-table-6";
-import { Button } from 'react-bootstrap';
+import { Button, Modal } from 'react-bootstrap';
 // import C3Chart from 'react-c3js';
 import { competitorInsightsData } from './competitor_insights';
 import { teq } from './customer_insights';
@@ -16,7 +16,7 @@ import { teq } from './customer_insights';
 // import 'rsuite-table/dist/css/rsuite-table.css';
 // import 'antd/dist/antd.css';
 import 'c3/c3.css';
-import './App.css';
+import './App.scss';
 
 function App() {
   const [ result, setResult ] = useState([]);
@@ -24,6 +24,7 @@ function App() {
   const [ competitorSpends, setCompetitorSpends ] = useState([]);
   const [ totalEstimatedSpend, setTotalEstimatedSpend ] = useState("");
   // const [ colorCodesObj, setColorCodesObj ] = useState({});
+  const [ showDeepDive, setShowDeepDive ] = useState(false);
 
   useEffect(() => {
     loadChart();  
@@ -244,9 +245,154 @@ function App() {
   //   }
   // }
 
+  useEffect(() => {
+    c3.generate({
+      bindto: "#displacebaleMarketCategory",
+      data: {
+        x: 'x',
+        columns: [
+          ['x', 'Storage', 'Network Infra', 'Security', 'Collaboration' ],
+          [ 'data1', 1000, 2000, 3000, 4000 ]
+        ],
+        type: "bar",
+        labels: true,
+        unload: true
+      },
+      axis: {
+        rotated: true,
+        x: {
+          type: 'category'
+        },
+        y: {
+          show: false
+        }
+      },
+      legend: {
+        show: false
+      },
+      tooltip: {
+        show: false
+      }
+    });
+
+    c3.generate({
+      bindto: "#vendorWiseEstimatedSpend",
+      data: {
+        x: 'x',
+        columns: [
+          ['x', 'Vendor4', 'Vendor3', 'Vendor2', 'Vendor1' ],
+          [ 'data1', 1000, 2000, 3000, 4000 ]
+        ],
+        type: "bar",
+        labels: true,
+        unload: true
+      },
+      axis: {
+        rotated: true,
+        x: {
+          type: 'category'
+        },
+        y: {
+          show: false
+        }
+      },
+      legend: {
+        show: false
+      },
+      tooltip: {
+        show: false
+      }
+    });
+  }, [ showDeepDive ])
+
+  const handleCloseDeepDive = () => setShowDeepDive(false);
+  const handleShowDeepDive = () => setShowDeepDive(true);
+
   return (
     <div style={{ margin: '0 40px' }}>
       <div className="container">
+
+        {/* Deep Dive Modal */}
+        <>
+          <Modal dialogClassName="deepDiveModal" show={showDeepDive} onHide={handleCloseDeepDive}>
+            <Modal.Header closeButton>
+              <p style={{ fontSize: 14, fontWeight: 600, margin: 0, color: '#808080' }}>Displaceable market - deep dive</p>
+            </Modal.Header>
+            <Modal.Body>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 6fr)' }}>
+                <div>
+                  <p style={{ fontSize: 14, fontWeight: 600, margin: '0 0 0 34px', color: '#808080' }}>Displaceable market – category</p>
+                  <div id="displacebaleMarketCategory"></div>
+                </div>
+                <div>
+                  <p style={{ fontSize: 14, fontWeight: 600, margin: '0 0 0 34px', color: '#808080' }}>Vendor wise estimated spend</p>
+                  <div id="vendorWiseEstimatedSpend"></div>
+                </div>
+              </div>
+              <div className="deepDive" style={{ paddingTop: 20 }}>
+                <ReactTable
+                  defaultPageSize={3}
+                  data={[
+                    {
+                      "vendor": "Vendor1",
+                      "product": "Product1",
+                      "category": "Category1"
+                    },
+                    {
+                      "vendor": "Vendor2",
+                      "product": "Product2",
+                      "category": "Category2"
+                    }
+                  ]}
+                  columns={[
+                    {
+                      Header: <b>Vendor</b>,
+                      accessor: "vendor",
+                      sortable: true,
+                      resizable: true,
+                      filterable: false,
+                      Cell: props => <span style={{ 'whiteSpace': 'normal' }}>{props.original.vendor}</span>,
+                      style: {
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'flex-start',
+                        verticalAlign: 'middle'
+                      },
+                    },
+                    {
+                      Header: <b>Product</b>,
+                      accessor: "product",
+                      sortable: true,
+                      resizable: true,
+                      filterable: false,
+                      Cell: props => <span style={{ 'whiteSpace': 'normal' }}>{props.original.product}</span>,
+                      style: {
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'flex-start',
+                        verticalAlign: 'middle'
+                      },
+                    },
+                    {
+                      Header: <b>Category</b>,
+                      accessor: "category",
+                      sortable: true,
+                      resizable: true,
+                      filterable: false,
+                      Cell: props => <span style={{ 'whiteSpace': 'normal' }}>{props.original.category}</span>,
+                      style: {
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'flex-start',
+                        verticalAlign: 'middle'
+                      },
+                    },
+                  ]}
+                />
+              </div>
+            </Modal.Body>
+          </Modal>
+        </>
 
         <div className="d-flex justify-content-between align-items-center" style={{ paddingTop: 10 }}>
           {Object.keys(competitorInsightsData[0].vendors)
@@ -260,8 +406,8 @@ function App() {
           }
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 6fr)' }}>
-          <pre style={{ paddingTop: 10 }}>
+        <div>
+          {/* <pre style={{ paddingTop: 10 }}>
             <b>
               {JSON.stringify({
                 selectedCategory,
@@ -269,7 +415,8 @@ function App() {
                 totalEstimatedSpend
               }, null, '\t')}
             </b>
-          </pre>
+          </pre> */}
+          <Button style={{ marginTop: 20 }} onClick={handleShowDeepDive}>Deep Dive</Button>
 
           <div style={{ position: 'relative' }}>
             {/* <b
@@ -291,119 +438,121 @@ function App() {
           </div>
         </div>
 
-        <p style={{ display: 'flex', alignItems: 'baseline', margin: 0, color: '#005073' }}><h3 style={{ marginRight: 8 }}>T.E.Q.</h3></p>
-        <ReactTable
-          data={result}
-          // filterable
-          columns={[
-            {
-              accessor: "propertyName",
-              sortable: true,
-              resizable: true,
-              filterable: false,
-              Cell: props => <span style={{ 'whiteSpace': 'normal' }}>{capitalizePropertyNames(props.original.propertyName)}</span>,
-              style: {
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'flex-start',
-                verticalAlign: 'middle'
+        <div className="teq">
+          <p style={{ display: 'flex', alignItems: 'baseline', margin: 0, color: '#005073' }}><h3 style={{ marginRight: 8 }}>T.E.Q.</h3></p>
+          <ReactTable
+            data={result}
+            // filterable
+            columns={[
+              {
+                accessor: "propertyName",
+                sortable: true,
+                resizable: true,
+                filterable: false,
+                Cell: props => <span style={{ 'whiteSpace': 'normal' }}>{capitalizePropertyNames(props.original.propertyName)}</span>,
+                style: {
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'flex-start',
+                  verticalAlign: 'middle'
+                },
               },
-            },
-            {
-              accessor: "customer0",
-              sortable: true,
-              resizable: true,
-              filterable: false,
-              Cell: props => typeof props.original.customer0 === "object" ? 
-                <span className="top3InvestmentCategories" style={{
-                  display: 'flex', justifyContent: 'center', alignItems: 'center'
-                }}>
-                  {Object.keys(props.original.customer0).map((i, index) => {
-                    return <span
-                      key={index}
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        textAlign: 'center',
-                        fontSize: 10,
-                        whiteSpace: 'normal',
-                        padding: '8px 0',
-                        height: 40,
-                        width: `${(props.original.customer0[i] / Object.values(props.original.customer0).reduce((a,b) => a + b)) * 100}%`
-                      }}
-                    >
-                      {i}
-                    </span>
-                  })}
-                </span>
-              : <span style={{ 'whiteSpace': 'normal' }}>{props.original.customer0}</span>
-            },
-            {
-              accessor: "customer1",
-              sortable: true,
-              resizable: true,
-              filterable: false,
-              Cell: props => typeof props.original.customer1 === "object" ?
-                <span className="top3InvestmentCategories" style={{
-                  display: 'flex', justifyContent: 'center', alignItems: 'center'
-                }}>
-                  {Object.keys(props.original.customer1).map((i, index) => {
-                    return <span
-                      key={index}
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        textAlign: 'center',
-                        fontSize: 10,
-                        whiteSpace: 'normal',
-                        padding: '8px 0',
-                        height: 40,
-                        width: `${(props.original.customer1[i] / Object.values(props.original.customer1).reduce((a,b) => a + b)) * 100}%`
-                      }}
-                    >
-                      {i}
-                    </span>
-                  })}
-                </span>
-              : <span style={{ 'whiteSpace': 'normal' }}>{props.original.customer1}</span>
-            },
-            {
-              accessor: "customer2",
-              sortable: true,
-              resizable: true,
-              filterable: false,
-              Cell: props => typeof props.original.customer2 === "object" ?
-                <span className="top3InvestmentCategories" style={{
-                  display: 'flex', justifyContent: 'center', alignItems: 'center'
-                }}>
-                  {Object.keys(props.original.customer2).map((i, index) => {
-                    return <span
-                      key={index}
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        textAlign: 'center',
-                        fontSize: 10,
-                        whiteSpace: 'normal',
-                        padding: '8px 0',
-                        height: 40,
-                        width: `${(props.original.customer2[i] / Object.values(props.original.customer2).reduce((a,b) => a + b)) * 100}%`
-                      }}
-                    >
-                      {i}
-                    </span>
-                  })}
-                </span>
-              : <span style={{ 'whiteSpace': 'normal' }}>{props.original.customer2}</span>
-            },
-          ]}
-          defaultPageSize={9}
-          style={{ marginBottom: 25 }}
-          className="-highlight"
-        />
+              {
+                accessor: "customer0",
+                sortable: true,
+                resizable: true,
+                filterable: false,
+                Cell: props => typeof props.original.customer0 === "object" ? 
+                  <span className="top3InvestmentCategories" style={{
+                    display: 'flex', justifyContent: 'center', alignItems: 'center'
+                  }}>
+                    {Object.keys(props.original.customer0).map((i, index) => {
+                      return <span
+                        key={index}
+                        style={{
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          textAlign: 'center',
+                          fontSize: 10,
+                          whiteSpace: 'normal',
+                          padding: '8px 0',
+                          height: 40,
+                          width: `${(props.original.customer0[i] / Object.values(props.original.customer0).reduce((a,b) => a + b)) * 100}%`
+                        }}
+                      >
+                        {i}
+                      </span>
+                    })}
+                  </span>
+                : <span style={{ 'whiteSpace': 'normal' }}>{props.original.customer0}</span>
+              },
+              {
+                accessor: "customer1",
+                sortable: true,
+                resizable: true,
+                filterable: false,
+                Cell: props => typeof props.original.customer1 === "object" ?
+                  <span className="top3InvestmentCategories" style={{
+                    display: 'flex', justifyContent: 'center', alignItems: 'center'
+                  }}>
+                    {Object.keys(props.original.customer1).map((i, index) => {
+                      return <span
+                        key={index}
+                        style={{
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          textAlign: 'center',
+                          fontSize: 10,
+                          whiteSpace: 'normal',
+                          padding: '8px 0',
+                          height: 40,
+                          width: `${(props.original.customer1[i] / Object.values(props.original.customer1).reduce((a,b) => a + b)) * 100}%`
+                        }}
+                      >
+                        {i}
+                      </span>
+                    })}
+                  </span>
+                : <span style={{ 'whiteSpace': 'normal' }}>{props.original.customer1}</span>
+              },
+              {
+                accessor: "customer2",
+                sortable: true,
+                resizable: true,
+                filterable: false,
+                Cell: props => typeof props.original.customer2 === "object" ?
+                  <span className="top3InvestmentCategories" style={{
+                    display: 'flex', justifyContent: 'center', alignItems: 'center'
+                  }}>
+                    {Object.keys(props.original.customer2).map((i, index) => {
+                      return <span
+                        key={index}
+                        style={{
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          textAlign: 'center',
+                          fontSize: 10,
+                          whiteSpace: 'normal',
+                          padding: '8px 0',
+                          height: 40,
+                          width: `${(props.original.customer2[i] / Object.values(props.original.customer2).reduce((a,b) => a + b)) * 100}%`
+                        }}
+                      >
+                        {i}
+                      </span>
+                    })}
+                  </span>
+                : <span style={{ 'whiteSpace': 'normal' }}>{props.original.customer2}</span>
+              },
+            ]}
+            defaultPageSize={9}
+            style={{ marginBottom: 25 }}
+            className="-highlight"
+          />
+        </div>
       </div>
     </div>
   )
