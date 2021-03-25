@@ -47,6 +47,9 @@ function App() {
       },
       size: {
         height: 400
+      },
+      donut: {
+        title: totalEstimatedSpend
       }
     });
   }
@@ -269,13 +272,12 @@ function App() {
           </pre>
 
           <div style={{ position: 'relative' }}>
-            <b
+            {/* <b
               className="d-flex justify-content-center"
               style={{ position: 'absolute', top: 180, right: '50%', marginRight: -20 }}
             >
               {totalEstimatedSpend}
-            </b>
-            <div id="chart"></div>
+            </b> */}
             {/* <C3Chart
               data={donutChart.data}
               donut={donutChart.donut}
@@ -284,6 +286,8 @@ function App() {
               size={donutChart.size}
               pie={donutChart.pie}
             /> */}
+
+            <div id="chart"></div>
           </div>
         </div>
 
