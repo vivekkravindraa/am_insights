@@ -66,7 +66,6 @@ function App() {
 
     let vendorSpends = [];
     Object.keys(displacable).map((item) => {
-      // console.log(displacable[item])
       displacable[item].map((i) => {
         console.log(i);
         vendorSpends.push({
@@ -345,6 +344,12 @@ function App() {
           [ 'x', ...listOfCategories ],
           [ 'data1', ...listOfCategoryRelatedValues ]
         ],
+        onclick: function (d) {
+          console.log(this.internal.config.axis_x_categories[d.x]);
+          let label = this.internal.config.axis_x_categories[d.x];
+          callVendorChartUpdate(label)
+          callDeepDiveTableUpdate(label)
+        },
         type: "bar",
         labels: true,
         unload: true
@@ -435,6 +440,62 @@ function App() {
     });
   }, [ showDeepDive ])
 
+  const callVendorChartUpdate = (label) => {
+    let vendorSpends = [];
+    displacable[label].map((i) => {
+      console.log(i);
+      vendorSpends.push({
+        vendorName: i.competitor,
+        value: displacable[label][0] ? Math.ceil(displacable[label][0].competitor_spend / 1000000) : 0
+      })
+    })
+    console.log(vendorSpends);
+    setVendorBarChartData(vendorSpends);
+  }
+
+  useEffect(() => {
+    let sortedVendors = vendorBarChartData.sort(function(a, b){ return b.value - a.value });
+    let listOfVenodrs = sortedVendors.map((item) => item.vendorName);
+    let listOfVendorRelatedValues = sortedVendors.map((item) => item.value);
+
+    c3.generate({
+      bindto: "#vendorWiseEstimatedSpend",
+      data: {
+        x: 'x',
+        columns: [
+          [ 'x', ...listOfVenodrs ],
+          [ 'data1', ...listOfVendorRelatedValues ]
+        ],
+        type: "bar",
+        labels: true,
+        unload: true
+      },
+      bar: {
+        width: {
+          ratio: 0.3
+        }
+      },
+      size: {
+        height: 200
+      },
+      axis: {
+        rotated: true,
+        x: {
+          type: 'category'
+        },
+        y: {
+          show: false
+        }
+      },
+      legend: {
+        show: false
+      },
+      tooltip: {
+        show: false
+      }
+    });
+  }, [ vendorBarChartData ]);
+
   // const multiDataSet = [
   //   {
   //     columns: teq,
@@ -446,18 +507,18 @@ function App() {
   //   }
   // ]
 
-  const data = [
-    {
-      "vendor": "Vendor1",
-      "product": "Product1",
-      "category": "Category1"
-    },
-    {
-      "vendor": "Vendor2",
-      "product": "Product2",
-      "category": "Category2"
-    }
-  ];
+  // const data = [
+  //   {
+  //     "vendor": "Vendor1",
+  //     "product": "Product1",
+  //     "category": "Category1"
+  //   },
+  //   {
+  //     "vendor": "Vendor2",
+  //     "product": "Product2",
+  //     "category": "Category2"
+  //   }
+  // ];
 
   const columns = [
     {
@@ -475,6 +536,38 @@ function App() {
   const paginationOption = {
     sizePerPage: 5
   };
+
+  const callDeepDiveTableUpdate = (label) => {
+    const deepDiveTableData = [];
+    displacable[label].forEach((i) => {
+      deepDiveTableData.push({
+        vendor: i.competitor,
+        product: i.product.map((prod) => <li>{prod.product_name}</li>),
+        category: label
+      })
+    })
+    console.log(deepDiveTableData);
+    setDeepDiveTableData(deepDiveTableData);
+  }
+
+  useEffect(() => {
+    renderDeepDiveTable();
+  }, [ deepDiveTableData ]);
+
+  const renderDeepDiveTable = () => {
+    return (
+      <BootstrapTable
+        keyField="id"
+        striped
+        hover
+        condensed
+        noDataIndication="Table is Empty"
+        data={ deepDiveTableData }
+        columns={ columns }
+        pagination={ paginationFactory(paginationOption) }
+      />
+    )
+  }
 
   return (
     <div style={{ margin: '0 40px' }}>
@@ -498,16 +591,7 @@ function App() {
                 </div>
               </div>
               <div className="deepDive" style={{ paddingTop: 20 }}>
-                <BootstrapTable
-                  keyField="id"
-                  striped
-                  hover
-                  condensed
-                  noDataIndication="Table is Empty"
-                  data={ deepDiveTableData }
-                  columns={ columns }
-                  pagination={ paginationFactory(paginationOption) }
-                />
+                {renderDeepDiveTable()}
               </div>
             </Modal.Body>
           </Modal>

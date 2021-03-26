@@ -1,5 +1,18 @@
 export const displacable = {
-    "Collaboration": [],
+    "Collaboration": [
+      {
+        "category":"Collaboration",
+        "category_spend":22566553.57,
+        "competitor":"HCL Technologies",
+        "competitor_spend":7713131.11,
+        "product": [
+            {"product_name" : "HCL (Unspecified Product)"},
+            {"product_name" : "HCL Technologies, Inc."}
+        ],
+        "technology":"Network Management",
+        "total_spend":32566553.57
+      },
+    ],
     "Network Infrasturcture & Services":[
       {
         "category":"Network Infrasturcture & Services",
