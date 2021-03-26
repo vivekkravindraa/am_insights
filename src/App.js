@@ -9,6 +9,7 @@ import { Button, Modal } from 'react-bootstrap';
 // import C3Chart from 'react-c3js';
 import { competitorInsightsData } from './competitor_insights';
 import { teq } from './customer_insights';
+import { displacable } from './displacable';
 // import { Table } from "antd";
 // import { Table, Column, HeaderCell, Cell } from 'rsuite-table';
 // import BootstrapSwitchButton from 'bootstrap-switch-button-react';
@@ -29,6 +30,7 @@ function App() {
   const [ showDeepDive, setShowDeepDive ] = useState(false);
   const [ newTeq, setNewTeq ] = useState([]);
   const [ deepDiveTableData, setDeepDiveTableData ] = useState([]);
+  const [ categoryBarChartData, setCategoryBarChartData ] = useState([]);
 
   const handleCloseDeepDive = () => setShowDeepDive(false);
   const handleShowDeepDive = () => setShowDeepDive(true);
@@ -38,22 +40,28 @@ function App() {
   const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
 
   useEffect(() => {
-
-    console.log(competitorInsightsData[0].accounts)
-    console.log(Object.keys(competitorInsightsData[0].accounts));
-
     const deepDiveTableData = []
-    Object.keys(competitorInsightsData[0].accounts).map((item) => {
-      competitorInsightsData[0].accounts[item].forEach((i) => {
+    Object.keys(displacable).map((item) => {
+      displacable[item].forEach((i) => {
         deepDiveTableData.push({
-          vendor: i.vendor,
-          product: i.product,
+          vendor: i.competitor,
+          product: i.product.map((prod) => <li>{prod.product_name}</li>),
           category: item
         })
       })
     });
     console.log(deepDiveTableData);
     setDeepDiveTableData(deepDiveTableData);
+
+    let categorySpends = [];
+    Object.keys(displacable).map((item) => {
+      categorySpends.push({
+        categoryName: item,
+        value: displacable[item][0] ? Math.ceil(displacable[item][0].category_spend / 1000000) : 0
+      })
+    })
+    console.log(categorySpends);
+    setCategoryBarChartData(categorySpends);
 
     const newTeq = teq.map((item) => {
       return  {
@@ -291,26 +299,26 @@ function App() {
   // }
 
   useEffect(() => {
-    const categories = [
-      {
-        categoryName: "Collaboration",
-        value: 1000
-      },
-      {
-        categoryName: "Security",
-        value: 2000
-      },
-      {
-        categoryName: "Network Infra",
-        value: 3000
-      },
-      {
-        categoryName: "Storage",
-        value: 4000
-      }
-    ]
+    // const categories = [
+    //   {
+    //     categoryName: "Collaboration",
+    //     value: 1000
+    //   },
+    //   {
+    //     categoryName: "Security",
+    //     value: 2000
+    //   },
+    //   {
+    //     categoryName: "Network Infra",
+    //     value: 3000
+    //   },
+    //   {
+    //     categoryName: "Storage",
+    //     value: 4000
+    //   }
+    // ]
 
-    let sortedCategories = categories.sort(function(a, b){ return b.value - a.value});
+    let sortedCategories = categoryBarChartData.sort(function(a, b){ return b.value - a.value});
     let listOfCategories = sortedCategories.map((item) => item.categoryName);
     let listOfCategoryRelatedValues = sortedCategories.map((item) => item.value);
 
@@ -351,24 +359,24 @@ function App() {
       }
     });
 
-    const vendors = [
-      {
-        vendorName: 'Vendor1',
-        value: 1000
-      },
-      {
-        vendorName: 'Vendor2',
-        value: 2000
-      },
-      {
-        vendorName: 'Vendor3',
-        value: 3000
-      },
-      {
-        vendorName: 'Vendor4',
-        value: 4000
-      }
-    ]
+    // const vendors = [
+    //   {
+    //     vendorName: 'Vendor1',
+    //     value: 1000
+    //   },
+    //   {
+    //     vendorName: 'Vendor2',
+    //     value: 2000
+    //   },
+    //   {
+    //     vendorName: 'Vendor3',
+    //     value: 3000
+    //   },
+    //   {
+    //     vendorName: 'Vendor4',
+    //     value: 4000
+    //   }
+    // ]
 
     let sortedVendors = vendors.sort(function(a, b){ return b.value - a.value });
     let listOfVenodrs = sortedVendors.map((item) => item.vendorName);
@@ -461,12 +469,12 @@ function App() {
         <>
           <Modal dialogClassName="deepDiveModal" show={showDeepDive} onHide={handleCloseDeepDive}>
             <Modal.Header closeButton style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', margin: '0 auto' }}>
-              <p style={{ fontSize: 14, fontWeight: 600, margin: 0, color: '#808080' }}>Displaceable market - deep dive</p>
+              <p style={{ fontSize: 14, fontWeight: 600, margin: 0, color: '#808080' }}>displacable market - deep dive</p>
             </Modal.Header>
             <Modal.Body>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 6fr)' }}>
                 <div>
-                  <p style={{ fontSize: 14, fontWeight: 600, margin: '0 0 0 34px', color: '#808080' }}>Displaceable market – category</p>
+                  <p style={{ fontSize: 14, fontWeight: 600, margin: '0 0 0 34px', color: '#808080' }}>displacable market – category</p>
                   <div id="displacebaleMarketCategory"></div>
                 </div>
                 <div>
