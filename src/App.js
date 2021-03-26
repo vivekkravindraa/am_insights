@@ -31,6 +31,7 @@ function App() {
   const [ newTeq, setNewTeq ] = useState([]);
   const [ deepDiveTableData, setDeepDiveTableData ] = useState([]);
   const [ categoryBarChartData, setCategoryBarChartData ] = useState([]);
+  const [ vendorBarChartData, setVendorBarChartData ] = useState([]);
 
   const handleCloseDeepDive = () => setShowDeepDive(false);
   const handleShowDeepDive = () => setShowDeepDive(true);
@@ -62,6 +63,20 @@ function App() {
     })
     console.log(categorySpends);
     setCategoryBarChartData(categorySpends);
+
+    let vendorSpends = [];
+    Object.keys(displacable).map((item) => {
+      // console.log(displacable[item])
+      displacable[item].map((i) => {
+        console.log(i);
+        vendorSpends.push({
+          vendorName: i.competitor,
+          value: displacable[item][0] ? Math.ceil(displacable[item][0].competitor_spend / 1000000) : 0
+        })
+      })
+    })
+    console.log(vendorSpends);
+    setVendorBarChartData(vendorSpends);
 
     const newTeq = teq.map((item) => {
       return  {
@@ -378,7 +393,7 @@ function App() {
     //   }
     // ]
 
-    let sortedVendors = vendors.sort(function(a, b){ return b.value - a.value });
+    let sortedVendors = vendorBarChartData.sort(function(a, b){ return b.value - a.value });
     let listOfVenodrs = sortedVendors.map((item) => item.vendorName);
     let listOfVendorRelatedValues = sortedVendors.map((item) => item.value);
 
