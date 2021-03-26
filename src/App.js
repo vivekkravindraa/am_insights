@@ -33,12 +33,47 @@ function App() {
   const [ categoryBarChartData, setCategoryBarChartData ] = useState([]);
   const [ vendorBarChartData, setVendorBarChartData ] = useState([]);
 
-  const handleCloseDeepDive = () => setShowDeepDive(false);
+  const handleCloseDeepDive = () => {
+    resetDeepDiveTable();
+    resetVendorChart();
+    setShowDeepDive(false);
+  }
   const handleShowDeepDive = () => setShowDeepDive(true);
 
   const ExcelFile = ReactExport.ExcelFile;
   const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
   const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
+
+  const resetDeepDiveTable = () => {
+    // Obtaining table data for deep dive displacable market
+    const deepDiveTableData = []
+    Object.keys(displacable).map((item) => {
+      displacable[item].forEach((i) => {
+        deepDiveTableData.push({
+          vendor: i.competitor,
+          product: i.product.map((prod) => <li>{prod.product_name}</li>),
+          category: item
+        })
+      })
+    });
+    console.log(deepDiveTableData);
+    setDeepDiveTableData(deepDiveTableData);
+  }
+
+  const resetVendorChart = () => {
+    let vendorSpends = [];
+    Object.keys(displacable).map((item) => {
+      displacable[item].map((i) => {
+        console.log(i);
+        vendorSpends.push({
+          vendorName: i.competitor,
+          value: displacable[item][0] ? Math.ceil(displacable[item][0].competitor_spend / 1000000) : 0
+        })
+      })
+    })
+    console.log(vendorSpends);
+    setVendorBarChartData(vendorSpends);
+  }
 
   useEffect(() => {
     const deepDiveTableData = []
