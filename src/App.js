@@ -28,6 +28,7 @@ function App() {
   // const [ colorCodesObj, setColorCodesObj ] = useState({});
   const [ showDeepDive, setShowDeepDive ] = useState(false);
   const [ newTeq, setNewTeq ] = useState([]);
+  const [ deepDiveTableData, setDeepDiveTableData ] = useState([]);
 
   const handleCloseDeepDive = () => setShowDeepDive(false);
   const handleShowDeepDive = () => setShowDeepDive(true);
@@ -37,6 +38,22 @@ function App() {
   const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
 
   useEffect(() => {
+
+    console.log(competitorInsightsData[0].accounts)
+    console.log(Object.keys(competitorInsightsData[0].accounts));
+
+    const deepDiveTableData = []
+    Object.keys(competitorInsightsData[0].accounts).map((item) => {
+      competitorInsightsData[0].accounts[item].forEach((i) => {
+        deepDiveTableData.push({
+          vendor: i.vendor,
+          product: i.product,
+          category: item
+        })
+      })
+    });
+    console.log(deepDiveTableData);
+    setDeepDiveTableData(deepDiveTableData);
 
     const newTeq = teq.map((item) => {
       return  {
@@ -274,13 +291,36 @@ function App() {
   // }
 
   useEffect(() => {
+    const categories = [
+      {
+        categoryName: "Collaboration",
+        value: 1000
+      },
+      {
+        categoryName: "Security",
+        value: 2000
+      },
+      {
+        categoryName: "Network Infra",
+        value: 3000
+      },
+      {
+        categoryName: "Storage",
+        value: 4000
+      }
+    ]
+
+    let sortedCategories = categories.sort(function(a, b){ return b.value - a.value});
+    let listOfCategories = sortedCategories.map((item) => item.categoryName);
+    let listOfCategoryRelatedValues = sortedCategories.map((item) => item.value);
+
     c3.generate({
       bindto: "#displacebaleMarketCategory",
       data: {
         x: 'x',
         columns: [
-          ['x', 'Storage', 'Network Infra', 'Security', 'Collaboration' ],
-          [ 'data1', 4000, 3000, 2000, 1000 ]
+          [ 'x', ...listOfCategories ],
+          [ 'data1', ...listOfCategoryRelatedValues ]
         ],
         type: "bar",
         labels: true,
@@ -311,13 +351,36 @@ function App() {
       }
     });
 
+    const vendors = [
+      {
+        vendorName: 'Vendor1',
+        value: 1000
+      },
+      {
+        vendorName: 'Vendor2',
+        value: 2000
+      },
+      {
+        vendorName: 'Vendor3',
+        value: 3000
+      },
+      {
+        vendorName: 'Vendor4',
+        value: 4000
+      }
+    ]
+
+    let sortedVendors = vendors.sort(function(a, b){ return b.value - a.value });
+    let listOfVenodrs = sortedVendors.map((item) => item.vendorName);
+    let listOfVendorRelatedValues = sortedVendors.map((item) => item.value);
+
     c3.generate({
       bindto: "#vendorWiseEstimatedSpend",
       data: {
         x: 'x',
         columns: [
-          ['x', 'Vendor4', 'Vendor3', 'Vendor2', 'Vendor1' ],
-          [ 'data1', 4000, 3000, 2000, 1000 ]
+          [ 'x', ...listOfVenodrs ],
+          [ 'data1', ...listOfVendorRelatedValues ]
         ],
         type: "bar",
         labels: true,
@@ -418,7 +481,7 @@ function App() {
                   hover
                   condensed
                   noDataIndication="Table is Empty"
-                  data={ data }
+                  data={ deepDiveTableData }
                   columns={ columns }
                   pagination={ paginationFactory(paginationOption) }
                 />
