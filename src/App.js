@@ -26,12 +26,15 @@ function App() {
   const [ selectedCategory, setSelectedCategory ] = useState("");
   const [ competitorSpends, setCompetitorSpends ] = useState([]);
   const [ totalEstimatedSpend, setTotalEstimatedSpend ] = useState("");
-  // const [ colorCodesObj, setColorCodesObj ] = useState({});
   const [ showDeepDive, setShowDeepDive ] = useState(false);
   const [ newTeq, setNewTeq ] = useState([]);
   const [ deepDiveTableData, setDeepDiveTableData ] = useState([]);
   const [ categoryBarChartData, setCategoryBarChartData ] = useState([]);
   const [ vendorBarChartData, setVendorBarChartData ] = useState([]);
+
+  const ExcelFile = ReactExport.ExcelFile;
+  const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
+  const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
 
   const handleCloseDeepDive = () => {
     resetDeepDiveTable();
@@ -40,12 +43,7 @@ function App() {
   }
   const handleShowDeepDive = () => setShowDeepDive(true);
 
-  const ExcelFile = ReactExport.ExcelFile;
-  const ExcelSheet = ReactExport.ExcelFile.ExcelSheet;
-  const ExcelColumn = ReactExport.ExcelFile.ExcelColumn;
-
   const resetDeepDiveTable = () => {
-    // Obtaining table data for deep dive displacable market
     const deepDiveTableData = []
     Object.keys(displacable).map((item) => {
       displacable[item].forEach((i) => {
@@ -56,7 +54,6 @@ function App() {
         })
       })
     });
-    console.log(deepDiveTableData);
     setDeepDiveTableData(deepDiveTableData);
   }
 
@@ -71,7 +68,6 @@ function App() {
         })
       })
     })
-    console.log(vendorSpends);
     setVendorBarChartData(vendorSpends);
   }
 
@@ -86,7 +82,6 @@ function App() {
         })
       })
     });
-    console.log(deepDiveTableData);
     setDeepDiveTableData(deepDiveTableData);
 
     let categorySpends = [];
@@ -96,20 +91,17 @@ function App() {
         value: displacable[item][0] ? Math.ceil(displacable[item][0].category_spend / 1000000) : 0
       })
     })
-    console.log(categorySpends);
     setCategoryBarChartData(categorySpends);
 
     let vendorSpends = [];
     Object.keys(displacable).map((item) => {
       displacable[item].map((i) => {
-        console.log(i);
         vendorSpends.push({
           vendorName: i.competitor,
           value: displacable[item][0] ? Math.ceil(displacable[item][0].competitor_spend / 1000000) : 0
         })
       })
     })
-    console.log(vendorSpends);
     setVendorBarChartData(vendorSpends);
 
     const newTeq = teq.map((item) => {
@@ -201,27 +193,6 @@ function App() {
     }
   }
 
-  // const pickRandomColor = () => {
-  //   var colorCodes = [
-  //     '#FBAB18',
-  //     '#6EBE4A',
-  //     '#00BCEB',
-  //     // '#1E4471',
-  //     '#5E5E5E',
-  //     '#D74DB3',
-  //     '#F94D6E',
-  //     '#C8F4FF',
-  //     '#329489',
-  //     '#89AEDE',
-  //     '#E2F3E0',
-  //     '#B6D3AA'
-  //   ];
-    
-  //   let randomColor = colorCodes[ Math.floor(Math.random() * colorCodes.length) ];
-  //   // console.log(randomColor);
-  //   return randomColor;
-  // }
-
   const getSpends = (e, category) => {
     const result = competitorInsightsData[0].vendors[category].map((a) => {
       return {
@@ -278,95 +249,7 @@ function App() {
     // setColorCodesObj(colorCodesObj);
   }
 
-  // const donutChart = {
-  //   data: {
-  //     type: 'donut',
-  //     columns: competitorSpends,
-  //     labels: true,
-  //     unload: true,
-  //     colors: colorCodesObj,
-  //     // color: {
-  //     //     pattern: ['red', 'green', 'blue', 'orange', 'turquoise'], // colors for values
-  //     //     threshold: {
-  //     //       values: [30, 60, 90, 100, 150]
-  //     //     }
-  //     // },
-  //     // color: function (color, d) {
-  //     // console.log(color, d)
-  //     // },
-  //     // colors: {
-  //     //   "Cisco Systems, Inc.": "#1A65B0",
-  //     //   "Others": "#d9d9d9"
-  //     // },
-  //     // colors: {
-  //     //   pattern: [
-  //     //     '#FBAB18',
-  //     //     '#6EBE4A',
-  //     //     '#00BCEB',
-  //     //     '#1E4471',
-  //     //     '#5E5E5E',
-  //     //     '#D74DB3',
-  //     //     '#F94D6E',
-  //     //     '#C8F4FF',
-  //     //     '#329489',
-  //     //     '#89AEDE',
-  //     //     '#E2F3E0',
-  //     //     '#B6D3AA'
-  //     //   ]
-  //     // },
-  //     onmouseover: function (d, i) {
-  //       d3.select(i).attr("transform", "scale(1.1)")
-  //     },
-  //     onmouseout: function (d, i) {
-  //       d3.select(i).attr("transform", "scale(1)")
-  //     }
-  //   },
-  //   donut: {
-  //     // title: totalEstimatedSpend,
-  //     label: {
-  //       show: true,
-  //       format: function (value) { return null; }
-  //     }
-  //   },
-  //   tooltip: {
-  //     show: false,
-  //     format: {
-  //       value: function (value, ratio, id, index) {
-  //         return value;
-  //       }
-  //     }
-  //   },
-  //   legend: {
-  //     hide: false
-  //   },
-  //   size: {
-  //     height: 420
-  //   },
-  //   pie: {
-  //     expand: true
-  //   }
-  // }
-
   useEffect(() => {
-    // const categories = [
-    //   {
-    //     categoryName: "Collaboration",
-    //     value: 1000
-    //   },
-    //   {
-    //     categoryName: "Security",
-    //     value: 2000
-    //   },
-    //   {
-    //     categoryName: "Network Infra",
-    //     value: 3000
-    //   },
-    //   {
-    //     categoryName: "Storage",
-    //     value: 4000
-    //   }
-    // ]
-
     let sortedCategories = categoryBarChartData.sort(function(a, b){ return b.value - a.value});
     let listOfCategories = sortedCategories.map((item) => item.categoryName);
     let listOfCategoryRelatedValues = sortedCategories.map((item) => item.value);
@@ -413,25 +296,6 @@ function App() {
         show: false
       }
     });
-
-    // const vendors = [
-    //   {
-    //     vendorName: 'Vendor1',
-    //     value: 1000
-    //   },
-    //   {
-    //     vendorName: 'Vendor2',
-    //     value: 2000
-    //   },
-    //   {
-    //     vendorName: 'Vendor3',
-    //     value: 3000
-    //   },
-    //   {
-    //     vendorName: 'Vendor4',
-    //     value: 4000
-    //   }
-    // ]
 
     let sortedVendors = vendorBarChartData.sort(function(a, b){ return b.value - a.value });
     let listOfVenodrs = sortedVendors.map((item) => item.vendorName);
@@ -531,30 +395,6 @@ function App() {
     });
   }, [ vendorBarChartData ]);
 
-  // const multiDataSet = [
-  //   {
-  //     columns: teq,
-  //     data: [
-  //       [
-  //         {value: "Yellow", style: {fill: {patternType: "solid", fgColor: {rgb: "FFFFFF"}}}},
-  //       ],[],[],[],[],[],[]
-  //     ]
-  //   }
-  // ]
-
-  // const data = [
-  //   {
-  //     "vendor": "Vendor1",
-  //     "product": "Product1",
-  //     "category": "Category1"
-  //   },
-  //   {
-  //     "vendor": "Vendor2",
-  //     "product": "Product2",
-  //     "category": "Category2"
-  //   }
-  // ];
-
   const columns = [
     {
       dataField: 'vendor',
@@ -644,37 +484,23 @@ function App() {
           }
         </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 6fr)', position: 'relative' }}>
-            {/* <b
-              className="d-flex justify-content-center"
-              style={{ position: 'absolute', top: 180, right: '50%', marginRight: -20 }}
-            >
-              {totalEstimatedSpend}
-            </b> */}
-            {/* <C3Chart
-              data={donutChart.data}
-              donut={donutChart.donut}
-              tooltip={donutChart.tooltip}
-              legend={donutChart.legend}
-              size={donutChart.size}
-              pie={donutChart.pie}
-            /> */}
-            <div>
-              <pre style={{ paddingTop: 10 }}>
-                <b>
-                  {JSON.stringify({
-                    selectedCategory,
-                    competitorSpends,
-                    totalEstimatedSpend
-                  }, null, '\t')}
-                </b>
-              </pre>
-            </div>
-            <div>
-              <Button variant="info" style={{ marginTop: 20 }} onClick={handleShowDeepDive}>Deep Dive</Button>
-              <div id="chart"></div>
-            </div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 6fr)', position: 'relative' }}>
+          <div>
+            <pre style={{ paddingTop: 10 }}>
+              <b>
+                {JSON.stringify({
+                  selectedCategory,
+                  competitorSpends,
+                  totalEstimatedSpend
+                }, null, '\t')}
+              </b>
+            </pre>
           </div>
+          <div>
+            <Button variant="info" style={{ marginTop: 20 }} onClick={handleShowDeepDive}>Deep Dive</Button>
+            <div id="chart"></div>
+          </div>
+        </div>
 
         <div className="teq">
           <div className="d-flex justify-content-between align-items-center" style={{ paddingBottom: 10 }}>
@@ -694,7 +520,8 @@ function App() {
                   <ExcelColumn label="Overall TEQ Score" value="overallTEQScore" />
                   <ExcelColumn label="Customers Affinity Towards Cisco" value="customersAffinityTowardsCisco" />
                   <ExcelColumn label="Tech Adoption" value="techAdoption" />
-                  <ExcelColumn label="Top 3 Investment Categories" value={(col) => JSON.stringify(col.top3InvestmentCategories)} />
+                  {/* <ExcelColumn label="Top 3 Investment Categories" value={(col) => JSON.stringify(col.top3InvestmentCategories)} /> */}
+                  <ExcelColumn label="Top 3 Investment Categories" value={(col) => console.log(col.top3InvestmentCategories)} />
                   <ExcelColumn label="Spend Distribution" value={(col) => JSON.stringify(col.spendDistribution)} />
                   <ExcelColumn label="Top 3 Potential Purchases" value="top3PotentialPurchases" />
                   <ExcelColumn label="Recent Deals Closed" value="recentDealsClosed" bgColor='yellow' />
