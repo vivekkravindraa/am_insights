@@ -4,7 +4,7 @@ body {
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.8px;
-  background-color: black;
+  background-color: #f2f2f2;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

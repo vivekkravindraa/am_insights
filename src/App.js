@@ -111,9 +111,9 @@ function App() {
         overallTEQScore: item.overallTEQScore,
         customersAffinityTowardsCisco: item.customersAffinityTowardsCisco,
         techAdoption: item.techAdoption,
-        top3InvestmentCategories: Object.entries(item.top3InvestmentCategories).map((i) => i.join(": ")).join(', '),
-        spendDistribution: Object.entries(item.spendDistribution).map((i) => i.join(": ")).join(', '),
-        top3PotentialPurchases: item.top3PotentialPurchases,
+        top3InvestmentCategories: Object.entries(item.top3InvestmentCategories).map((i, idx) => `[${idx+1}] ${i.join(": ")}`).join(', '),
+        spendDistribution: Object.entries(item.spendDistribution).map((i, idx) => `[${idx+1}] ${i.join(": ")}`).join(', '),
+        top3PotentialPurchases: item.top3PotentialPurchases.map((i,idx) => `[${idx+1}] ${i.potential_purchase}`).join(', '),
         recentDealsClosed: item.recentDealsClosed,
         qualifiedUseCases: item.qualifiedUseCases
       }
@@ -521,7 +521,7 @@ function App() {
                   <ExcelColumn label="Tech Adoption" value="techAdoption" />
                   <ExcelColumn label="Top 3 Investment Categories" value={(col) => col.top3InvestmentCategories} />
                   <ExcelColumn label="Spend Distribution" value={(col) => col.spendDistribution} />
-                  <ExcelColumn label="Top 3 Potential Purchases" value="top3PotentialPurchases" />
+                  <ExcelColumn label="Top 3 Potential Purchases" value={(col) => col.top3PotentialPurchases} />
                   <ExcelColumn label="Recent Deals Closed" value="recentDealsClosed" bgColor='yellow' />
                   <ExcelColumn label="Qualified Use Cases" value="qualifiedUseCases"/>
                 </ExcelSheet>
@@ -550,8 +550,29 @@ function App() {
                 sortable: true,
                 resizable: true,
                 filterable: false,
-                Cell: props => typeof props.original.customer0 === "object" ? 
-                  <span className="top3InvestmentCategories" style={{
+                Cell: props => Array.isArray(props.original.customer0) ?
+                  <span className={`${props.original.propertyName}`} style={{
+                    display: 'flex', justifyContent: 'center', alignItems: 'center'
+                  }}>
+                    {props.original.customer0.map((i, index) => {
+                      return <li
+                        key={index}
+                        style={{
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          textAlign: 'center',
+                          fontSize: 10,
+                          whiteSpace: 'normal',
+                          padding: '8px 0',
+                        }}
+                      >
+                        {i.potential_purchase}
+                      </li>
+                    })}
+                  </span>
+                : typeof props.original.customer0 === "object" ? 
+                  <span className={`${props.original.propertyName}`} style={{
                     display: 'flex', justifyContent: 'center', alignItems: 'center'
                   }}>
                     {Object.keys(props.original.customer0).map((i, index) => {
@@ -581,7 +602,7 @@ function App() {
                 resizable: true,
                 filterable: false,
                 Cell: props => typeof props.original.customer1 === "object" ?
-                  <span className="top3InvestmentCategories" style={{
+                  <span className={`${props.original.propertyName}`} style={{
                     display: 'flex', justifyContent: 'center', alignItems: 'center'
                   }}>
                     {Object.keys(props.original.customer1).map((i, index) => {
@@ -611,7 +632,7 @@ function App() {
                 resizable: true,
                 filterable: false,
                 Cell: props => typeof props.original.customer2 === "object" ?
-                  <span className="top3InvestmentCategories" style={{
+                  <span className={`${props.original.propertyName}`} style={{
                     display: 'flex', justifyContent: 'center', alignItems: 'center'
                   }}>
                     {Object.keys(props.original.customer2).map((i, index) => {
@@ -634,7 +655,7 @@ function App() {
                     })}
                   </span>
                 : <span style={{ 'whiteSpace': 'normal' }}>{props.original.customer2}</span>
-              },
+              }
             ]}
             defaultPageSize={9}
             style={{ marginBottom: 25 }}

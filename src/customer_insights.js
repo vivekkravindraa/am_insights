@@ -14,7 +14,17 @@ export const teq = [
             "HW": 35,
             "Subs": 45
         },
-        "top3PotentialPurchases": "Collaboration, Meraki",
+        "top3PotentialPurchases": [
+            {
+                "potential_purchase": "TP Multiparty Conferencing"
+            },
+            {
+                "potential_purchase": "Ent. Small Business - Switching"
+            },
+            {
+                "potential_purchase": "Network Security"
+            }
+        ],
         "recentDealsClosed": "TBD",
         "qualifiedUseCases": "Industrial Automation"
     },
@@ -33,7 +43,17 @@ export const teq = [
             "HW": 50,
             "Subs": 20
         },
-        "top3PotentialPurchases": "Security, Meraki",
+        "top3PotentialPurchases": [
+            {
+                "potential_purchase": "TP Multiparty Conferencing"
+            },
+            {
+                "potential_purchase": "Ent. Small Business - Switching"
+            },
+            {
+                "potential_purchase": "Network Security"
+            }
+        ],
         "recentDealsClosed": "TBD",
         "qualifiedUseCases": "Industrial Automation"
     },
@@ -52,7 +72,17 @@ export const teq = [
             "HW": 20,
             "Subs": 40
         },
-        "top3PotentialPurchases": "Data Center Networking, Meraki",
+        "top3PotentialPurchases": [
+            {
+                "potential_purchase": "TP Multiparty Conferencing"
+            },
+            {
+                "potential_purchase": "Ent. Small Business - Switching"
+            },
+            {
+                "potential_purchase": "Network Security"
+            }
+        ],
         "recentDealsClosed": "TBD",
         "qualifiedUseCases": "Cyber Security"
     }
