@@ -23,6 +23,7 @@ import './App.scss';
 
 function App() {
   const [ result, setResult ] = useState([]);
+  console.log(result);
   const [ selectedCategory, setSelectedCategory ] = useState("");
   const [ competitorSpends, setCompetitorSpends ] = useState([]);
   const [ totalEstimatedSpend, setTotalEstimatedSpend ] = useState("");
@@ -110,8 +111,8 @@ function App() {
         overallTEQScore: item.overallTEQScore,
         customersAffinityTowardsCisco: item.customersAffinityTowardsCisco,
         techAdoption: item.techAdoption,
-        top3InvestmentCategories: JSON.stringify(item.top3InvestmentCategories),
-        spendDistribution: JSON.stringify(item.spendDistribution),
+        top3InvestmentCategories: Object.entries(item.top3InvestmentCategories).map((i) => i.join(": ")).join(', '),
+        spendDistribution: Object.entries(item.spendDistribution).map((i) => i.join(": ")).join(', '),
         top3PotentialPurchases: item.top3PotentialPurchases,
         recentDealsClosed: item.recentDealsClosed,
         qualifiedUseCases: item.qualifiedUseCases
@@ -348,7 +349,6 @@ function App() {
         value: displacable[label][0] ? Math.ceil(displacable[label][0].competitor_spend / 1000000) : 0
       })
     })
-    console.log(vendorSpends);
     setVendorBarChartData(vendorSpends);
   }
 
@@ -421,7 +421,6 @@ function App() {
         category: label
       })
     })
-    console.log(deepDiveTableData);
     setDeepDiveTableData(deepDiveTableData);
   }
 
@@ -520,9 +519,8 @@ function App() {
                   <ExcelColumn label="Overall TEQ Score" value="overallTEQScore" />
                   <ExcelColumn label="Customers Affinity Towards Cisco" value="customersAffinityTowardsCisco" />
                   <ExcelColumn label="Tech Adoption" value="techAdoption" />
-                  {/* <ExcelColumn label="Top 3 Investment Categories" value={(col) => JSON.stringify(col.top3InvestmentCategories)} /> */}
-                  <ExcelColumn label="Top 3 Investment Categories" value={(col) => console.log(col.top3InvestmentCategories)} />
-                  <ExcelColumn label="Spend Distribution" value={(col) => JSON.stringify(col.spendDistribution)} />
+                  <ExcelColumn label="Top 3 Investment Categories" value={(col) => col.top3InvestmentCategories} />
+                  <ExcelColumn label="Spend Distribution" value={(col) => col.spendDistribution} />
                   <ExcelColumn label="Top 3 Potential Purchases" value="top3PotentialPurchases" />
                   <ExcelColumn label="Recent Deals Closed" value="recentDealsClosed" bgColor='yellow' />
                   <ExcelColumn label="Qualified Use Cases" value="qualifiedUseCases"/>
