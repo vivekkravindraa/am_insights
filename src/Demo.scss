@@ -1,0 +1,23 @@
+.companies::-webkit-scrollbar {
+    display: none;
+}
+
+.companies {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.company {
+  position: relative;
+}
+
+.company:after {
+  content: " ";
+  position: absolute;
+  border-left: 1px solid #005073;
+  top: 10%;
+  right: 0;
+  height: 60%;
+  margin-top: auto;
+  margin-bottom: auto;
+}
