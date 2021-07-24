@@ -1,6 +1,6 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/b5b69e7f-1fd3-4f3b-8ddc-417fb806be35/deploy-status)](https://app.netlify.com/sites/cisco-am-insights/deploys)
 
-https://cisco-am-insights.netlify.app
+[Cisco AM Insights](https://cisco-am-insights.netlify.app)
 
 # Deployment
 
