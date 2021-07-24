@@ -1,0 +1,193 @@
+/* COMPETITOR INSIGHTS STYLES */
+
+.counts {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #f5f5f5;
+    border-bottom: 1px solid #049df9;
+}
+
+.counts > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.counts > div > p {
+    margin: 0;
+}
+
+.accounts {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+}
+
+.accountsAdd {
+    color: #ffffff;
+    outline: 0 !important;
+    border: none !important;
+    border-radius: 25px;
+    margin: 0 !important;
+}
+
+.accountsRemove {
+    color: #ffffff;
+    background-color: #ff0000;
+    outline: 0 !important;
+    border: none !important;
+    border-radius: 25px;
+    margin: 0 !important;
+}
+
+.vendors {
+    display: grid;
+    grid-template-columns: repeat(4, 3fr);
+    column-gap: 20px;
+    padding: 10px;
+}
+
+.vendors > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+}
+
+.vendors > div > p {
+    margin: 0 !important;
+}
+
+.toggle {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+}
+
+.toggle > p {
+    margin: 0 !important;
+}
+
+.react-bootstrap-table-pagination {
+    padding-left: 15px;
+    width: 100% !important;
+}
+
+.react-bootstrap-table-pagination-list {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 0 !important;
+}
+
+/* REACT TABLE STYLES */
+
+.teq {
+    .rt-th {
+        font-weight: 300;
+        color: #ffffff;
+    }
+    
+    .rt-td:nth-child(5),
+    .rt-td:nth-child(6) {
+        margin: auto;
+    }
+    
+    .rt-tbody .rt-tr-group:nth-child(2) {
+        color: #000000;
+        background-color: #91E9FF;
+        border-bottom: 1px solid #f5f5f5;
+    }
+    
+    /* .rt-tbody .rt-tr-group .rt-tr .rt-td:nth-child(2) {
+        background-color: #26C6DA;
+    } */
+    
+    .top3InvestmentCategories > span:first-child,
+    .spendDistribution > span:first-child {
+      background-color: #00BCEB;
+    }
+    
+    .top3InvestmentCategories > span:nth-child(2),
+    .spendDistribution > span:nth-child(2) {
+      background-color: #6EBE4A;
+    }
+    
+    .top3InvestmentCategories > span:nth-child(3),
+    .spendDistribution > span:nth-child(3) {
+      color: #ffffff;
+      background-color: #005073;
+    }
+    
+    .rt-table::-webkit-scrollbar {
+        height: 8px;
+    }
+    
+    .rt-table::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        border-radius: 20px;
+    }
+    
+    .rt-table::-webkit-scrollbar-thumb {
+        background-color: #9E9EA2;
+        outline: 0;
+        border-radius: 20px;
+    }
+    
+    .rt-thead .rt-tr {
+        display: none;
+    }
+    
+    .rt-tbody .rt-tr-group:first-child {
+        color: #000000;
+        font-weight: 600;
+    }
+    
+    .rt-tbody .rt-tr-group:nth-child(2) .rt-td:first-child,
+    .rt-tbody .rt-tr-group:nth-child(3) .rt-td:first-child,
+    .rt-tbody .rt-tr-group:nth-child(4) .rt-td:first-child,
+    .rt-tbody .rt-tr-group:nth-child(5) .rt-td:first-child,
+    .rt-tbody .rt-tr-group:nth-child(6) .rt-td:first-child,
+    .rt-tbody .rt-tr-group:nth-child(7) .rt-td:first-child,
+    .rt-tbody .rt-tr-group:nth-child(8) .rt-td:first-child,
+    .rt-tbody .rt-tr-group:nth-child(9) .rt-td:first-child {
+        font-weight: 600;
+    }
+    
+    .rt-tbody .rt-tr-group:nth-child(8) .rt-td > span {
+        background-color: #ffff00;
+        padding: 0 10px;
+    }
+    
+    .rt-tbody .rt-tr-group:nth-child(8) .rt-td:first-child > span {
+        background-color: #ffffff;
+        padding: 0;
+    }
+    
+    .rt-tbody .rt-tr-group:nth-child(8):hover .rt-td:first-child > span {
+        background-color: #f2f2f2;
+    }
+    
+    .pagination-bottom {
+        display: none;
+    }
+}
+
+.deepDive {
+    thead {
+        color: #ffffff;
+        background-color: #1a65b0;
+    }
+}
+
+/* DEEP DIVE MODAL */
+
+.deepDiveModal {
+    width: 90vw;
+    max-width: 90vw;
+} 

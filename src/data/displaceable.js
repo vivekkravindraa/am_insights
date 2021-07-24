@@ -1,4 +1,4 @@
-export const displacable = {
+export const displaceable = {
     "Collaboration": [
       {
         "category":"Collaboration",

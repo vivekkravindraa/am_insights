@@ -2,14 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import "react-table-6/react-table.css";
 import './index.css';
-// import App from './App';
-import Demo from './Demo';
+import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    {/* <App /> */}
-    <Demo />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

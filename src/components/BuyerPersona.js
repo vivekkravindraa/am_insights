@@ -3,9 +3,9 @@ import { Accordion, Button, Card, Form, Row, Toggle } from 'react-bootstrap';
 import c3 from 'c3';
 import d3 from 'd3';
 import 'c3/c3.css';
-import './Demo.scss';
+import './BuyerPersona.scss';
 
-export default function Demo() {
+export default function BuyerPersona() {
     const [ buyerPersonas ] = useState([
         'Historical Purchase Data',
         'Buying Center: Minneapolis',
