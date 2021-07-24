@@ -90,19 +90,19 @@ export default function Insights() {
       setFilteredData(filteredSelectedVendorData);
 
     } else if(isRenewal && !selectedAccount && selectedVendor) {
-      // console.log('called at third condition');
+      // console.log('called at second condition');
       Object.keys(data[0].accounts).map((account) => {
         return Object.values(data[0].accounts[account]).map((item) => item.renewal_flag === "Yes" && item.vendor === selectedVendor && filteredSelectedVendorData.push(item));
       });
       setFilteredData(filteredSelectedVendorData);
 
     } else if(!isRenewal && selectedAccount && selectedVendor) {
-      // console.log('called at second condition');
+      // console.log('called at third condition');
       data[0] && Object.values(data[0].accounts[selectedAccount]).map((item) => item.renewal_flag === "No" && item.vendor === selectedVendor && filteredSelectedVendorData.push(item));
       setFilteredData(filteredSelectedVendorData);
 
     } else if(!isRenewal && !selectedAccount && selectedVendor) {
-      // console.log('called at third condition');
+      // console.log('called at fourth condition');
       Object.keys(data[0].accounts).map((account) => {
         return Object.values(data[0].accounts[account]).map((item) => item.renewal_flag === "No" && item.vendor === selectedVendor && filteredSelectedVendorData.push(item));
       });
@@ -257,13 +257,15 @@ export default function Insights() {
         <p>No. of filtered Records: {filteredData && filteredData.length}</p>
       </div>
 
-      {/* <pre>{JSON.stringify({
-        filteredData: JSON.stringify(filteredData, null, 2),
-        filteredDataLength: filteredData.length,
-        isRenewal,
-        selectedAccount,
-        selectedVendor
-      }, null, 2)}</pre> */}
+      {/* <pre>
+        {JSON.stringify({
+          filteredData: JSON.stringify(filteredData, null, 2),
+          filteredDataLength: filteredData.length,
+          isRenewal,
+          selectedAccount,
+          selectedVendor
+        }, null, 2)}
+      </pre> */}
     
       <div className="table">
         <BootstrapTable
